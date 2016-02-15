@@ -16,9 +16,9 @@ default: &default
 #  collation: utf8mb4_general_ci
   reconnect: false
   pool: 5
-  username: root
-  password:
-  host: localhost
+  host: 101.200.212.116
+  username: weshop
+  password: zhao2832
 
 
 development:
