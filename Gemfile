@@ -32,6 +32,26 @@ gem 'awesome_nested_set', '3.0.2'
 gem 'rails_kindeditor'
 #用户管理插件
 gem 'devise','~> 3.5.1'
+#bootstrap-sass扩展
+gem 'bootstrap-sass'
+#异常发送邮件工具
+gem 'exception_notification', '4.1.4'
+#漏洞扫描工具
+gem 'brakeman', '3.1.4'
+#控制台优化工具
+gem 'awesome_print', '1.6.1'
+
+
+group :development do
+  gem 'pry_debug'
+  gem 'pry-nav'
+  #页面debug工具
+  gem 'better_errors', '2.1.1'
+  gem 'binding_of_caller', '0.7.2'
+end
+
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

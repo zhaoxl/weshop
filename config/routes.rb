@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :admins, :controllers => {sessions: "admin/admins/sessions"},path_names: {sign_out: 'logout'}
+  devise_for :admins, :controllers => {sessions: "admin/admins/sessions"},path_names: {sign_out: 'logout'}, path: 'admin/admins'
+  
+  namespace :admin do
+    root 'index#index'
+    
+    resources :index
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
