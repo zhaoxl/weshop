@@ -40,7 +40,8 @@ gem 'exception_notification', '4.1.4'
 gem 'brakeman', '3.1.4'
 #控制台优化工具
 gem 'awesome_print', '1.6.1'
-
+#图片处理
+gem 'carrierwave'
 
 group :development do
   gem 'pry_debug'
