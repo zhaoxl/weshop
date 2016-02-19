@@ -18,6 +18,7 @@ gem 'spring',        group: :development
 
 #分页插件
 gem 'kaminari'
+gem 'bootstrap-kaminari-views'
 #require辅助插件
 #gem 'require_all'
 #状态机
