@@ -67,12 +67,12 @@
 											<img src="<%= logo.logo.url%>" width="50" height="50">
 										<%end%>
 									</td>
-									<td><%= product.state%></td>
-									<td><%= product.old_price%> / <span style="color: red; font-weight: bold"><%= product.old_price%></span></td>
+									<td><%= t "active_record.product.states.#{product.state}"%></td>
+									<td><%= product.old_price%> / <span style="color: red; font-weight: bold"><%= product.price%></span></td>
 									<td><%= product.inventory%></td>
 									<td><%= product.order_products_count%></td>
-									<td><%= product.sticky%></td>
-									<td><%= product.recommend%></td>
+									<td><%= product.sticky ? '是' : '否'%></td>
+									<td><%= product.recommend ? '是' : '否'%></td>
 									<td><%= product.position%></td>
 									<td>
 										<a href="<%= edit_admin_product_path(product)%>">编辑</a>

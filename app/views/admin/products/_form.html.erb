@@ -1,21 +1,45 @@
-<%= form_for [:admin, category], :html=>{:multipart=>true} do |f| %>
+<%= form_for [:admin, product], :html=>{:multipart=>true} do |f| %>
 <table class="j_table2">
 	<tr>
-		<td class="tit">上级分类</td>
+		<td class="tit">所属分类</td>
 		<td>
-			<%= f.select :parent_id, ProductCategory.roots.map{|c| [c.name, c.id]}.unshift(['无', nil])  %>
+			<%= f.select :product_category_id, grouped_options_for_select(ProductCategory.roots.map{|c| [c.name, c.children.map{|cc| [cc.name, cc.id]}]})  %>
 		</td>
 	</tr>
 	<tr>
-		<td class="tit">分类名称</td>
+		<td class="tit">商品名称</td>
 		<td><%= f.text_field :name%></td>
 	</tr>
-	<%unless category.new_record?%>
+	<tr>
+		<td class="tit">描述</td>
+		<td><%= f.text_area :description%></td>
+	</tr>
+	<tr>
+		<td class="tit">价格</td>
+		<td><%= f.text_field :old_price%> / <%= f.text_field :price%></td>
+	</tr>
+	<tr>
+		<td class="tit">库存</td>
+		<td><%= f.text_field :inventory%></td>
+	</tr>
+	<tr>
+		<td class="tit">推荐</td>
+		<td><%= f.check_box :recommend%></td>
+	</tr>
+	<tr>
+		<td class="tit">置顶</td>
+		<td><%= f.check_box :sticky%></td>
+	</tr>
+	<%unless product.new_record?%>
 	<tr>
 		<td class="tit">显示顺序</td>
 		<td><%= f.text_field :position %></td>
 	</tr>
 	<%end%>
+	<tr>
+		<td class="tit">图文描述</td>
+		<td><%= f.kindeditor :content %></td>
+	</tr>
 </table>
 <%= f.submit '保存' %>
 <% end %>

@@ -1,0 +1,29 @@
+收货地址<br />
+<a href="<%= shippin_address_index_path%>">收货地址管理</a>
+
+
+<br /><br />
+购物车商品<br />
+<table>
+  <% current_user.carts.each do |cart|%>
+  <%product = cart.product%>
+  <tr>
+    <td>
+      <img src="<%= product.logo.url%>" />
+      <%= product.name%><br />
+      <%= product.description%><br />
+      <%= product.price%><br />
+    </td>
+    <td>
+      <%= cart.total%> x <%= product.price%> = <%= cart.total*product.price%>
+    </td>
+    <td>
+      <a href="#">删除</a>
+    </td>
+  </tr>
+  <%end%>
+  
+</table>
+<br /><br />
+
+<br /><br />

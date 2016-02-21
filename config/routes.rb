@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   devise_for :admins, :controllers => {sessions: "admin/admins/sessions"},path_names: {sign_out: 'logout'}, path: 'admin/admins'
   
   namespace :admin do
@@ -17,7 +18,26 @@ Rails.application.routes.draw do
         get :move_down
       end
     end
+    
+    resources :orders do
+      member do
+        post :sent
+      end
+    end
+    
+    
   end
+  
+  root 'index#index'
+  resources :index
+  resources :products
+  resources :orders
+  resources :carts do
+    collection do
+      get :add
+    end
+  end
+  resources :shippin_address
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

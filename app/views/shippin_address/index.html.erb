@@ -1,0 +1,21 @@
+收货地址管理<br />
+<table>
+  <%@addresses.each do |address|%>
+  <tr>
+    <td>
+      <%= address.province%>
+      <%= address.city%>
+      <%= address.street%>
+      <%= address.detail%>
+      <%= address.name%>
+      <%= address.phone%>
+      <%= address.default? ? '默认' : ''%>
+      <a href="edit_shippin_address_path(address)">编辑</a>
+      <%= link_to "删除", shippin_address_path(address)%>
+    </td>
+  </tr>
+  <%end%>
+</table>
+
+<br /><br />
+<a href="<%= new_shippin_address_path%>">添加收货地址</a>

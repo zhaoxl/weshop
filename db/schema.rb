@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160218142836) do
+ActiveRecord::Schema.define(version: 20160220132237) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -29,6 +29,26 @@ ActiveRecord::Schema.define(version: 20160218142836) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+
+  create_table "area_cities", force: true do |t|
+    t.string  "code"
+    t.string  "name"
+    t.string  "province_code"
+    t.integer "position",      default: 0
+  end
+
+  create_table "area_provinces", force: true do |t|
+    t.string  "code"
+    t.string  "name"
+    t.integer "position", default: 0
+  end
+
+  create_table "area_streets", force: true do |t|
+    t.string  "code"
+    t.string  "name"
+    t.string  "city_code"
+    t.integer "position",  default: 0
+  end
 
   create_table "carts", force: true do |t|
     t.integer  "user_id"
@@ -96,7 +116,7 @@ ActiveRecord::Schema.define(version: 20160218142836) do
     t.integer "position",                                      default: 0
     t.boolean "recommend",                                     default: false
     t.boolean "sticky",                                        default: false
-    t.integer "order_products_count"
+    t.integer "order_products_count",                          default: 0
   end
 
   create_table "shippin_addresses", force: true do |t|

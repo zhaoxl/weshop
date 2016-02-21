@@ -1,0 +1,8 @@
+推荐商品
+<%Product.where(recommend: true).each do |product|%>
+<a href="<%= product_path(product)%>">
+  <img src="<%= product.logo.url%>" /><br />
+  <%= product.name%><br />
+  <%= product.price%>
+</a>
+<%end%>

@@ -1,0 +1,15 @@
+查看商品<br />
+<% @product.product_logos.each do |plogo|%>
+  <img src="<%= plogo.logo.url%>" />
+<%end%>
+
+<br /><br />
+<%= @product.name%><br />
+<%= @product.description%><br />
+<%= @product.old_price%><br />
+<%= @product.price%><br />
+<%= @product.content%>
+
+<br /><br />
+<a href="<%= add_carts_path(product_id: @product, goto: 'back')%>">加入购物车</a>
+<a href="<%= add_carts_path(product_id: @product, goto: new_order_path)%>">立即购买</a>

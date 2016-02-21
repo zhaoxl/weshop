@@ -12,7 +12,7 @@ class CreateProducts < ActiveRecord::Migration
       t.integer :position, default: 0
       t.boolean :recommend, default: false
       t.boolean :sticky, default: false
-      t.integer :order_products_count
+      t.integer :order_products_count, default: 0
     end
   end
 end

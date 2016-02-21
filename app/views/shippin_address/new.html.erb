@@ -1,0 +1,6 @@
+添加收货地址<br />
+
+<%= form_for @address, url: shippin_address_path, method: :post do |f|%>
+  <label>省份<%= f.select :province_id, AreaProvince.all.map{|province| [province.name, province.code]}%></label>
+  <%= f.submit "提交"%>
+<%end%>
