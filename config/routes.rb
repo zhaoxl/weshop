@@ -38,6 +38,15 @@ Rails.application.routes.draw do
     end
   end
   resources :shippin_address
+  
+  namespace :ajax do
+    resources :area do
+      collection do
+        get :cities
+        get :streets
+      end
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -10,7 +10,7 @@
       <%= address.name%>
       <%= address.phone%>
       <%= address.default? ? '默认' : ''%>
-      <a href="edit_shippin_address_path(address)">编辑</a>
+      <a href="<%= edit_shippin_address_path(address)%>">编辑</a>
       <%= link_to "删除", shippin_address_path(address)%>
     </td>
   </tr>
