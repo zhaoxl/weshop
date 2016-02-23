@@ -17,7 +17,15 @@ Rails.application.routes.draw do
         get :move_up
         get :move_down
       end
+      
+      resources :product_logos do
+        member do
+          get :move_up
+          get :move_down
+        end
+      end
     end
+    
     
     resources :orders do
       member do
@@ -38,7 +46,11 @@ Rails.application.routes.draw do
       get :remove
     end
   end
-  resources :shippin_address
+  resources :shippin_address do
+    member do
+      get :use
+    end
+  end
   
   namespace :ajax do
     resources :area do
@@ -52,6 +64,7 @@ Rails.application.routes.draw do
   namespace :member do
     root 'index#index'
     resources :index
+    resources :orders
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

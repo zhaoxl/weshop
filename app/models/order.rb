@@ -28,10 +28,14 @@ class Order < ActiveRecord::Base
     scode = "#{Time.now.strftime("%Y%m%d%H%M%S")}#{today_order_count}#{rand_code}"
     
     ActiveRecord::Base.transaction do
-      order = user.orders.build(receiver_address: address.to_s, receiver_name: address.name, receiver_phone: address.phone, scode: scode, remark: remark)
+      order = user.orders.build(receiver_address: address.to_s, receiver_name: address.name, total_fee: total_fee, receiver_phone: address.phone, scode: scode, remark: remark)
       order.save!
       carts.each do |cart|
-        order.order_products.build(product_id: cart.product_id, total: cart.total, amount: cart.total*cart.price).save!
+        op = order.order_products.build(product_id: cart.product_id, total: cart.total, price: cart.price, amount: cart.total*cart.price)
+        if first_logo = ProductLogo.where(product_id: cart.product_id).first
+          op.logo = first_logo.logo.sanitized_file
+        end
+        op.save!
         #删除购物车中商品
         cart.destroy!
       end

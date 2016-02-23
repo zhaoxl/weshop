@@ -3,12 +3,14 @@
   <%@addresses.each do |address|%>
   <tr>
     <td>
-      <%= address.province%>
-      <%= address.city%>
-      <%= address.street%>
-      <%= address.detail%>
-      <%= address.name%>
-      <%= address.phone%>
+      <a href="<%= use_shippin_address_path(address)%>">
+        <%= address.province%>
+        <%= address.city%>
+        <%= address.street%>
+        <%= address.detail%>
+        <%= address.name%>
+        <%= address.phone%>
+      </a>
       <%= address.default? ? '默认' : ''%>
       <a href="<%= edit_shippin_address_path(address)%>">编辑</a>
       <%= link_to "删除", shippin_address_path(address)%>
