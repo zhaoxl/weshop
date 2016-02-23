@@ -12,4 +12,8 @@ class ShippinAddress < ActiveRecord::Base
   def street
     AreaStreet.where(code: self.street_code).select(:name).first.try(:name)
   end
+  
+  def to_s
+    "#{province}  #{city}  #{street}  #{detail}"
+  end
 end

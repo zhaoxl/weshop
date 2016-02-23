@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   resources :carts do
     collection do
       get :add
+      get :remove
     end
   end
   resources :shippin_address
@@ -46,6 +47,11 @@ Rails.application.routes.draw do
         get :streets
       end
     end
+  end
+  
+  namespace :member do
+    root 'index#index'
+    resources :index
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

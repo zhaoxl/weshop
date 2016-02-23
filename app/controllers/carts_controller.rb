@@ -11,4 +11,12 @@ class CartsController < ApplicationController
     redirect_to params[:goto] and return if params[:goto].present?
     render text: 'OK'
   end
+  
+  def remove
+    current_user.carts.where((id: params[:id])).delete_all
+    
+    redirect_to :back and return if params[:goto] == "back"
+    redirect_to params[:goto] and return if params[:goto].present?
+    render text: 'OK'
+  end
 end

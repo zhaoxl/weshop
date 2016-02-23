@@ -1,6 +1,14 @@
+<%= form_tag url: orders_path do %>
 收货地址<br />
-<a href="<%= shippin_address_index_path%>">收货地址管理</a>
-
+<a href="<%= shippin_address_index_path%>">
+<%if @shippin_address.blank%>
+	添加收货地址
+<%else%>
+<%= @shippin_address.to_s%><br>
+<%= @shippin_address.name%>&nbsp;&nbsp;<%= @shippin_address.phone%>
+<%hidden_field_tag :address_id, @shippin_address.id%>
+<%end%>
+</a>
 
 <br /><br />
 购物车商品<br />
@@ -8,6 +16,9 @@
   <% current_user.carts.each do |cart|%>
   <%product = cart.product%>
   <tr>
+		<td>
+			<input type="checkbox" name="cart_ids[]" value="<%= cart.id%>" />
+		</td>
     <td>
       <img src="<%= product.logo.url%>" />
       <%= product.name%><br />
@@ -18,12 +29,20 @@
       <%= cart.total%> x <%= product.price%> = <%= cart.total*product.price%>
     </td>
     <td>
-      <a href="#">删除</a>
+      <a href="<%= remove_carts_path(id: cart.id, goto: 'back')%>">删除</a>
     </td>
   </tr>
   <%end%>
-  
 </table>
 <br /><br />
-
+总金额
+<span style="color: red; font-weight: bold">
+	<%= 
+	current_user.carts.to_a.sum{|cart| 
+		cart.total * cart.product.try(:price)||0
+	}.to_f
+	%>元
+</span>
 <br /><br />
+<input type="submit" value="提交订单">
+<%end%>

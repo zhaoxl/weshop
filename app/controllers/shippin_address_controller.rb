@@ -5,6 +5,7 @@ class ShippinAddressController < ApplicationController
   
   def new
     @address = ShippinAddress.new
+    @address.default = !current_user.shippin_address.exists?
   end
   
   def edit
@@ -34,6 +35,12 @@ class ShippinAddressController < ApplicationController
     end
     
     redirect_to  shippin_address_index_path
+  end
+  
+  def use
+    session[:use_shippin_address_id] = params[:id]
+    
+    redirect_to new_order_path
   end
   
   def post_params

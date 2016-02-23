@@ -18,4 +18,25 @@ class Order < ActiveRecord::Base
     end
   end
   
+  def self.generate(user, cart_ids, address_id, remark)
+    carts = Cart.where(id: cart_ids).joins(:product).select("carts.*, products.price").to_a
+    address = ShippinAddress.find(address_id)
+    total_fee = carts.sum{|cart| cart.total * cart.price}
+    today_order_count = Order.where("TO_DAYS(created_at) = TO_DAYS(NOW())").count+1
+    today_order_count = "%05d" % today_order_count.to_s
+    rand_code = "%05d" % rand(100000).to_s
+    scode = "#{Time.now.strftime("%Y%m%d%H%M%S")}#{today_order_count}#{rand_code}"
+    
+    ActiveRecord::Base.transaction do
+      order = user.orders.build(receiver_address: address.to_s, receiver_name: address.name, receiver_phone: address.phone, scode: scode, remark: remark)
+      order.save!
+      carts.each do |cart|
+        order.order_products.build(product_id: cart.product_id, total: cart.total, amount: cart.total*cart.price).save!
+        #删除购物车中商品
+        cart.destroy!
+      end
+      
+    end
+  end
+  
 end
