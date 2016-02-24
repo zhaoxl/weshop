@@ -25,3 +25,10 @@ cn:
       states:
         create: 上架
         pluse: 下架
+    order:
+      states:
+        cancen: 已取消
+        create: 未付款
+        payment: 待发货
+        sent: 已发货
+        receive: 已收货

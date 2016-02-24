@@ -2,7 +2,7 @@ class Admin::ProductCategoriesController < Admin::BaseController
   before_filter :find_data, except: [:index, :new, :create]
     
   def index
-    @categories = ProductCategory.page(params[:page]).per(100)
+    @categories = ProductCategory.roots
   end
   
   def new

@@ -1,10 +1,10 @@
 <h1>用户中心首页</h1>
 <br><br>
 
-<a href=#>待付款</a>
-<a href=#>待发货</a>
-<a href=#>已发货</a>
-<a href=#>已收货</a>
+<a href="<%= member_orders_path(state: :create)%>">待付款</a>
+<a href="<%= member_orders_path(state: :payment)%>">待发货</a>
+<a href="<%= member_orders_path(state: :sent)%>">已发货</a>
+<a href="<%= member_orders_path(state: :receive)%>">已收货</a>
 <br><br>
 
 

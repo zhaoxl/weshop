@@ -27,14 +27,23 @@
     </tr>
     <tr>
       <td>
-        状态：<%= order.state%>
+        状态：<%= t "active_record.order.states.#{order.state}"%>&nbsp;&nbsp;总金额：<%= order.total_fee%>元
       </td>
     </tr>
     <tr>
       <td>
-        <a href="#">立即支付</a>
+        <%if order.cancel?%>
+          <a href="<%= delete_member_order_path(order)%>">删除订单</a>
+        <%elsif order.create?%>
+          <a href="#">立即支付</a>
+          <a href="<%= set_state_member_order_path(order, state: :cancel)%>">取消订单</a>
+        <%elsif order.payment?%>
+          
+        <%elsif order.sent?%>
+          <a href="#">确认收货</a>
+        <%end%>
       </td>
     </tr>
-  </table>
+  </table><br /><br />
 <%end%>
 

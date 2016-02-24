@@ -1,9 +1,10 @@
 class CartsController < ApplicationController
+  
   def add
     unless cart = Cart.where(user: current_user, product_id: params[:product_id]).first
       cart = Cart.new(user: current_user, product_id: params[:product_id])
     end
-    cart.total += params[:count].to_i
+    cart.total += (params[:count]||1).to_i
     cart.save
     flash[:success] = "加入购物车成功"
     

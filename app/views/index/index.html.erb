@@ -1,3 +1,13 @@
+搜索:
+<%= form_tag products_path, method: :get do%>
+  <%= text_field_tag :key%>
+  <%= submit_tag "搜索"%>
+<%end%>
+
+<br /><br /><br />
+<a href="<%= new_order_path%>">我的购物车</a>
+
+<br /><br /><br />
 推荐商品
 <%Product.where(recommend: true).each do |product|%>
 <a href="<%= product_path(product)%>">
@@ -6,3 +16,5 @@
   <%= product.price%>
 </a>
 <%end%>
+
+<br /><br />

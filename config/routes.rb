@@ -64,7 +64,12 @@ Rails.application.routes.draw do
   namespace :member do
     root 'index#index'
     resources :index
-    resources :orders
+    resources :orders do
+      member do
+        get :set_state
+        get :delete
+      end
+    end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

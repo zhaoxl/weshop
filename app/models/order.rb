@@ -5,9 +5,15 @@ class Order < ActiveRecord::Base
   include AASM
 
   aasm column: :state do
+    state :cancel
     state :create, :initial => true
     state :payment
     state :sent
+    state :receive
+    
+    event :set_state_cancel do
+      transitions :from => :create, :to => :cancel
+    end
     
     event :set_state_payment do
       transitions :from => :create, :to => :payment
@@ -15,6 +21,10 @@ class Order < ActiveRecord::Base
     
     event :set_state_sent do
       transitions :from => :payment, :to => :sent
+    end
+    
+    event :set_state_receive do
+      transitions :from => :sent, :to => :receive
     end
   end
   
@@ -32,9 +42,7 @@ class Order < ActiveRecord::Base
       order.save!
       carts.each do |cart|
         op = order.order_products.build(product_id: cart.product_id, total: cart.total, price: cart.price, amount: cart.total*cart.price)
-        if first_logo = ProductLogo.where(product_id: cart.product_id).first
-          op.logo = first_logo.logo.sanitized_file
-        end
+        op.logo = cart.product.logo.sanitized_file
         op.save!
         #删除购物车中商品
         cart.destroy!

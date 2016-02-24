@@ -24,7 +24,9 @@
   			<input type="checkbox" name="cart_ids[]" value="<%= cart.id%>" />
   		</td>
       <td>
-        <img src="<%= product.logo.url%>" />
+        <a href="<%= product_path(cart.product_id)%>">
+          <img src="<%= product.logo.url%>" />
+        </a>
         <%= product.name%><br />
         <%= product.description%><br />
         <%= product.price%><br />

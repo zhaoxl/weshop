@@ -67,12 +67,34 @@
 										<%end%>
 									</td>
 								</tr>
+                <%category.children.each do |child_category|%>
+  								<tr>
+  									<td>
+  										<div class="row show-grid">
+  											<div class="col-md-3 img_box">
+  												<div class="check_box">
+  													<input type="checkbox" name="category[]id" value="<%= child_category.id%>">
+  												</div>
+  											</div>
+  										</div>
+  									</td>
+  									<td><%= "----"*child_category.depth%><%= child_category.name%></td>
+  									<td><%= child_category.products.count%></td>
+  									<td><img src="<%= child_category.logo.url%>" width="50" height="50"></td>
+  									<td><%= child_category.position%></td>
+  									<td>
+  										<a href="<%= edit_admin_product_category_path(child_category)%>">编辑</a>
+  										<a href="<%= move_up_admin_product_category_path(child_category)%>">上移</a>
+  										<a href="<%= move_down_admin_product_category_path(child_category)%>">下移</a>
+  										<%if child_category.can_delete?%>
+  											<%= link_to '删除', admin_product_category_path(child_category), :confirm => '确定要删除分类吗?', :method => :delete %></td>
+  										<%end%>
+  									</td>
+  								</tr>
+                  <%end%>
 								<%end%>
 							</tbody>
 						</table>
-						<div style="margin-left: 10px">
-							<%= paginate @categories, :theme => 'twitter-bootstrap-3' %>
-						</div>
 					</div>
 					<a href="<%= new_admin_product_category_path%>" class="btn btn-default">添加分类</a>
 				</div> 
