@@ -1,45 +1,50 @@
 <%= form_for [:admin, product], :html=>{:multipart=>true} do |f| %>
-<table class="j_table2">
-	<tr>
-		<td class="tit">所属分类</td>
-		<td>
-			<%= f.select :product_category_id, grouped_options_for_select(ProductCategory.roots.map{|c| [c.name, c.children.map{|cc| [cc.name, cc.id]}]})  %>
-		</td>
-	</tr>
-	<tr>
-		<td class="tit">商品名称</td>
-		<td><%= f.text_field :name%></td>
-	</tr>
-	<tr>
-		<td class="tit">描述</td>
-		<td><%= f.text_area :description%></td>
-	</tr>
-	<tr>
-		<td class="tit">价格</td>
-		<td><%= f.text_field :old_price%> / <%= f.text_field :price%></td>
-	</tr>
-	<tr>
-		<td class="tit">库存</td>
-		<td><%= f.text_field :inventory%></td>
-	</tr>
-	<tr>
-		<td class="tit">推荐</td>
-		<td><%= f.check_box :recommend%></td>
-	</tr>
-	<tr>
-		<td class="tit">置顶</td>
-		<td><%= f.check_box :sticky%></td>
-	</tr>
-	<%unless product.new_record?%>
-	<tr>
-		<td class="tit">显示顺序</td>
-		<td><%= f.text_field :position %></td>
-	</tr>
-	<%end%>
-	<tr>
-		<td class="tit">图文描述</td>
-		<td><%= f.kindeditor :content %></td>
-	</tr>
-</table>
-<%= f.submit '保存' %>
+	<div class="box-body">
+		<div class="form-group">
+			<label for="exampleInputEmail1">所属分类</label>
+			<%= f.select :product_category_id, grouped_options_for_select(ProductCategory.roots.map{|c| [c.name, c.children.map{|cc| [cc.name, cc.id]}]}), {}, class: 'form-control' %>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">商品名称</label>
+			<%= f.text_field :name, class: 'form-control'%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">描述</label>
+			<%= f.text_area :description, class: 'form-control'%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">市场价</label>
+			<%= f.text_field :old_price, class: 'form-control'%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">售价</label>
+			<%= f.text_field :price, class: 'form-control'%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">库存</label>
+			<%= f.text_field :inventory, class: 'form-control'%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">推荐</label>
+			<%= f.check_box :recommend%>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">置顶</label>
+			<%= f.check_box :sticky%>
+		</div>
+		<%unless product.new_record?%>
+		<div class="form-group">
+			<label for="exampleInputPassword1">显示顺序</label>
+			<%= f.text_field :position, class: 'form-control' %>
+		</div>
+		<%end%>
+		<div class="form-group">
+			<label for="exampleInputPassword1">图文描述</label>
+			<%= f.kindeditor :content %>
+		</div>
+	</div>
+	<div class="box-footer">
+		<button class="btn btn-primary" type="submit">保存</button>
+	</div>
 <% end %>
+
