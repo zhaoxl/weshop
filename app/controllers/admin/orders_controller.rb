@@ -2,19 +2,9 @@ class Admin::OrdersController < Admin::BaseController
   before_filter :find_data, except: [:index, :new, :create]
     
   def index
-    @orders = Order.page(params[:page]).per(100)
-  end
-  
-  def new
-    @order = Order.new
-  end
-  
-  def create
-    order = Order.new(post_params)
-    order.save
-    flash[:success] = "添加成功"
-    
-    redirect_to :back 
+    @orders = Order.where("")
+    @orders = @orders.where(state: params[:state]) if params[:state].present?
+    @orders = @orders.page(params[:page]).per(100)
   end
   
   def edit
@@ -28,14 +18,16 @@ class Admin::OrdersController < Admin::BaseController
     redirect_to :back 
   end
   
-  def move_down
-    @data.move_lower
-    redirect_to :back
+  def sent
+    
   end
   
-  def move_up
-    @data.move_higher
-    redirect_to :back
+  def sent_save
+    @data.set_state_sent!
+    @data.update_attributes(post_params)
+    flash[:success] = "发货成功"
+    
+    redirect_to admin_orders_path
   end
   
   private

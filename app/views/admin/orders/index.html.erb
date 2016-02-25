@@ -1,4 +1,5 @@
-<%@page_title="订单管理"%>
+<%@page_title = "待处理订单" if params[:state] == "payment"%>
+<%@page_title ||= "订单管理"%>
 
 <style type="text/css" media="screen">
 .table > tbody > tr > td{vertical-align: middle;}
@@ -38,6 +39,7 @@
 								<tr>
 									<th><label><input type="checkbox" />全选</label></th>
 									<th>下单用户</th>
+									<th>订单号</th>
 									<th>商品</th>
 									<th>金额</th>
 									<th>运费</th>
@@ -56,30 +58,31 @@
 										</div>
 									</td>
 									<td><%= order.user.try(:name)%></td>
+									<td><%= order.scode%></td>
 									<td>
                     <table>
+                      <% order.order_products.each do |order_product|%>
                       <tr>
                         <td>
-                          <%= order.order_products.each do |order_product|%>
-                            <img src="<%= order_product.logo.url%>" />
-                          <%end%>
+                          <img src="<%= order_product.logo.url%>" width="100" height="100" />
                         </td>
                         <td>
                           <span><%= order_product.name%></span> x <%= order_product.total%>
                           <span><%= order_product.amount%></span>
                         </td>
                       </tr>
+                      <%end%>
                     </table>
                   </td>
                   <td><%= order.total_fee%></td>
-                  <td><%= order.fare%></td>
+                  <td><%= order.fare.to_f%></td>
 									<td><%= t "active_record.order.states.#{order.state}"%></td>
 									<td>
                     <%if order.state == "create"%>
 										<a href="<%= edit_admin_order_path(order)%>">修改</a>
                     <%end%>
                     <%if order.state == "payment"%>
-										<a href="<%= edit_admin_order_path(order)%>">发货</a>
+										<a href="<%= sent_admin_order_path(order)%>">发货</a>
                     <%end%>
 									</td>
 								</tr>

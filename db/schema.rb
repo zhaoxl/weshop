@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220132237) do
+ActiveRecord::Schema.define(version: 20160225095049) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -50,10 +50,19 @@ ActiveRecord::Schema.define(version: 20160220132237) do
     t.integer "position",  default: 0
   end
 
+  create_table "banners", force: true do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "image"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "carts", force: true do |t|
     t.integer  "user_id"
     t.integer  "product_id"
-    t.integer  "total"
+    t.integer  "total",      default: 1
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -68,9 +77,12 @@ ActiveRecord::Schema.define(version: 20160220132237) do
   create_table "order_products", force: true do |t|
     t.integer "user_id"
     t.integer "order_id"
-    t.integer "product_id_id"
+    t.integer "product_id"
+    t.string  "name"
     t.integer "total"
-    t.decimal "amount",        precision: 10, scale: 2
+    t.decimal "amount",     precision: 10, scale: 2
+    t.decimal "price",      precision: 10, scale: 2
+    t.string  "logo"
   end
 
   create_table "orders", force: true do |t|
@@ -85,6 +97,8 @@ ActiveRecord::Schema.define(version: 20160220132237) do
     t.string   "receiver_address"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "express"
+    t.string   "express_number"
   end
 
   create_table "product_categories", force: true do |t|
@@ -121,12 +135,13 @@ ActiveRecord::Schema.define(version: 20160220132237) do
 
   create_table "shippin_addresses", force: true do |t|
     t.integer "user_id"
-    t.integer "province_id"
-    t.integer "city_id"
-    t.integer "street_id"
-    t.string  "address"
+    t.string  "province_code"
+    t.string  "city_code"
+    t.string  "street_code"
+    t.string  "detail",        limit: 500
     t.string  "name"
     t.string  "phone"
+    t.boolean "default",                   default: false
   end
 
   create_table "users", force: true do |t|

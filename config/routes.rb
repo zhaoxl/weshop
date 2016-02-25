@@ -29,9 +29,12 @@ Rails.application.routes.draw do
     
     resources :orders do
       member do
-        post :sent
+        get :sent
+        patch :sent_save
       end
     end
+    
+    resources :banners
     
     
   end
