@@ -1,14 +1,51 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Weshop</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Weshop</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <link rel="stylesheet" href="/css/swiper.min.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen">
+    <script src="/js/jquery.lazyload.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+  
+    <%= yield %>
+  
+    <div class="footermenu">
+  		<ul>
+  			<li>
+          <a href="/" class="active">
+            <img src="/images/home.png">
+  					<p>首页</p>
+    			</a>
+        </li>
 
-<%= yield %>
-
-</body>
+  			<li>
+          <a href="/member/orders">
+            <img src="/images/22.png">
+  				  <p>订单</p>
+  			  </a>
+        </li>
+		
+  			<li>
+          <a href="/member">
+            <img src="/images/menu.png">
+  					<p>会员中心</p>
+  			  </a>
+        </li>
+		
+  			<li>
+          <a href="/member/distributions">
+            <span id="cartN2" class="num"><%= current_user.carts.count%></span>
+            <img src="/images/buy.png">
+  					<p>我的分销</p>
+    			</a>
+        </li>
+  		</ul>
+  	</div> 
+  </body>
 </html>

@@ -34,7 +34,12 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :banners
+    resources :banners do
+      member do
+        get :move_up
+        get :move_down
+      end
+    end
     
     
   end

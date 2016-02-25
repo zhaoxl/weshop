@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225095049) do
+ActiveRecord::Schema.define(version: 20160225143443) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20160225095049) do
   create_table "banners", force: true do |t|
     t.string   "title"
     t.string   "description"
+    t.string   "url",         limit: 500
     t.string   "image"
     t.integer  "position"
     t.datetime "created_at"
@@ -63,6 +64,18 @@ ActiveRecord::Schema.define(version: 20160225095049) do
     t.integer  "user_id"
     t.integer  "product_id"
     t.integer  "total",      default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "distributions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "level"
+    t.integer  "score",                   default: 0
+    t.string   "state"
+    t.string   "phone"
+    t.string   "city"
+    t.string   "readme",     limit: 2000
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -14,6 +14,10 @@
 						<%= f.text_field :description, class: 'form-control'%>
 					</div>
 					<div class="form-group">
+						<label for="exampleInputEmail1">URL</label>
+						<%= f.text_field :url, class: 'form-control'%>
+					</div>
+					<div class="form-group">
 						<label for="exampleInputEmail1">图片</label>
 						<img src="<%= @data.image.url%>" />
 						<%= f.file_field :image%>

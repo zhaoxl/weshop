@@ -4,4 +4,5 @@ class User < ActiveRecord::Base
   has_many  :orders
   has_many  :carts
   has_many  :shippin_address
+  has_one   :distribution
 end
