@@ -1,0 +1,26 @@
+<h1>我的分销</h1>
+<br><br>
+
+所在城市: <%= @distribution.city%>
+联系电话: <%= @distribution.phone%>
+
+<%if @distribution.state == "create"%>
+	申请理由: <%= f.text_area	:readme%>
+<%end%>
+
+<%if ["create", "reject"].include? @distribution.state%>
+	审核状态: <%= t "active_record.distribution.states.#{@distribution.state}"%>
+<%end%>
+
+<%if "reject" == @distribution.state%>
+	失败原因: <%= @distribution.remark%>
+<%end%>
+
+<%if ["pass", "invalid"].include? @distribution.state%>
+	当前状态: <%= t "active_record.distribution.states.#{@distribution.state}"%>
+<%end%>
+<br><br>
+
+分销等级：<%= @distribution.level%><br>
+分销收益：0<br>
+已卖出的商品<br>

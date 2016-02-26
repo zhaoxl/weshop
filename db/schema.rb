@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225143443) do
+ActiveRecord::Schema.define(version: 20160226081535) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20160225143443) do
     t.string   "readme",     limit: 2000
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "remark",     limit: 2000
   end
 
   create_table "favorites", force: true do |t|

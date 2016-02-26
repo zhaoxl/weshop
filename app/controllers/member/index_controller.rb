@@ -1,4 +1,4 @@
-class Member::IndexController < ApplicationController
+class Member::IndexController < Member::BaseController
   def index
     
   end

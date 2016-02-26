@@ -14,33 +14,32 @@
   <body>
   
     <%= yield %>
-  
     <div class="footermenu">
   		<ul>
   			<li>
-          <a href="/" class="active">
+          <a href="/" class="<%= request.path == "/" ? "active" : ""%>">
             <img src="/images/home.png">
   					<p>首页</p>
     			</a>
         </li>
 
   			<li>
-          <a href="/member/orders">
+          <a href="/member/orders" class="<%= request.path == "/member/orders" ? "active" : ""%>">
+            <span id="cartN2" class="num"><%= current_user.orders(state: :create).count%></span>
             <img src="/images/22.png">
   				  <p>订单</p>
   			  </a>
         </li>
 		
   			<li>
-          <a href="/member">
+          <a href="/member" class="<%= !["/member/orders", "/member/distributions"].include?(request.path)  && request.path =~ /^\/member/ ? "active" : ""%>">
             <img src="/images/menu.png">
   					<p>会员中心</p>
   			  </a>
         </li>
 		
   			<li>
-          <a href="/member/distributions">
-            <span id="cartN2" class="num"><%= current_user.carts.count%></span>
+          <a href="/member/distributions" class="<<%= request.path == "/member/distributions" ? "active" : ""%>">
             <img src="/images/buy.png">
   					<p>我的分销</p>
     			</a>

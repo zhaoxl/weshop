@@ -1,0 +1,274 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <link rel="stylesheet" href="/css/swiper.min.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="/css/foods.css" type="text/css" media="screen">
+  <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen">
+  <script src="/js/jquery.lazyload.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+  <%= csrf_meta_tags %>
+
+<style>
+.bg_color{background-color: #ADADAD }
+.submit{background-color: #ADADAD }
+.submit:active {background-color: #ADADAD}
+.menu_topbar {background-color: #ADADAD ;background: -webkit-linear-gradient(top, #ADADAD , #ADADAD);border-bottom: 1px solid #ADADAD;}
+.footermenu ul {border-top: 1px solid #ADADAD ;background-color: #ADADAD;background: -webkit-linear-gradient(top, #ADADAD, #ADADAD);}
+.footermenu ul li a.active {background: -webkit-linear-gradient(top, #ADADAD , #ADADAD);}
+.bg_total{background-color:#EA0000}
+</style>
+
+<script type="text/javascript">
+var appurl = '/index.php';
+var rooturl = '';
+
+$(function () {
+	$("#all_cnt").click(function(){
+		$(".member_cnt").toggle();
+		if($(this).find('img').attr("src")=="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png")
+		{
+			$(this).find('img').attr("src","http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_click.png");
+		}
+		else
+		{
+			$(this).find('img').attr("src","http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png");
+		}
+	});
+	
+	$("#all_price").click(function(){
+		$(".price_cnt").toggle();
+		if($(this).find('img').attr("src")=="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png")
+		{
+			$(this).find('img').attr("src","http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_click.png");
+		}
+		else
+		{
+			$(this).find('img').attr("src","http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png");
+		}
+	});
+	
+	$("#all_buy").click(function(){
+		$(".buy_cnt").toggle();
+		if($(this).find('img').attr("src")=="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png")
+		{
+			$(this).find('img').attr("src","http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_click.png");
+		}
+		else
+		{
+			$(this).find('img').attr("src","http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png");
+		}
+	});
+	
+	$("#memeber_url").click(function(){
+		$(".memeber_url").toggle();
+		if($(this).find('img').attr("src")=="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png")
+		{
+			$(this).find('img').attr("src","http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_click.png");
+		}
+		else
+		{
+			$(this).find('img').attr("src","http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png");
+		}
+	});
+
+});
+
+</script>
+</head>
+<body class="sanckbg mode_webapp" style="background-color:#fff;">
+
+	<div id="member-container" style="display: block;">
+
+		<div class="menu_header">
+			<div class="menu_topbar">
+				<div id="menu" class="sort ">
+					<a href="">分销详情</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="div_header">
+			<span style='float:left;margin-left:10px;margin-right:10px;margin-bottom:10px;'>
+				<img src='http://wx.qlogo.cn/mmopen/gWicbXPiajJnibKvNITLwFy32iaRwKNWFsoWplVJChkkvdvg1ibwnaRZEUtsw3GpUrhkVEfoAxZNH3HQNpeMwPLtlZA/0' width='80px;' height='80px;'>			</span>
+			<span class="header_right">
+				<div class="header_l_di"><span>昵称：<%= current_user.name%></span>
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<div><span>分销：否(<a style='color:red' href='./index.php?g=App&m=Index&a=index'>申请分销</a>)</span></div>
+				<div>会员ID：<%= current_user.id%> </div>								
+			</span>
+		</div>
+		
+		<%= yield%>
+		
+		<!--div class="cardexplain">
+			<div class="div_ul" id="memeber_url"><span><img style='margin-left:5px;' src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png">复制推广链接</span></div>
+			<span class="memeber_url" style='display:none;'>http://mjcf.hfxxs.com/index.php?g=App&m=Member&a=register&mid=328993</span>
+		</div-->
+		
+		<!--div class="cardexplain">
+			<a href = './index.php?g=App&m=Index&a=member_top&id=328993'><div class="div_ul" id="top_url"><span><img style='margin-left:5px;' src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png">销售排行榜</span></div></a>
+		</div-->
+		
+	</div>
+	
+	<div id="ticket-container" style="display: none;">
+		<img src='/Public/Uploads/567dead3648af.jpg?2016022617' style="width:100%">
+	</div>
+	
+	<div id="tx-container" style="display: none;">
+
+		<div class="menu_header">
+			<div class="menu_topbar">
+				<div id="menu" class="sort ">
+					<a href="">申请提现</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="div_header">
+			<span style='float:left;margin-left:10px;margin-right:10px;'>
+				<img src='http://wx.qlogo.cn/mmopen/gWicbXPiajJnibKvNITLwFy32iaRwKNWFsoWplVJChkkvdvg1ibwnaRZEUtsw3GpUrhkVEfoAxZNH3HQNpeMwPLtlZA/0' width='80px;' height='90px;'>			</span>
+			<span class="header_right">
+				<div><span>昵称：Backkom</span></div>
+				<div><span>会员：否(<a style='color:red' href='./index.php?g=App&m=Index&a=index'>点击链接成为会员</a>)</span></div>
+				<div><span>关注时间：2016-02-02</span></div>
+				<div><span>会员ID：328993 </span></div>
+			    <div><span>积分：0</span></div>
+			</span>
+		</div>
+
+		<section class="order">
+			<form name="txinfoForm" id="txinfoForm" method="post" action="">
+				<div class="contact-info">
+					<ul>
+						<li class="title">提现信息</li>
+						<li>
+							<table style="padding: 0; margin: 0; width: 100%;">
+								<tbody>
+									<tr>
+										<td width="80px"><label for="price" class="ui-input-text">提现金额：</label></td>
+										<td>
+											<div class="ui-input-text">
+												<input id="price" name="price" placeholder="" value="0.00" type="text"
+													class="ui-input-text">
+											</div></td>
+									</tr>
+									
+																	</tbody>
+							</table>
+
+							<div class="footReturn">
+								<a id="txshowcard" class="submit" href="javascript:submitTxOrder();">确定提交</a>
+							</div>
+
+						</li>
+					</ul>
+				</div>
+			</form>
+		</section>
+
+		<!-- 正在提交数据 -->
+		<div id="tx-menu-shadow" hidefocus="true"
+			style="display: none; z-index: 10;">
+			<div class="btn-group"
+				style="position: fixed; font-size: 12px; width: 220px; bottom: 80px; left: 50%; margin-left: -110px; z-index: 999;">
+				<div class="del" style="font-size: 14px;">
+					<img src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/ajax-loader.gif" alt="loader">正在提交申请...
+				</div>
+			</div>
+		</div>
+		
+		<ul class="round">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="cpbiaoge">
+					<tr>
+						<th>编号</th>
+						<th class="cc">金额</th>
+						<th class="cc">状态</th>
+					</tr>
+					<tbody>
+										</tbody>
+				</table>
+			</ul>
+		
+		
+	</div>
+	
+	
+	<div id="user-container" style="display: none;">
+
+		<div class="menu_header">
+			<div class="menu_topbar">
+				<div id="menu" class="sort ">
+					<a href="">查看我的订单</a>
+				</div>
+			</div>
+		</div>
+
+		<div>
+			<ul class="round" style="margin:0;padding:0;border-radius:0;border:0px;border-bottom:1px solid #C6C6C6">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0" class="cpbiaoge">
+					<tr>
+						<td> <span>订单详情</span> <span style='float:right'><a href='javascript:$("#ticket").click();' style='color:red;'>获取推广二维码>>></a></span> </td>
+					</tr>
+				</table>
+			</ul>
+		</div>
+		
+		<div class="cardexplain">
+			<div id="page_tag_load" hidefocus="true"
+				style="display: none; z-index: 10;">
+				<div class="btn-group"
+					style="position: fixed; font-size: 12px; width: 220px; bottom: 80px; left: 50%; margin-left: -110px; z-index: 999;">
+					<div class="del" style="font-size: 14px;">
+						<img src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/ajax-loader.gif" alt="loader">正在获取订单...
+					</div>
+				</div>
+			</div>
+			<ul class="round"  id="orderlistinsert" style='color:#000;font-size:12px;'>
+				<!--插入订单ul-->
+			</ul>
+			<div style="height:60px;"></div>
+		</div>
+	</div>
+
+	<div class="footermenu">
+		<ul>
+			<li ><a href="./index.php?g=App&m=Index&a=index_info"> <img src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/21.png">
+					<p>立即购买</p>
+			</a></li>
+			<li id="user"><a href="javascript:void(0);"> <img src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/22.png">
+					<p>我的订单</p>
+			</a></li>
+			<li id="member"><a href="javascript:void(0);" class="active"> <img src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/23.png">
+					<p>会员中心</p>
+			</a></li>
+			<li id="ticket"><a href="javascript:void(0);"> <img src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/24.png">
+					<p>我的二维码</p>
+			</a></li>
+			<li style='display:none;' id="tx"><a href="javascript:void(0);"> <img src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/24.png">
+					<p>我的二维码</p>
+			</a></li>
+		</ul>
+	</div>
+	<script>
+	window.onload=function(){
+		if($_GET['page_type']=='order')
+		{
+			user();
+		}
+		
+		if($_GET['page_type']=='ticket')
+		{
+			$("#ticket").click();
+		}
+	}
+	</script>
+</body>
+</html>

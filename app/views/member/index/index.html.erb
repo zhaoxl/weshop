@@ -1,11 +1,29 @@
-<h1>用户中心首页</h1>
-<br><br>
+<div class="cardexplain" style="TEXT-ALIGN: center;color:#000;font-size:14px;">用户中心</div>
 
-<a href="<%= member_orders_path(state: :create)%>">待付款</a>
-<a href="<%= member_orders_path(state: :payment)%>">待发货</a>
-<a href="<%= member_orders_path(state: :sent)%>">已发货</a>
-<a href="<%= member_orders_path(state: :receive)%>">已收货</a>
-<br><br>
+<div class="cardexplain">
+	<div class="div_ul" id="all_buy"><span><img style='margin-left:5px;' src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png">我的订单<span class="bg_total">0单(￥0)</span></span></div>
+	<ul class="round">
+		<li class="buy_cnt"><a href="<%= member_orders_path(state: :create)%>"><span>待付款<span style="float:right;color:red;">0 (￥0.00)</span></span></a></li>
+		<li class="buy_cnt"><a href="<%= member_orders_path(state: :payment)%>"><span>待发货<span style="float:right;color:red;">0 (￥0.00)</span></span></a></li>
+		<li class="buy_cnt"><a href="<%= member_orders_path(state: :sent)%>"><span>已发货<span style="float:right;color:red;">0 (￥0.00)</span></span></a></li>
+		<li class="buy_cnt"><a href="<%= member_orders_path(state: :receive)%>"><span>已收货<span style="float:right;color:red;">0 (￥0.00)</span></span></a></li>
+	</ul>
+</div>
 
+<div class="cardexplain">
+	<div class="div_ul" id="all_price"><span><img style='margin-left:5px;'  src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png">我的财富<span class="bg_total">0.00 元</span></span></div>
+	<ul class="round">
+		<li class="price_cnt"><span>未付款定单财富<span style="float:right;color:red;">0</span></span></li>
+		<li class="price_cnt"><span>已付款定单财富<span style="float:right;color:red;">0</span></span></li>
+		<li class="price_cnt"><span>已收货定单财富<span style="float:right;color:red;">0</span></span></li>
+		<li class="price_cnt"><span>已完成定单财富<span style="float:right;color:red;">0</span></span></li>
+						<li class="price_cnt"><span>已提现财富<span style="float:right;color:red;">0</span></span></li>
+		<li class="price_cnt"><span>可提现财富<span style="float:right;color:red;">0.00</span></span></li>
+					</ul>
+</div>
 
-<a href="<%= member_orders_path%>">全部订单</a>
+		
+		
+<div class="cardexplain">
+	<div class="div_ul" onClick="$('#tx').click();"><span><img style='margin-left:5px;' src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png">申请提现</span></div>
+</div>

@@ -27,8 +27,20 @@ cn:
         pluse: 下架
     order:
       states:
-        cancen: 已取消
+        cancel: 已取消
         create: 未付款
         payment: 待发货
         sent: 已发货
         receive: 已收货
+    distribution:
+      states:
+        cancel: 已取消
+        create: 正在审核
+        reject: 审核失败
+        pass: 正常
+        invalid: 不可用
+      
+      
+      
+      
+      
