@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226081535) do
+ActiveRecord::Schema.define(version: 20160226144333) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -94,9 +94,10 @@ ActiveRecord::Schema.define(version: 20160226081535) do
     t.integer "product_id"
     t.string  "name"
     t.integer "total"
-    t.decimal "amount",     precision: 10, scale: 2
-    t.decimal "price",      precision: 10, scale: 2
+    t.decimal "amount",      precision: 10, scale: 2
+    t.decimal "price",       precision: 10, scale: 2
     t.string  "logo"
+    t.string  "description"
   end
 
   create_table "orders", force: true do |t|

@@ -29,19 +29,19 @@ class Order < ActiveRecord::Base
   end
   
   def self.generate(user, cart_ids, address_id, remark)
-    carts = Cart.where(id: cart_ids).joins(:product).select("carts.*, products.price").to_a
+    carts = Cart.where(id: cart_ids).joins(:product).select("carts.*, products.price, products.name AS product_name").to_a
     address = ShippinAddress.find(address_id)
     total_fee = carts.sum{|cart| cart.total * cart.price}
     today_order_count = Order.where("TO_DAYS(created_at) = TO_DAYS(NOW())").count+1
-    today_order_count = "%05d" % today_order_count.to_s
-    rand_code = "%05d" % rand(100000).to_s
-    scode = "#{Time.now.strftime("%Y%m%d%H%M%S")}#{today_order_count}#{rand_code}"
+    today_order_count = "%04d" % today_order_count.to_s
+    rand_code = "%03d" % rand(1000).to_s
+    scode = "#{Time.now.strftime("%y%m%d%H%M%S")}#{today_order_count}#{rand_code}"
     
     ActiveRecord::Base.transaction do
       order = user.orders.build(receiver_address: address.to_s, receiver_name: address.name, total_fee: total_fee, receiver_phone: address.phone, scode: scode, remark: remark)
       order.save!
       carts.each do |cart|
-        op = order.order_products.build(product_id: cart.product_id, total: cart.total, price: cart.price, amount: cart.total*cart.price)
+        op = order.order_products.build(user: user, product_id: cart.product_id, total: cart.total, price: cart.price, amount: cart.total*cart.price, name: product_name)
         op.logo = cart.product.logo.sanitized_file
         op.save!
         #删除购物车中商品

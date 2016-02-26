@@ -1,4 +1,4 @@
-class Member::OrdersController < ApplicationController
+class Member::OrdersController < Member::BaseController
   def index
     @orders = current_user.orders.order('created_at DESC')
     @orders = @orders.where(state: params[:state]) if params[:state].present?

@@ -1,4 +1,4 @@
-class Member::DistributionsController < ApplicationController
+class Member::DistributionsController < Member::BaseController
   def index
     @distribution = current_user.build_distribution
     redirect_to new_member_distribution_path and return if @distribution.blank?
