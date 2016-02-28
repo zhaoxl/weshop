@@ -1,7 +1,6 @@
 defaults: &defaults
 
 
-
 development:
   <<: *defaults
   base: http://localhost:3000
