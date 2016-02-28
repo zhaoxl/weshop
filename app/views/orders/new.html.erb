@@ -1,10 +1,8 @@
-<span style="color: red">
-  <%= flash[:notice]%>
-</span>
+<h3 style="width: 90%; text-align: center; border-bottom: solid 1px black; margin: auto auto 20px auto">购物车</h3>
 
 <%= form_tag orders_path do %>
-  收货地址<br />
-  <a href="<%= shippin_address_index_path%>">
+  <p style="width: 90%; text-align: center; margin: auto auto; color: #AAAAAA">收货地址</p>
+  <a href="<%= shippin_address_index_path(goto: new_order_path)%>" style="display: block; width: 90%; margin: auto auto; color: black; ">
   <%if @shippin_address.blank?%>
   	添加收货地址
   <%else%>
@@ -14,41 +12,40 @@
   <%end%>
   </a>
 
-  <br /><br />
-  购物车商品<br />
-  <table>
+  <p style="width: 90%; text-align: center; margin: 20px auto auto auto; color: #AAAAAA; ">购物车商品</p>
+  <div style="margin-bottom: 20px">
     <% current_user.carts.each do |cart|%>
-    <%product = cart.product%>
-    <tr>
-  		<td>
-  			<input type="checkbox" name="cart_ids[]" value="<%= cart.id%>" />
-  		</td>
-      <td>
-        <a href="<%= product_path(cart.product_id)%>">
-          <img src="<%= product.logo.url%>" />
-        </a>
-        <%= product.name%><br />
-        <%= product.description%><br />
-        <%= product.price%><br />
-      </td>
-      <td>
-        <%= cart.total%> x <%= product.price%> = <%= cart.total*product.price%>
-      </td>
-      <td>
-        <a href="<%= remove_carts_path(id: cart.id, goto: 'back')%>">删除</a>
-      </td>
-    </tr>
+    <%= hidden_field_tag "cart_ids[]", cart.id%>
+    <% product = cart.product%>
+      <div style="width: 90%; border-bottom: solid 1px #CCCCC; margin: 5px auto auto auto; border-bottom: solid 1px #AAAAAA; padding-bottom: 10px ">
+        <table>
+          <tr>
+            <td rowspan="2">
+              <img src="<%= product.logo.url%>" width="50" height="50" />
+            </td>
+            <td style="padding-left: 10px; line-height: 16px">
+              <%= product.name%><br />
+              <%= product.description%><br />
+              <span style="color: #BBBBBB"><%= product.price%> x <%= cart.total%> = <%= product.price*cart.total%></span>
+            </td>
+          </tr>
+        </table>
+      </div>
     <%end%>
-  </table>
-  <br /><br />
-  总金额
-  <span style="color: red; font-weight: bold">
-  	<%= 
-  	current_user.carts.to_a.sum{|cart| 
-  		cart.total * cart.product.try(:price)||0
-  	}.to_f
-  	%>元
-  </span>
-  <br /><br />
-  <input type="submit" value="提交订单">
-<%end%>
+  </div>
+  
+  <p style="width: 90%; margin: auto auto">
+    总金额
+    <span style="color: red; font-weight: bold">
+    	<%= 
+    	current_user.carts.to_a.sum{|cart| 
+    		cart.total * cart.product.try(:price)||0
+    	}.to_f
+    	%>元
+    </span>
+    <input type="submit" value="提交订单" style="float: right" />
+  </p>
+  
+<%end%>  
+
+  

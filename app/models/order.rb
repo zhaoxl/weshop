@@ -23,7 +23,7 @@ class Order < ActiveRecord::Base
       transitions :from => :payment, :to => :sent
     end
     
-    event :set_state_receive do
+    event :set_state_receive, after: :auto_generate_user_distribution do
       transitions :from => :sent, :to => :receive
     end
   end
@@ -41,13 +41,19 @@ class Order < ActiveRecord::Base
       order = user.orders.build(receiver_address: address.to_s, receiver_name: address.name, total_fee: total_fee, receiver_phone: address.phone, scode: scode, remark: remark)
       order.save!
       carts.each do |cart|
-        op = order.order_products.build(user: user, product_id: cart.product_id, total: cart.total, price: cart.price, amount: cart.total*cart.price, name: product_name)
+        op = order.order_products.build(user: user, product_id: cart.product_id, total: cart.total, price: cart.price, amount: cart.total*cart.price, name: cart.product_name)
         op.logo = cart.product.logo.sanitized_file
         op.save!
         #删除购物车中商品
         cart.destroy!
       end
       
+    end
+  end
+  
+  def auto_generate_user_distribution
+    unless self.user.distribution
+      self.user.build_distribution(state: :pass, level: 1).save
     end
   end
   

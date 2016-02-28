@@ -1,0 +1,14 @@
+defaults: &defaults
+
+
+
+development:
+  <<: *defaults
+  base: http://localhost:3000
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  base: http://www.xxx.com

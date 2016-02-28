@@ -14,7 +14,7 @@
 </div>
 <div style="width: 100%; color: #AAAAAA; padding: 5px margin-bottom: 10px">
   <span style="width: 100%; color: red; margin-left: 10px; font-size: 16px; font-weight: bold"><%= @product.price%></span>
-  <a href="<%= add_carts_path(product_id: @product, goto: new_order_path)%>" style="display: inline-block; padding: 5px; line-height: 16px; float: right; border: solid 1px black">立即购买</a>
+  <a href="<%= add_carts_path(product_id: @product, goto: new_order_path)%>" style="display: inline-block; padding: 5px; line-height: 16px; float: right; border: solid 1px black; margin-right: 10px">立即购买</a>
   <div style="clear: both"></div>
 </div>
 <table style="width: 100%">
@@ -30,7 +30,7 @@
     </td>
   </tr>
 </table>
-<div style="width: 100px; padding: 10px; margin-bottom: 50px">
+<div style="width: 100%; padding: 10px; margin-bottom: 50px">
   <%= @product.content%>
 </div>
 

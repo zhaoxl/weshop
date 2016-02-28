@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Weshop</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>芬尼弯</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <link rel="stylesheet" href="/css/swiper.min.css" type="text/css" media="screen">
     <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen">
-    <script src="/js/jquery.lazyload.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -46,5 +43,9 @@
         </li>
   		</ul>
   	</div> 
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
   </body>
 </html>

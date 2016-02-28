@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
     
     order = Order.generate(current_user, cart_ids, address_id, remark)
     
-    redirect_to member_index_index_path
+    redirect_to member_orders_path
   end
   
 

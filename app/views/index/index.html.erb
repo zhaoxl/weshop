@@ -34,21 +34,21 @@
 <%end%>
 
 <script>
-	$(window).load(function() {
-		var swiper = new Swiper('.swiper-container', {
-			pagination: '.swiper-pagination',
-			paginationClickable: true,
-			spaceBetween: 30,
-			centeredSlides: true,
-			autoplay:2500,
-			speed:300,
-			autoplayDisableOnInteraction: false
-		});
+$(function() {
+	var swiper = new Swiper('.swiper-container', {
+		pagination: '.swiper-pagination',
+		paginationClickable: true,
+		spaceBetween: 30,
+		centeredSlides: true,
+		autoplay:2500,
+		speed:300,
+		autoplayDisableOnInteraction: false
+	});
 
-		$(function(){
-			var height = $('.swiper-slide img:eq(0)').height();
-			if(height<=0){height=320;}
-			$('.swiper-wrapper').css('height', height);
-		})
+	$(function(){
+		var height = $('.swiper-slide img:eq(0)').height();
+		if(height<=0){height=320;}
+		$('.swiper-wrapper').css('height', height);
 	})
+});
 </script>

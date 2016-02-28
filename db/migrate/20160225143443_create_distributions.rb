@@ -3,7 +3,7 @@ class CreateDistributions < ActiveRecord::Migration
     create_table :distributions do |t|
       t.references  :user
       t.integer :level
-      t.integer :score, default: 0
+      t.decimal :score, default: 0, :precision => 10, :scale => 2
       t.string  :state
       t.string  :phone
       t.string  :city

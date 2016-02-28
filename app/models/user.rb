@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
   has_many  :carts
   has_many  :shippin_address
   has_one   :distribution
+  
+  def is_distribution?
+    self.distribution && !["cancel", "create"].include?(self.distribution.state)
+  end
 end

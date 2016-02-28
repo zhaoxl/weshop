@@ -4,7 +4,7 @@
 <%@orders.each do |order|%>
   <div style="width: 95%; margin: 10px auto auto auto; border: solid 1px black;">
     <div style="width: 98%; border-bottom: solid 1px #AAAAAA; margin: 5px auto auto auto">
-      订单状态：<%= t "active_record.order.states.#{order.state}"%>
+      订单状态：<%= t "activerecord.order.states.#{order.state}"%>
       <span style="float: right">订单号：<%= order.scode%></span>
     </div>
     <div style="margin-bottom: 20px">
@@ -25,6 +25,10 @@
         </div>
       <%end%>
     </div>
+    <div style="width: 98%; border-bottom: solid 1px #CCCCC; margin: 5px auto auto auto;">
+      <%= order.receiver_address%><br />
+      <%= order.receiver_name%>&nbsp;&nbsp;<%= order.receiver_phone%>
+    </div>
     <div style="width: 98%; border-bottom: solid 1px #CCCCC; margin: 5px auto auto auto; text-align: right">
       共<%= order.order_products.count%>件商品，&nbsp;&nbsp;运费：<%= order.fare.to_f%>，&nbsp;&nbsp;合计：<span style="color: red"><%= order.total_fee%></span>
     </div>
@@ -33,12 +37,12 @@
         <%if order.cancel?%>
           <a href="<%= delete_member_order_path(order)%>" style="display: inline-block; line-height: 12px; border: solid 1px black; padding: 5px; margin: 5px;float: right">删除订单</a>
         <%elsif order.create?%>
-          <a href="#">立即支付</a>
+          <a href="#" style="display: inline-block; line-height: 12px; border: solid 1px black; padding: 5px; margin: 5px;float: right">立即支付</a>
           <a href="<%= set_state_member_order_path(order, state: :cancel)%>" style="display: inline-block; line-height: 12px; border: solid 1px black; padding: 5px; margin: 5px;float: right">取消订单</a>
         <%elsif order.payment?%>
           
         <%elsif order.sent?%>
-          <a href="#" style="display: inline-block; line-height: 12px; border: solid 1px black; padding: 5px; margin: 5px;float: right">确认收货</a>
+          <a href="<%= set_state_member_order_path(order, state: :receive)%>" style="display: inline-block; line-height: 12px; border: solid 1px black; padding: 5px; margin: 5px;float: right">确认收货</a>
         <%end%>
       </td>
       <div style="clear: both"></div>

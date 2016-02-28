@@ -1,7 +1,7 @@
 class Member::DistributionsController < Member::BaseController
   def index
-    @distribution = current_user.build_distribution
-    redirect_to new_member_distribution_path and return if @distribution.blank?
+    @distribution = current_user.distribution
+    redirect_to member_index_path and return if @distribution.blank?
   end
   
   def new
@@ -13,6 +13,10 @@ class Member::DistributionsController < Member::BaseController
     distribution.save
     
     redirect_to member_distributions_path, notice: '提交成功，请耐心等待审核结果'
+  end
+  
+  def qrcode
+    
   end
   
   private

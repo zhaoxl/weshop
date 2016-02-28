@@ -43,6 +43,14 @@ gem 'brakeman', '3.1.4'
 gem 'awesome_print', '1.6.1'
 #图片处理
 gem 'carrierwave'
+#二维码生成
+gem 'rqrcode'
+#yml配置应用插件
+gem 'settingslogic'
+#oauth2
+gem 'oauth2'
+#微信公众号
+gem 'wechat'
 
 group :development do
   gem 'pry_debug'

@@ -75,7 +75,7 @@
                   </td>
                   <td><%= order.total_fee%></td>
                   <td><%= order.fare.to_f%></td>
-									<td><%= t "active_record.order.states.#{order.state}"%></td>
+									<td><%= t "activerecord.order.states.#{order.state}"%></td>
 									<td>
                     <%if order.state == "create"%>
 										<a href="<%= edit_admin_order_path(order)%>">修改</a>

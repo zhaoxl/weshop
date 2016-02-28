@@ -14,12 +14,17 @@ class ShippinAddressController < ApplicationController
   
   def create
     @address = ShippinAddress.new(post_params)
-    @address.user = current_user
-    ActiveRecord::Base.transaction do
-      if @address.default == true
-        ShippinAddress.update_all({default: false})
+    begin
+      @address.user = current_user
+      ActiveRecord::Base.transaction do
+        if @address.default == true
+          ShippinAddress.update_all({default: false})
+        end
+        @address.save!
       end
-      @address.save
+    rescue ActiveRecord::RecordInvalid
+      flash[:error] = @address.errors.messages.values.flatten[0]
+      redirect_to :back and return
     end
     
     redirect_to  shippin_address_index_path
@@ -37,10 +42,16 @@ class ShippinAddressController < ApplicationController
     redirect_to  shippin_address_index_path
   end
   
+  def destroy
+    ShippinAddress.destroy(params[:id])
+    
+    redirect_to :back
+  end
+  
   def use
     session[:use_shippin_address_id] = params[:id]
     
-    redirect_to new_order_path
+    redirect_to params[:goto] || new_order_path
   end
   
   def post_params

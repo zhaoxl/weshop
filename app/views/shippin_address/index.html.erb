@@ -1,23 +1,29 @@
-收货地址管理<br />
-<table>
-  <%@addresses.each do |address|%>
-  <tr>
-    <td>
-      <a href="<%= use_shippin_address_path(address)%>">
-        <%= address.province%>
-        <%= address.city%>
-        <%= address.street%>
-        <%= address.detail%>
-        <%= address.name%>
-        <%= address.phone%>
-      </a>
-      <%= address.default? ? '默认' : ''%>
-      <a href="<%= edit_shippin_address_path(address)%>">编辑</a>
-      <%= link_to "删除", shippin_address_path(address)%>
-    </td>
-  </tr>
-  <%end%>
-</table>
+<h3 style="width: 95%; text-align: center; border-bottom: solid 1px black; margin: auto auto 20px auto;">收货地址管理</h3>
 
-<br /><br />
-<a href="<%= new_shippin_address_path%>">添加收货地址</a>
+<%@addresses.each do |address|%>
+  <div style="width: 95%; margin: auto auto 10px auto; border-bottom: solid 1px #AAAAAA">
+    <table style="width: 100%;">
+  
+      <tr>
+        <td width="85%">
+          <a href="<%= params[:goto].present? ? use_shippin_address_path(address, goto: params[:goto]) : edit_shippin_address_path(address)%>">
+            <%= address.province%>
+            <%= address.city%>
+            <%= address.street%>
+            <%= address.detail%><br />
+            <%= address.name%>
+            <%= address.phone%>
+          </a>
+        </td>
+        <td width="5%">
+          <%=raw address.default? ? '默认' : '&nbsp;'%>
+        </td>
+        <td>
+          <a href="<%= edit_shippin_address_path(address)%>">编辑</a>
+          <%= link_to "删除", shippin_address_path(address), method: :delete%>
+        </td>
+      </tr>
+    </table>
+  </div>
+<%end%>  
+<a href="<%= new_shippin_address_path%>" style="width: 100%; text-align: center; display: block">添加收货地址</a>

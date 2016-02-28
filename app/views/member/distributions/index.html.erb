@@ -1,26 +1,58 @@
-<h1>我的分销</h1>
-<br><br>
+<div class="cardexplain" style="TEXT-ALIGN: center;color:#000;font-size:14px;">我的分销</div>
 
-所在城市: <%= @distribution.city%>
-联系电话: <%= @distribution.phone%>
+<div style="border: solid 1px black; width: 95%; margin: 10px auto auto auto">
+  <div class="attrs">
+    <%if @distribution.state == "create"%>
+    	<p>申请理由: <%= @distribution.readme%></p>
+    <%end%>
 
-<%if @distribution.state == "create"%>
-	申请理由: <%= f.text_area	:readme%>
-<%end%>
+    <%if ["create", "reject"].include? @distribution.state%>
+    	<p>审核状态: <%= t "activerecord.distribution.states.#{@distribution.state}"%></p>
+    <%end%>
 
-<%if ["create", "reject"].include? @distribution.state%>
-	审核状态: <%= t "active_record.distribution.states.#{@distribution.state}"%>
-<%end%>
+    <%if "reject" == @distribution.state%>
+    	<p>失败原因: <%= @distribution.remark%></p>
+    <%end%>
 
-<%if "reject" == @distribution.state%>
-	失败原因: <%= @distribution.remark%>
-<%end%>
+    <%if ["pass", "invalid"].include? @distribution.state%>
+    	<p>当前状态: <%= t "activerecord.distribution.states.#{@distribution.state}"%></p>
+    <%end%>
+    <p>分销等级：V<%= @distribution.level%><br></p>
+    <p>分销收益：0<br></p>
+  </div>
+  
+  <p style="width: 95%; text-align: center; margin: auto auto; color: #AAAAAA">收益明细</p>
+  
+  <p style="width: 95%; text-align: center; margin: 20px auto 10px auto; color: #AAAAAA;">我推荐的人</p>
+  <table style="width: 95%; text-align: center">
+    <tr style="font-weight: bold">
+      <td>
+        用户名
+      </td>
+      <td>
+        注册时间
+      </td>
+      <td>
+        购买订单数
+      </td>
+    </tr>
+    <%User.where(recommend_user_id: current_user.id).order("created_at DESC").each do |user| %>
+      <tr>
+        <td>
+          <%= user.name%>
+        </td>
+        <td>
+          <%= user.created_at.strftime("%Y-%m-%d %H:%M:%S")%>
+        </td>
+        <td>
+          <%= user.orders.count%>
+        </td>
+      </tr>
+    <%end%>
+  </table>
+</div>
 
-<%if ["pass", "invalid"].include? @distribution.state%>
-	当前状态: <%= t "active_record.distribution.states.#{@distribution.state}"%>
-<%end%>
-<br><br>
 
-分销等级：<%= @distribution.level%><br>
-分销收益：0<br>
-已卖出的商品<br>
+<style type="text/css" media="screen">
+.attrs p{line-height: 18px; padding: 5px;}
+</style>

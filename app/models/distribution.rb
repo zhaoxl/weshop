@@ -1,5 +1,6 @@
 class Distribution < ActiveRecord::Base
     belongs_to  :user
+    has_many    :distribution_incomes
     
     include AASM
 

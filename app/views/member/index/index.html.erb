@@ -1,29 +1,27 @@
 <div class="cardexplain" style="TEXT-ALIGN: center;color:#000;font-size:14px;">用户中心</div>
 
 <div class="cardexplain">
-	<div class="div_ul" id="all_buy"><span><img style='margin-left:5px;' src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png">我的订单<span class="bg_total">0单(￥0)</span></span></div>
+	<div class="div_ul" id="all_buy"><span><img style='margin-left:5px;' src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png">我的订单<span class="bg_total"><%= current_user.orders.where(state: [:create, :payment, :sent, :receive]).count%>单(￥<%= current_user.orders.where(state: [:create, :payment, :sent, :receive]).sum(:total_fee)%>)</span></span></div>
 	<ul class="round">
-		<li class="buy_cnt"><a href="<%= member_orders_path(state: :create)%>"><span>待付款<span style="float:right;color:red;">0 (￥0.00)</span></span></a></li>
-		<li class="buy_cnt"><a href="<%= member_orders_path(state: :payment)%>"><span>待发货<span style="float:right;color:red;">0 (￥0.00)</span></span></a></li>
-		<li class="buy_cnt"><a href="<%= member_orders_path(state: :sent)%>"><span>已发货<span style="float:right;color:red;">0 (￥0.00)</span></span></a></li>
-		<li class="buy_cnt"><a href="<%= member_orders_path(state: :receive)%>"><span>已收货<span style="float:right;color:red;">0 (￥0.00)</span></span></a></li>
+		<li class="buy_cnt"><a href="<%= member_orders_path(state: :create)%>"><span>待付款<span style="float:right;color:red;"><%= current_user.orders.where(state: [:create]).count%> (￥<%= current_user.orders.where(state: [:create]).sum(:total_fee)%>)</span></span></a></li>
+		<li class="buy_cnt"><a href="<%= member_orders_path(state: :payment)%>"><span>待发货<span style="float:right;color:red;"><%= current_user.orders.where(state: [:payment]).count%> (￥<%= current_user.orders.where(state: [:payment]).sum(:total_fee)%>)</span></span></a></li>
+		<li class="buy_cnt"><a href="<%= member_orders_path(state: :sent)%>"><span>已发货<span style="float:right;color:red;"><%= current_user.orders.where(state: [:sent]).count%> (￥<%= current_user.orders.where(state: [:sent]).sum(:total_fee)%>)</span></span></a></li>
+		<li class="buy_cnt"><a href="<%= member_orders_path(state: :receive)%>"><span>已收货<span style="float:right;color:red;"><%= current_user.orders.where(state: [:receive]).count%> (￥<%= current_user.orders.where(state: [:receive]).sum(:total_fee)%>)</span></span></a></li>
 	</ul>
 </div>
 
 <div class="cardexplain">
-	<div class="div_ul" id="all_price"><span><img style='margin-left:5px;'  src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png">我的财富<span class="bg_total">0.00 元</span></span></div>
+	<div class="div_ul" id="all_price"><span><img style='margin-left:5px;'  src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png">我的分销<span class="bg_total"></span></span></div>
 	<ul class="round">
-		<li class="price_cnt"><span>未付款定单财富<span style="float:right;color:red;">0</span></span></li>
-		<li class="price_cnt"><span>已付款定单财富<span style="float:right;color:red;">0</span></span></li>
-		<li class="price_cnt"><span>已收货定单财富<span style="float:right;color:red;">0</span></span></li>
-		<li class="price_cnt"><span>已完成定单财富<span style="float:right;color:red;">0</span></span></li>
-						<li class="price_cnt"><span>已提现财富<span style="float:right;color:red;">0</span></span></li>
-		<li class="price_cnt"><span>可提现财富<span style="float:right;color:red;">0.00</span></span></li>
-					</ul>
+		<li class="price_cnt"><span><a href="<%= member_distributions_path%>">我的分销</a></span></li>
+		<li class="price_cnt"><span><a href="<%= qrcode_member_distributions_path%>">我的二维码</a></span></li>
+	</ul>
 </div>
 
-		
-		
 <div class="cardexplain">
-	<div class="div_ul" onClick="$('#tx').click();"><span><img style='margin-left:5px;' src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png">申请提现</span></div>
+	<div class="div_ul" id="all_cnt"><span><img style='margin-left:5px;'  src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png">收货地址<span class="bg_total"></span></span></div>
+	<ul class="round">
+		<li class="member_cnt"><span><a href="<%= shippin_address_index_path%>">收货地址管理</a></span></li>
+		<li class="member_cnt"><span><a href="<%= new_shippin_address_path%>">添加收货地址</a></span></li>
+	</ul>
 </div>

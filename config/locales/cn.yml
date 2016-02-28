@@ -20,7 +20,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 cn:
-  active_record:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 保存失败  
     product:
       states:
         create: 上架

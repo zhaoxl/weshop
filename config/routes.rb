@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resource :wechat, only: [:show, :create]
   devise_for :users
   devise_for :admins, :controllers => {sessions: "admin/admins/sessions"},path_names: {sign_out: 'logout'}, path: 'admin/admins'
   
@@ -76,6 +77,11 @@ Rails.application.routes.draw do
       member do
         get :set_state
         get :delete
+      end
+    end
+    resources :distributions do
+      collection do
+        get :qrcode
       end
     end
   end
