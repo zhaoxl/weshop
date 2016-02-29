@@ -1,5 +1,6 @@
 <%@page_title = "待处理订单" if params[:state] == "payment"%>
 <%@page_title ||= "订单管理"%>
+<%@page_title += "——用户：#{@user.try(:name).to_s}"%>
 
 <style type="text/css" media="screen">
 .table > tbody > tr > td{vertical-align: middle;}

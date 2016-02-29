@@ -4,6 +4,10 @@ class Admin::OrdersController < Admin::BaseController
   def index
     @orders = Order.where("")
     @orders = @orders.where(state: params[:state]) if params[:state].present?
+    if params[:user_id].present?
+      @orders = @orders.where(user_id: params[:user_id])
+      @user = User.find(params[:user_id]) rescue nil
+    end
     @orders = @orders.page(params[:page]).per(100)
   end
   
