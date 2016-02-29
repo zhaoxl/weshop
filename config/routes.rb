@@ -42,6 +42,9 @@ Rails.application.routes.draw do
       end
     end
     
+    resources :users
+    resources :distributions
+    resources :distribution_settings
     
   end
   

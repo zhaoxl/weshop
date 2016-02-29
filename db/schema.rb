@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227151137) do
+ActiveRecord::Schema.define(version: 20160228144723) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -77,6 +77,12 @@ ActiveRecord::Schema.define(version: 20160227151137) do
     t.decimal  "total",            precision: 10, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "distribution_settings", force: true do |t|
+    t.integer "v1"
+    t.integer "v2"
+    t.integer "v3"
   end
 
   create_table "distributions", force: true do |t|
@@ -171,8 +177,18 @@ ActiveRecord::Schema.define(version: 20160227151137) do
   end
 
   create_table "users", force: true do |t|
-    t.string  "name"
-    t.integer "recommend_user_id"
+    t.string   "name"
+    t.integer  "recommend_user_id"
+    t.datetime "created_at"
   end
+
+  create_table "wechat_sessions", force: true do |t|
+    t.string   "openid",     null: false
+    t.string   "hash_store"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "wechat_sessions", ["openid"], name: "index_wechat_sessions_on_openid", unique: true, using: :btree
 
 end
