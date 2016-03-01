@@ -6,11 +6,6 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'index#index'
     
-    resources :wechat do
-      collection do
-        get :login
-      end
-    end
     resources :index
     resources :product_categories do
       member do
@@ -54,6 +49,11 @@ Rails.application.routes.draw do
   end
   
   root 'index#index'
+  resources :wechat do
+    collection do
+      get :login
+    end
+  end
   resources :index
   resources :products
   resources :orders
