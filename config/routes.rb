@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   resources :wechat do
     collection do
       get :login
+      get :login_get_code_callback
     end
   end
   resources :index

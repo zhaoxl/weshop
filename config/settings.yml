@@ -1,7 +1,8 @@
 defaults: &defaults
   wechat:
-    client_id: wx0e413d605383490e
-
+    appid: wx0e413d605383490e
+    secret: cbcffda6ee24824dc37cc33fa76d3801
+    
 development:
   <<: *defaults
   base: http://jt.fannybay.net

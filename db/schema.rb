@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228144723) do
+ActiveRecord::Schema.define(version: 20160301084228) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -180,6 +180,9 @@ ActiveRecord::Schema.define(version: 20160228144723) do
     t.string   "name"
     t.integer  "recommend_user_id"
     t.datetime "created_at"
+    t.string   "open_id"
+    t.string   "token",             limit: 500
+    t.string   "headimgurl",        limit: 1000
   end
 
   create_table "wechat_sessions", force: true do |t|
