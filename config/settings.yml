@@ -4,11 +4,11 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  base: http://localhost:3000
+  base: http://jt.fannybay.net
 
 test:
   <<: *defaults
 
 production:
   <<: *defaults
-  base: http://www.xxx.com
+  base: http://jt.fannybay.net
