@@ -1,5 +1,5 @@
 class WechatController < ApplicationController
-  layout: false
+  layout false
   
   def login
     redirect_to "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{Settings.wechat.appid}&redirect_uri=#{Settings.base}/wechat/login_get_code_callback&response_type=code&scope=snsapi_userinfo&state=#{params[:recommend].to_i}#wechat_redirect"

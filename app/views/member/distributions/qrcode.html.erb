@@ -1,11 +1,11 @@
 <div class="cardexplain" style="TEXT-ALIGN: center;color:#000;font-size:14px;">我的二维码</div>
 
 <div style="width: 90%; margin: 10px auto 80px auto">
-  <div class="qrcode" style="width: 300px; height: 300px; margin: auto auto">
+  <div class="qrcode" style="width: 410px; height: 410px; margin: auto auto">
     <%
     require 'rqrcode'
 
-    qrcode = RQRCode::QRCode.new("#{Settings.base}/wechat/login?recommend=#{current_user.id}", :size => 4, :level => :h)
+    qrcode = RQRCode::QRCode.new("#{Settings.base}/wechat/login?recommend=#{current_user.id}", :size => 6, :level => :h)
     %>
     <%=raw qrcode.as_html%>
   </div>
