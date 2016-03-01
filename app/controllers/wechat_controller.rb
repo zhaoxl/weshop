@@ -1,6 +1,6 @@
 class WechatController < ApplicationController
   def login
-    redirect_to "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{Settings.wechat.appid}&redirect_uri=#{Settings.base}/wechat/login_get_code&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
+    redirect_to "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{Settings.wechat.appid}&redirect_uri=#{Settings.base}/wechat/login_get_code_callback&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect"
   end
   
   def login_get_code_callback
