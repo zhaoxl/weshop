@@ -5,7 +5,7 @@
     <%
     require 'rqrcode'
 
-    qrcode = RQRCode::QRCode.new("#{Settings.base}/?recommend=#{current_user.id}", :size => 4, :level => :h)
+    qrcode = RQRCode::QRCode.new("#{Settings.base}/wechat/login?recommend=#{current_user.id}", :size => 4, :level => :h)
     %>
     <%=raw qrcode.as_html%>
   </div>
