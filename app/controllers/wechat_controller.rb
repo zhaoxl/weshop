@@ -14,7 +14,7 @@ class WechatController < ApplicationController
     
     unless user = User.where(open_id: open_id).first
       #获取用户资料
-      url = "https://api.weixin.qq.com/sns/userinfo?access_token=#{token}&openid=#{openid}&lang=zh_CN"
+      url = "https://api.weixin.qq.com/sns/userinfo?access_token=#{token}&openid=#{open_id}&lang=zh_CN"
       result = JSON.parse(URI.parse(url).read)
       nickname = result["nickname"]
       headimgurl = result["headimgurl"]
