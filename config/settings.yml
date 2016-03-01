@@ -1,5 +1,6 @@
 defaults: &defaults
-
+  wechat:
+    client_id: wx0e413d605383490e
 
 development:
   <<: *defaults

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'index#index'
     
+    resources :wechat
     resources :index
     resources :product_categories do
       member do
