@@ -72,7 +72,7 @@
       </li>
 	
 			<li>
-        <a href="<%= current_user.is_distribution? ? "/member/distributions" : "#"%>" class="<<%= request.path == "/member/distributions" ? "active" : ""%>">
+        <a href="<%= current_user.is_distribution? ? "/member/distributions" : "#"%>" class="<%= request.path == "/member/distributions" ? "active" : ""%>">
           <img src="/images/buy.png">
 					<p>我的分销</p>
   			</a>

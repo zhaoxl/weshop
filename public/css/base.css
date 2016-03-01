@@ -2,6 +2,16 @@ a{text-decoration: none}
 a:hover{text-decoration: none;}
 ul{padding-left: 0px;}
 ul li{list-style: none;}
+html, body, div, object, pre, code, h1, h2, h3, h4, h5, h6, p, span, em, cite, del, a, img, ul, li, ol, dl, dt, dd, fieldset, legend, form, input, button, textarea, header, section, footer, article, nav, aside, menu, figure, figcaption {
+    margin: 0;
+    outline: medium none;
+    padding: 0;
+}
+body {
+    color: #666;
+    font-family: Helvetica,Tahoma,Arial,Microsoft YaHei,sans-serif;
+    text-align: left;
+}
 .swiper-container {
 	width: 100%;
 }
@@ -174,7 +184,7 @@ ul li{list-style: none;}
     display: block;
     font-size: 12px;
     height: 48px;
-    line-height: 20px;
+    line-height: 8px;
     padding-top: 2px;
     position: relative;
     text-align: center;

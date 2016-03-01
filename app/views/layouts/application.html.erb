@@ -6,6 +6,7 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <link rel="stylesheet" href="/css/swiper.min.css" type="text/css" media="screen">
     <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen">
+    <script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -22,7 +23,7 @@
 
   			<li>
           <a href="/member/orders" class="<%= request.path == "/member/orders" ? "active" : ""%>">
-            <span id="cartN2" class="num"><%= current_user.orders(state: :create).count%></span>
+            <span id="cartN2" class="num"><%= current_user.orders.where(state: :create).count%></span>
             <img src="/images/22.png">
   				  <p>订单</p>
   			  </a>
@@ -45,7 +46,6 @@
   	</div> 
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
   </body>
 </html>
