@@ -12,6 +12,10 @@ class WechatController < ApplicationController
     open_id = result["openid"]
     token = result["access_token"]
     
+    p "=============================="
+    p "open_id:#{open_id}"
+    p "token:#{token}"
+    
     unless user = User.where(open_id: open_id).first
       #获取用户资料
       url = "https://api.weixin.qq.com/sns/userinfo?access_token=#{token}&openid=#{open_id}&lang=zh_CN"
@@ -20,7 +24,7 @@ class WechatController < ApplicationController
       headimgurl = result["headimgurl"]
       
       user = User.new(open_id: open_id, token: token, name: nickname, headimgurl: headimgurl)
-      user.save
+      user.save!
     end
     session[:user_id] = user.id
     
