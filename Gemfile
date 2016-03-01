@@ -51,6 +51,8 @@ gem 'settingslogic'
 gem 'oauth2'
 #微信公众号
 gem 'wechat'
+#服务器
+gem 'unicorn'
 
 group :development do
   gem 'pry_debug'
