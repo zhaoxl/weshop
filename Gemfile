@@ -53,6 +53,8 @@ gem 'oauth2'
 gem 'wechat'
 #服务器
 gem 'unicorn'
+#微信支付
+gem 'wx_pay'
 
 group :development do
   gem 'pry_debug'
