@@ -13,8 +13,8 @@
 <div class="cardexplain">
 	<div class="div_ul" id="all_price"><span><img style='margin-left:5px;'  src="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png">我的分销<span class="bg_total"></span></span></div>
 	<ul class="round">
-		<li class="price_cnt"><span><a href="<%= member_distributions_path%>">我的分销</a></span></li>
-		<li class="price_cnt"><span><a href="<%= qrcode_member_distributions_path%>">我的二维码</a></span></li>
+		<li class="price_cnt"><span><a href="<%= current_user.is_distribution? ? member_distributions_path : "#"%>">我的分销</a></span></li>
+		<li class="price_cnt"><span><a href="<%= current_user.is_distribution? ? qrcode_member_distributions_path : "#"%>">我的二维码</a></span></li>
 	</ul>
 </div>
 
