@@ -1,7 +1,7 @@
 class Member::DistributionsController < Member::BaseController
   def index
     @distribution = current_user.distribution
-    redirect_to member_index_path and return if @distribution.blank?
+    redirect_to member_index_index_path and return if @distribution.blank?
   end
   
   def new
