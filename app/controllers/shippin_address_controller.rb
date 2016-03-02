@@ -1,5 +1,6 @@
 class ShippinAddressController < ApplicationController
   def index
+    session[:goto] = params[:goto]
     @addresses = current_user.shippin_address
   end
   
@@ -49,9 +50,11 @@ class ShippinAddressController < ApplicationController
   end
   
   def use
-    session[:use_shippin_address_id] = params[:id]
+    redirect_to edit_shippin_address_path(params[:id]) and return if session[:goto].blank?
     
-    redirect_to params[:goto] || new_order_path
+    session[:use_shippin_address_id] = params[:id]
+    goto = session.delete(:goto)
+    redirect_to goto || new_order_path
   end
   
   def post_params

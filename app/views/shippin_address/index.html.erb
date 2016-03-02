@@ -6,7 +6,7 @@
   
       <tr>
         <td width="85%">
-          <a href="<%= params[:goto].present? ? use_shippin_address_path(address, goto: params[:goto]) : edit_shippin_address_path(address)%>">
+          <a href="<%= session[:goto].present? ? use_shippin_address_path(address) : edit_shippin_address_path(address)%>">
             <%= address.province%>
             <%= address.city%>
             <%= address.street%>
