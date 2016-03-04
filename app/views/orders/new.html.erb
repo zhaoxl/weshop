@@ -1,16 +1,66 @@
-<h3 style="width: 90%; text-align: center; border-bottom: solid 1px black; margin: auto auto 20px auto">购物车</h3>
+<style type="text/css" media="screen">
+.nav{background: url(/images/orders_new_nav_bg.jpg) repeat-x; width: 100%; height: 36px;}
+.nav .back{display: block; background: url(/images/orders_new_nav_back.jpg); margin: auto auto auto 12px; width: 8px; height: 36px; }
+.nav .title{display: block; background: url(/images/orders_new_nav_title.jpg); margin: auto auto auto auto; width: 60px; height: 36px; }
+.nav .cart{display: block; background: url(/images/orders_new_nav_cart_icon.jpg); margin: auto 12px auto auto; width: 20px; height: 36px; }
+
+.address{background: #82b770; color: white; padding: 12px;}
+.address table tr td{color: white}
+</style>
+<div class="nav">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td align="left" widht="8">
+				<a href="/" class="back"></a>
+			</td>
+			<td align="center" width="100%">
+				<a href="#" class="title"></a>
+			</td>
+			<td align="right" width="20">
+				<a href="/orders/new" class="cart"></a>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="address">
+  <a href="<%= shippin_address_index_path(goto: new_order_path)%>" style="display: block; width: 90%; margin: auto auto; color: black; ">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td rowspan="2">
+					<img src="/images/orders_new_address_icon.jpg" />
+				</td>
+				<td>
+				  <%if @shippin_address.present?%>
+				  	<%= @shippin_address.name%>
+				  	<%= hidden_field_tag :address_id, @shippin_address.id%>
+				  <%end%>
+				</td>
+				<td>
+				  <%if @shippin_address.present?%>
+				  	<%= @shippin_address.phone%>
+				  <%end%>
+				</td>
+				<td rowspan="2" width="6">
+					<img src="/images/orders_new_change_icon.jpg" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" width="100%">
+				  <%if @shippin_address.blank?%>
+				  	添加收货地址
+				  <%else%>
+				  	<p><%= @shippin_address.to_s%></p>
+					<%end%>
+				</td>
+			</tr>
+		</table>
+	</a>
+</div>
 
 <%= form_tag orders_path do %>
   <p style="width: 90%; text-align: center; margin: auto auto; color: #AAAAAA">收货地址</p>
-  <a href="<%= shippin_address_index_path(goto: new_order_path)%>" style="display: block; width: 90%; margin: auto auto; color: black; ">
-  <%if @shippin_address.blank?%>
-  	添加收货地址
-  <%else%>
-  <%= @shippin_address.to_s%><br>
-  <%= @shippin_address.name%>&nbsp;&nbsp;<%= @shippin_address.phone%>
-  <%= hidden_field_tag :address_id, @shippin_address.id%>
-  <%end%>
-  </a>
+  
 
   <p style="width: 90%; text-align: center; margin: 20px auto auto auto; color: #AAAAAA; ">购物车商品</p>
   <div style="margin-bottom: 20px">
