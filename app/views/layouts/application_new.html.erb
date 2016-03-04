@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <title>芬尼湾</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <link rel="stylesheet" href="/css/swiper.min.css" type="text/css" media="screen">
+    <script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <style type="text/css" media="screen">
+    html{
+    }
+    body{
+      margin: 0px; 
+      padding: 0px; 
+    }
+  input {-webkit-appearance:none; border-radius: 0;}
+
+  input[type="submit"],
+
+  input[type="reset"],
+
+  input[type="button"],
+  
+  input[type="text"],
+
+  input{-webkit-appearance:none;}
+  
+    #header{width: 100%; background: #81b770;}
+    #header .logo{width: 96px; height: 36px; display: block;}
+    #header .search_left{width: 24px; height: 36px;}
+    #header .search_key{width: 100%; border: none; height: 18px; margin-top: 6px; background: url(/images/search_bg.jpg);}
+    #header .search_right{width: 13px; height: 36px; }
+    #header .index img{width: 45px; height: 36px;}
+    .swiper-container {
+    	width: 100%;
+    }
+    .swiper-slide {
+    	text-align: center;
+    	font-size: 18px;
+    	background: #fff;
+
+    	/* Center slide text vertically */
+    	display: -webkit-box;
+    	display: -ms-flexbox;
+    	display: -webkit-flex;
+    	display: flex;
+    	-webkit-box-pack: center;
+    	-ms-flex-pack: center;
+    	-webkit-justify-content: center;
+    	justify-content: center;
+    	-webkit-box-align: center;
+    	-ms-flex-align: center;
+    	-webkit-align-items: center;
+    	align-items: center;
+    }
+    
+    #footer{margin-top: 20px; background: white; padding: 20px; text-align: center; color: #999999;}
+    #footer p{margin-top: 10px; margin-bottom: 10px;}
+    #footer .hotline{color: #5f9e4b; background: rgba(0, 0, 0, 0) url("/images/hotline_icon.jpg") no-repeat scroll 0 4px; padding-left: 20px; width: 200px; margin: auto auto; text-align: left;}
+    </style>
+  
+    <div id="header">
+      <table cellpadding="0" cellspacing="0">
+        <tr>
+          <td width="20%">
+            <a href="/" class="logo">
+              <img src="/images/logo.jpg" width="95" />
+            </a>
+          </td>
+          <td>
+            <img src="/images/search_left.jpg" class="search_left" />
+          </td>
+          <td width="100%" valign=top>
+            <input type="text" class="search_key" />
+          </td>
+          <td width="3%">
+            <img src="/images/search_right.jpg" class="search_right" />
+          </td>
+          <td width="3%">
+            <a href="/" class="index">
+              <img src="/images/header_index.jpg" class="search_right" />
+            </a>
+          </td>
+        </tr>
+      </table>
+    </div>
+    
+    <%= yield %>
+    
+    <div id="footer">
+      <div class="hotline">
+        服务热线：400-1887-077
+      </div>
+      <p>COPYRIGHT 2007-2015 大连山河投资有限公司</p>
+      <p>ALL RIGHTS RESERVED.</p>
+      <p>辽ICP备13008748号-2</p>
+    </div>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <script src="/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+  </body>
+</html>
