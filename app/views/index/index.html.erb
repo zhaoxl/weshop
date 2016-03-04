@@ -91,7 +91,7 @@ body{background: #E6E6E6;}
 
 <!-- Swiper -->
 <div class="swiper-container" style="width:100%;">
-	<div class="swiper-wrapper" style='height:251px;'>
+	<div class="swiper-wrapper" style='height:170px;'>
     <%Banner.all.each do |banner|%>
 		  <div class="swiper-slide"><a href="<%= banner.url%>"><img style="width:100%;" src='<%= banner.image.url%>' alt="<%= banner.description%>"></a></div>
     <%end%>
