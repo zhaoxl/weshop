@@ -38,6 +38,11 @@ class Admin::ProductCategoriesController < Admin::BaseController
     redirect_to :back
   end
   
+  def destroy
+    @data.destroy!
+    redirect_to :back
+  end
+  
   private
   def find_data
     @data = ProductCategory.find(params[:id])
