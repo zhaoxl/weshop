@@ -1,59 +1,86 @@
 <style type="text/css" media="screen">
-/*input[type=text]{border-bottom: solid 1px #AAAAAA;}*/
+.nav{background: url(/images/orders_new_nav_bg.jpg) repeat-x; width: 100%; height: 36px;}
+.nav .back{display: block; background: url(/images/orders_new_nav_back.jpg); margin: auto auto auto 12px; width: 8px; height: 36px; }
+.nav .title{display: block; margin: auto auto auto auto; height: 36px; font-weight: bold; font-size: 16px; color: white; line-height: 36px;}
+
+.gray_bg{background: #E6E6E6; padding-bottom: 60px; margin-bottom: 10px;}
+
+.address{padding: 12px; padding-right: 0px; border-top: solid 13px #E6E6E6; background: white;}
+.address table tr td p{margin: 0px;}
+.address table tr td{}
+.address table tr td p{line-height: 18px;}
+.address table tr td .delete{display: block; width: 60px; height: 89px; background: red; color: white; line-height: 89px; text-align: center;}
+
+.form{width: 100%; }
+.form td{padding-top: 10px;}
+.form td input, .form td select{width: 99%; border: none; border-bottom: solid 1px #DDDDDD;}
+.form td input[type="text"]{width: 97%;}
+.form td input[type="checkbox"]{width: 15px; vertical-align:middle}
+.form td label{vertical-align:middle}
+.submit{width: 100%; line-height: 50px; text-align: center; background: #82B770; color: white; border: none; border-top: solid 40px #E6E6E6; font-size: 14px;}
 </style>
-<h3 style="width: 90%; text-align: center; border-bottom: solid 1px black; margin: auto auto 20px auto;">添加收货地址</h3>
+
+<div class="nav">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td align="left" widht="8">
+				<a href="/" class="back"></a>
+			</td>
+			<td align="center" width="100%">
+				<p class="title">添加收货地址</p>
+			</td>
+			<td align="right" width="20">
+				<a href="/orders/new" class="cart"></a>
+			</td>
+		</tr>
+	</table>
+</div>
+
 <div style="width: 90%; text-align: center; color: red">
   <%= flash[:error]%>
 </div>
+
 <%= form_for @address, url: shippin_address_index_path do |f|%>
-  <table style="width: 90%; margin: auto auto">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="form">
     <tr>
-      <td width="25%">
-        地区：
+      <td>
+        <%= f.text_field :name, placeholder: '收货人姓名'%>
       </td>
+    </tr>
+    <tr>
+      <td>
+        <%= f.text_field :phone, placeholder: '联系电话'%>
+      </td>
+    </tr>
+    <tr>
       <td>
         <%= f.select :province_code, AreaProvince.all.map{|province| [province.name, province.code]}, {}, id: :area_province%>
+      </td>
+    </tr>
+    <tr>
+      <td>
         <%= f.select :city_code, AreaCity.where(province_code: @address.province_code).map{|city| [city.name, city.code]}, {}, id: :area_city%>
+      </td>
+    </tr>
+    <tr>
+      <td>
         <%= f.select :street_code, AreaStreet.where(city_code: @address.city_code).map{|street| [street.name, street.code]}, {}, id: :area_street%>
       </td>
     </tr>
     <tr>
       <td>
-        详细地址：
-      </td>
-      <td>
-        <%= f.text_field :detail%>
+        <%= f.text_field :detail, placeholder: '详细地址'%>
       </td>
     </tr>
     <tr>
       <td>
-        手机号：
-      </td>
-      <td>
-        <%= f.text_field :phone%>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        姓名：
-      </td>
-      <td>
-        <%= f.text_field :name%>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        设为默认：
-      </td>
-      <td>
-        <%= f.check_box :default%>
+        <label><%= f.check_box :default%>设为默认地址</label>
       </td>
     </tr>
   </table>
 
 
-
-  <input type="submit" style="width: 100%; text-align: center; display: block" value="保存" />
+  <input type="submit" value="保存" class="submit" />
 <%end%>
 
 <script type="text/javascript">

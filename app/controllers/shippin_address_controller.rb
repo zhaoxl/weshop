@@ -9,6 +9,8 @@ class ShippinAddressController < ApplicationController
   def new
     @address = ShippinAddress.new
     @address.default = !current_user.shippin_address.exists?
+    
+    render layout: 'application_new'
   end
   
   def edit
