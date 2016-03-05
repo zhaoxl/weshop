@@ -2,6 +2,8 @@ class ShippinAddressController < ApplicationController
   def index
     session[:goto] = params[:goto] if params[:goto].present?
     @addresses = current_user.shippin_address
+    
+    render layout: 'application_new'
   end
   
   def new

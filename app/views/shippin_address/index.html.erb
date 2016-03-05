@@ -1,29 +1,57 @@
-<h3 style="width: 95%; text-align: center; border-bottom: solid 1px black; margin: auto auto 20px auto;">收货地址管理</h3>
+<style type="text/css" media="screen">
+.nav{background: url(/images/orders_new_nav_bg.jpg) repeat-x; width: 100%; height: 36px;}
+.nav .back{display: block; background: url(/images/orders_new_nav_back.jpg); margin: auto auto auto 12px; width: 8px; height: 36px; }
+.nav .title{display: block; margin: auto auto auto auto; height: 36px; font-weight: bold; font-size: 16px; color: white; line-height: 36px;}
 
-<%@addresses.each do |address|%>
-  <div style="width: 95%; margin: auto auto 10px auto; border-bottom: solid 1px #AAAAAA">
-    <table style="width: 100%;">
-  
-      <tr>
-        <td width="85%">
-          <a href="<%= session[:goto].present? ? use_shippin_address_path(address) : edit_shippin_address_path(address)%>">
-            <%= address.province%>
-            <%= address.city%>
-            <%= address.street%>
-            <%= address.detail%><br />
-            <%= address.name%>
-            <%= address.phone%>
-          </a>
-        </td>
-        <td width="5%">
-          <%=raw address.default? ? '默认' : '&nbsp;'%>
-        </td>
-        <td>
-          <a href="<%= edit_shippin_address_path(address)%>">编辑</a>
-          <%= link_to "删除", shippin_address_path(address), method: :delete%>
-        </td>
-      </tr>
-    </table>
-  </div>
-<%end%>  
-<a href="<%= new_shippin_address_path%>" style="width: 100%; text-align: center; display: block">添加收货地址</a>
+.gray_bg{background: #E6E6E6; padding-bottom: 60px; margin-bottom: 10px;}
+
+.address{padding: 12px; padding-right: 0px; border-top: solid 13px #E6E6E6; background: white;}
+.address table tr td p{margin: 0px;}
+.address table tr td{}
+.address table tr td p{line-height: 18px;}
+.address table tr td .delete{display: block; width: 60px; height: 89px; background: red; color: white; line-height: 89px; text-align: center;}
+.new_btn{width: 105px; height: 28px; display: block; background: url(/images/address_new_btn.jpg); margin: 20px auto auto auto;}
+</style>
+
+<div class="nav">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td align="left" widht="8">
+				<a href="/" class="back"></a>
+			</td>
+			<td align="center" width="100%">
+				<p class="title">收货地址</p>
+			</td>
+			<td align="right" width="20">
+				<a href="/orders/new" class="cart"></a>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="gray_bg">
+  <%@addresses.each do |address|%>  
+    <div class="address">
+      <a href="<%= session[:goto].present? ? use_shippin_address_path(address) : edit_shippin_address_path(address)%>">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>
+            <p>收货人：<%= address.name%></p>
+          </td>
+          <td>
+            <p>电话：<%= address.phone%></p>
+          </td>
+          <td rowspan="2" width="60">
+            <%= link_to "删除", shippin_address_path(address), method: :delete, class: 'delete'%>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <p>收货地址：<%= address.to_s%></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  <%end%>
+</div>
+<a href="<%= new_shippin_address_path%>" class="new_btn"></a>
