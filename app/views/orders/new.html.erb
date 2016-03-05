@@ -6,6 +6,17 @@
 
 .address{background: #82b770; color: white; padding: 12px;}
 .address table tr td{color: white}
+.address table tr td p{line-height: 18px;}
+
+.products{width: 100%; border-top: solid 13px #E6E6E6; padding: 12px; padding-top: 0px;}
+.products img{padding: 5px; border: solid 1px #DDDDDD;}
+.products .product_box{margin-top: 15px; border-bottom: solid 1px #DDDDDD; padding-bottom: 10px;}
+
+.total{color: #dddddd;}
+.total span{margin-top: 18px; display: inline-block;}
+.total .price{font-size: 14px; font-weight: bold; color: red;}
+.total .total_prices{border-top: solid 1px #DDDDDD; border-bottom: solid 1px #DDDDDD; height: 43px; }
+.total .submit{width: 110px; height:45px; line-height: 45px; text-align: center; font-size: 14px; color: white; border: none; background: #82B770; padding: 0px;}
 </style>
 <div class="nav">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -23,79 +34,83 @@
 	</table>
 </div>
 
-<div class="address">
-  <a href="<%= shippin_address_index_path(goto: new_order_path)%>" style="display: block; width: 90%; margin: auto auto; color: black; ">
-		<table width="100%" border="0" cellspacing="0" cellpadding="0">
-			<tr>
-				<td rowspan="2">
-					<img src="/images/orders_new_address_icon.jpg" />
-				</td>
-				<td>
-				  <%if @shippin_address.present?%>
-				  	<%= @shippin_address.name%>
-				  	<%= hidden_field_tag :address_id, @shippin_address.id%>
-				  <%end%>
-				</td>
-				<td>
-				  <%if @shippin_address.present?%>
-				  	<%= @shippin_address.phone%>
-				  <%end%>
-				</td>
-				<td rowspan="2" width="6">
-					<img src="/images/orders_new_change_icon.jpg" />
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" width="100%">
-				  <%if @shippin_address.blank?%>
-				  	添加收货地址
-				  <%else%>
-				  	<p><%= @shippin_address.to_s%></p>
-					<%end%>
-				</td>
-			</tr>
-		</table>
-	</a>
-</div>
-
-<%= form_tag orders_path do %>
-  <p style="width: 90%; text-align: center; margin: auto auto; color: #AAAAAA">收货地址</p>
+<%= form_tag orders_path do %>  
+  <div class="address">
+    <a href="<%= shippin_address_index_path(goto: new_order_path)%>" style="display: block; width: 100%; margin: auto auto; color: black; ">
+  		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  			<tr>
+  				<td rowspan="2">
+  					<img src="/images/orders_new_address_icon.jpg" />
+  				</td>
+  				<td style="padding-left: 20px">
+  				  <%if @shippin_address.present?%>
+  				  	收货人：<%= @shippin_address.name%>
+  				  	<%= hidden_field_tag :address_id, @shippin_address.id%>
+  				  <%end%>
+  				</td>
+  				<td>
+  				  <%if @shippin_address.present?%>
+  				  	电话：<%= @shippin_address.phone%>
+  				  <%end%>
+  				</td>
+  				<td rowspan="2" width="6">
+  					<img src="/images/orders_new_change_icon.jpg" />
+  				</td>
+  			</tr>
+  			<tr>
+  				<td colspan="2" width="100%" style="padding-left: 20px">
+  				  <%if @shippin_address.blank?%>
+  				  	添加收货地址
+  				  <%else%>
+  				  	<p><%= @shippin_address.to_s%></p>
+  					<%end%>
+  				</td>
+  			</tr>
+  		</table>
+  	</a>
+  </div>
   
-
-  <p style="width: 90%; text-align: center; margin: 20px auto auto auto; color: #AAAAAA; ">购物车商品</p>
-  <div style="margin-bottom: 20px">
+  <div class="products">
     <% current_user.carts.each do |cart|%>
     <%= hidden_field_tag "cart_ids[]", cart.id%>
     <% product = cart.product%>
-      <div style="width: 90%; border-bottom: solid 1px #CCCCC; margin: 5px auto auto auto; border-bottom: solid 1px #AAAAAA; padding-bottom: 10px ">
-        <table>
-          <tr>
-            <td rowspan="2">
-              <img src="<%= product.logo.url%>" width="50" height="50" />
-            </td>
-            <td style="padding-left: 10px; line-height: 16px">
-              <%= product.name%><br />
-              <%= product.description%><br />
-              <span style="color: #BBBBBB"><%= product.price%> x <%= cart.total%> = <%= product.price*cart.total%></span>
-            </td>
-          </tr>
-        </table>
-      </div>
+    <div class="product_box">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td style="padding: 0px" width="75" valign="top">
+            <img src="<%= product.logo.url%>" width="75" height="75" />
+          </td>
+          <td valign="top" style="padding-left: 10px; line-height: 22px">
+            <p style="margin: auto"><%= product.name%></p>
+            <p style="margin: auto; height: 44px;"><%= product.description%></p>
+            <p style="color: #BBBBBB; margin: auto"><%= product.price%> x <%= cart.total%> = <%= product.price*cart.total%></p>
+          </td>
+        </tr>
+      </table>
+    </div>
     <%end%>
   </div>
   
-  <p style="width: 90%; margin: auto auto">
-    总金额
-    <span style="color: red; font-weight: bold">
-    	<%= 
-    	current_user.carts.to_a.sum{|cart| 
-    		cart.total * cart.product.try(:price)||0
-    	}.to_f
-    	%>元
-    </span>
-    <input type="submit" value="提交订单" style="float: right" />
-  </p>
-  
+  <div class="total">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="100%" align="center" valign="middle">
+          <div class="total_prices">
+            <span>合计：</span>
+            <span class="price">￥<%= 
+          	current_user.carts.to_a.sum{|cart| 
+          		cart.total * cart.product.try(:price)||0
+          	}.to_f
+          	%>
+            </span>
+          </div>
+        </td>
+        <td width="110">
+          <input type="submit" value="提交订单" class="submit" />
+        </td>
+      </tr>
+    </table>
+  </div>
 <%end%>  
 
   

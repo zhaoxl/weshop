@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
       end
     end
     
+    render layout: 'application_new'
   end
   
   def create
