@@ -1,0 +1,108 @@
+<h3 style="width: 90%; text-align: center; border-bottom: solid 1px black; margin: auto auto 20px auto;">编辑收货地址</h3>
+<%= form_for @address, url:  shippin_address_path(@address) do |f|%>
+  <table style="width: 90%; margin: auto auto">
+    <tr>
+      <td width="25%">
+        地区：
+      </td>
+      <td>
+        <%= f.select :province_code, AreaProvince.all.map{|province| [province.name, province.code]}, {}, id: :area_province%>
+        <%= f.select :city_code, AreaCity.where(province_code: @address.province_code).map{|city| [city.name, city.code]}, {}, id: :area_city%>
+        <%= f.select :street_code, AreaStreet.where(city_code: @address.city_code).map{|street| [street.name, street.code]}, {}, id: :area_street%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        详细地址：
+      </td>
+      <td>
+        <%= f.text_field :detail%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        手机号：
+      </td>
+      <td>
+        <%= f.text_field :phone%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        姓名：
+      </td>
+      <td>
+        <%= f.text_field :name%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        设为默认：
+      </td>
+      <td>
+        <%= f.check_box :default%>
+      </td>
+    </tr>
+  </table>
+
+
+
+  <input type="submit" style="width: 100%; text-align: center; display: block" value="保存" />
+<%end%>
+
+<script type="text/javascript">
+$(function(){
+	//get cities
+	$("#area_province").change(function(){
+		if($(this).val() == "")
+		{
+			$("#area_city").val("").hide();
+			$("#area_street").val("").hide();
+			return false;
+		} 
+		
+		$.ajax({
+			url: '/ajax/area/cities',
+			type: 'GET',
+			dataType: 'json',
+			data: {provincecode: $(this).val()},
+			success: function(response)
+			{
+				var options = '<option value="">请选择市</option>';
+				$.each(response, function(index, city){
+					options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';
+				});
+				$("#area_city").html(options).show();
+				$("#area_street").html('').hide();
+			}
+		});
+	});
+
+	//get streets
+	$("#area_city").change(function(){
+		if($(this).val() == "")
+		{
+			$("#area_street").val("").hide();
+			return false;
+		} 
+		
+		$.ajax({
+			url: '/ajax/area/streets',
+			type: 'GET',
+			dataType: 'json',
+			data: {citycode: $(this).val()},
+			success: function(response)
+			{
+				var options = '<option value="">请选择区县</option>';
+				$.each(response, function(index, city){
+					options += '<option value="'+ city['code'] +'">'+ city['name'] +'</option>';
+				});
+				$("#area_street").html(options).show();
+			}
+		});
+	});
+  
+  
+  
+});
+</script>

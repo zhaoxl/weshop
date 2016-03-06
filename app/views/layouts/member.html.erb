@@ -1,155 +1,54 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>芬尼湾</title>
+<title>个人中心</title>
   <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 	
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <link rel="stylesheet" href="/css/swiper.min.css" type="text/css" media="screen">
-  <link rel="stylesheet" href="/css/foods.css" type="text/css" media="screen">
-  <link rel="stylesheet" href="/css/base.css" type="text/css" media="screen">
   <%= csrf_meta_tags %>
 
 <style>
-.bg_color{background-color: #ADADAD }
-.submit{background-color: #ADADAD }
-.submit:active {background-color: #ADADAD}
-.menu_topbar {background-color: #ADADAD ;background: -webkit-linear-gradient(top, #ADADAD , #ADADAD);border-bottom: 1px solid #ADADAD;}
-.footermenu ul {border-top: 1px solid #ADADAD ;background-color: #ADADAD;background: -webkit-linear-gradient(top, #ADADAD, #ADADAD);}
-.footermenu ul li a.active {background: -webkit-linear-gradient(top, #ADADAD , #ADADAD);}
-.bg_total{background-color:#EA0000}
+html{
+}
+body{
+  width: 100%;
+  font-size: 12px;
+  margin: 0px; 
+  padding: 0px; 
+}
+a{text-decoration: none; color: black;}
+input {-webkit-appearance:none; border-radius: 0;}
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+input[type="text"],
+input{-webkit-appearance:none;}
+
+.nav{background: url(/images/orders_new_nav_bg.jpg) repeat-x; width: 100%; height: 36px;}
+.nav .back{display: block; background: url(/images/orders_new_nav_back.jpg); margin: auto auto auto 12px; width: 8px; height: 36px; }
+.nav .title{display: block; margin: auto auto auto auto; height: 36px; font-weight: bold; font-size: 16px; color: white; line-height: 36px;}
+
 </style>
 
 </head>
-<body class="sanckbg mode_webapp" style="background-color:#fff;">
-
-	<div id="member-container" style="display: block;">
-
-		<div class="menu_header">
-			<div class="menu_topbar">
-				<div id="menu" class="sort ">
-					<a href="">分销详情</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="div_header">
-			<span style='float:left;margin-left:10px;margin-right:10px;margin-bottom:10px;'>
-				<img src='<%= current_user.headimgurl%>' width='80px;' height='80px;'>			</span>
-			<span class="header_right">
-				<div class="header_l_di"><span>昵称：<%= current_user.name%></span></div>
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<div><span>分销：<%=raw current_user.is_distribution? ? "V#{current_user.distribution.level}" : "否(<a style='color:red' href='#'>成功购物一次自动开通分销功能</a>)"%></span></div>
-				<div>会员ID：<%= current_user.id%> </div>								
-			</span>
-    </div>
-		
-		<%= yield%>
-	</div>
-
-  <div class="footermenu">
-		<ul>
-			<li>
-        <a href="/" class="<%= request.path == "/" ? "active" : ""%>">
-          <img src="/images/home.png">
-					<p>首页</p>
-  			</a>
-      </li>
-
-			<li>
-        <a href="/member/orders" class="<%= request.path == "/member/orders" ? "active" : ""%>">
-          <span id="cartN2" class="num"><%= current_user.orders.where(state: :create).count%></span>
-          <img src="/images/22.png">
-				  <p>订单</p>
-			  </a>
-      </li>
-	
-			<li>
-        <a href="/member" class="<%= !["/member/orders", "/member/distributions"].include?(request.path)  && request.path =~ /^\/member/ ? "active" : ""%>">
-          <img src="/images/menu.png">
-					<p>会员中心</p>
-			  </a>
-      </li>
-	
-			<li>
-        <a href="<%= current_user.is_distribution? ? "/member/distributions" : "#"%>" class="<%= request.path == "/member/distributions" ? "active" : ""%>">
-          <img src="/images/buy.png">
-					<p>我的分销</p>
-  			</a>
-      </li>
-		</ul>
-	</div>
-
-  <script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-	<script>
-	window.onload=function(){
-		if($_GET['page_type']=='order')
-		{
-			user();
-		}
-		
-		if($_GET['page_type']=='ticket')
-		{
-			$("#ticket").click();
-		}
-	}
-	</script>
-  <script type="text/javascript">
-  var appurl = '/index.php';
-  var rooturl = '';
-
-  $(function () {
-  	$("#all_cnt").click(function(){
-  		$(".member_cnt").toggle();
-  		if($(this).find('img').attr("src")=="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png")
-  		{
-  			$(this).find('img').attr("src","http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_click.png");
-  		}
-  		else
-  		{
-  			$(this).find('img').attr("src","http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png");
-  		}
-  	});
-	
-  	$("#all_price").click(function(){
-  		$(".price_cnt").toggle();
-  		if($(this).find('img').attr("src")=="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png")
-  		{
-  			$(this).find('img').attr("src","http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_click.png");
-  		}
-  		else
-  		{
-  			$(this).find('img').attr("src","http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png");
-  		}
-  	});
-	
-  	$("#all_buy").click(function(){
-  		$(".buy_cnt").toggle();
-  		if($(this).find('img').attr("src")=="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png")
-  		{
-  			$(this).find('img').attr("src","http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_click.png");
-  		}
-  		else
-  		{
-  			$(this).find('img').attr("src","http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png");
-  		}
-  	});
-	
-  	$("#memeber_url").click(function(){
-  		$(".memeber_url").toggle();
-  		if($(this).find('img').attr("src")=="http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png")
-  		{
-  			$(this).find('img').attr("src","http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_click.png");
-  		}
-  		else
-  		{
-  			$(this).find('img').attr("src","http://mjcf.hfxxs.com/Application/Tpl/App/default/Public/Static/images/arrow_unclick.png");
-  		}
-  	});
-
-  });
-
-  </script>
+<body>
+  <div class="nav">
+  	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  		<tr>
+  			<td align="left" widht="8">
+  			  <%= link_to '', :back, class: 'back'%>
+  			</td>
+  			<td align="center" width="100%">
+  				<p class="title"><%= @title||'个人中心'%></p>
+  			</td>
+  			<td align="right" width="20">
+  				<a href="/orders/new" class="cart"></a>
+  			</td>
+  		</tr>
+  	</table>
+  </div>
+  
+  <%= yield%>
+  
 </body>
 </html>

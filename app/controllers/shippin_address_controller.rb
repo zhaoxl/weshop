@@ -15,6 +15,8 @@ class ShippinAddressController < ApplicationController
   
   def edit
     @address = ShippinAddress.find(params[:id])
+    
+    render layout: 'application_new'
   end
   
   def create
