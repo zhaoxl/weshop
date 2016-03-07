@@ -4,6 +4,10 @@ class Member::OrdersController < Member::BaseController
     @orders = @orders.where(state: params[:state]) if params[:state].present?
   end
   
+  def show
+    @order = current_user.orders.find(params[:id])
+  end
+  
   def set_state
     begin
       order = Order.find(params[:id])

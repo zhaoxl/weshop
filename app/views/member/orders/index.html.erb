@@ -38,45 +38,47 @@
  </div>
 
 <%@orders.each do |order|%>
-  <div class="order_block">
-    <div style="width: 93%; line-height: 40px;">
-      订单号：<%= order.scode%>
-      <span style="float: right; color: red"><%= t "activerecord.order.states.#{order.state}"%></span>
-    </div>
-    <div style="padding-bottom: 20px">
-      <%order.order_products.each do |op|%>
-        <div style="width: 98%; border-top: solid 1px #F8F8F8; margin: 5px auto auto auto; padding-top: 5px;">
-          <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td align="left" width="60" style="padding: 0px">
-                <img src="<%= op.logo.url%>" width="50" height="50" style="border: solid 1px #F8F8F8; padding: 0px;" />
-              </td>
-              <td>
-                <p style="height: 40px; margin: 0px;"><%= op.name%></p>
-                <div style="width: 93%; color: red; font-size: 14px; font-weight: bold"><%= op.price%><span style="float: right; color: #F8F8F8"><%= op.total%></span></div>
-              </td>
-            </tr>
-          </table>
-        </div>
-      <%end%>
-    </div>
-    <div style="width: 85%; border-bottom: dashed 1px #F8F8F8; margin: 5px auto auto auto; text-align: right; color: #999999">
-      共计<%= order.order_products.count%>件商品&nbsp;&nbsp;合计：<span style="color: red; font-size: 16px; font-weight: bold"><%= order.total_fee%></span>（&nbsp;&nbsp;运费：<%= order.fare.to_f%>）
-    </div>
-    <div style="width: 92%;">
-        <%if order.cancel?%>
-          <a href="<%= delete_member_order_path(order)%>" class="action_btn white">删除订单</a>
-        <%elsif order.create?%>
-          <a href="#" class="action_btn">立即支付</a>
-          <a href="<%= set_state_member_order_path(order, state: :cancel)%>" class="action_btn white">取消订单</a>
-        <%elsif order.payment?%>
+  <a href="/member/orders/<%= order.id%>">
+	  <div class="order_block">
+	    <div style="width: 93%; line-height: 40px;">
+	      订单号：<%= order.scode%>
+	      <span style="float: right; color: red"><%= t "activerecord.order.states.#{order.state}"%></span>
+	    </div>
+	    <div style="padding-bottom: 20px">
+	      <%order.order_products.each do |op|%>
+	        <div style="width: 98%; border-top: solid 1px #F8F8F8; margin: 5px auto auto auto; padding-top: 5px;">
+	          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+	            <tr>
+	              <td align="left" width="60" style="padding: 0px">
+	                <img src="<%= op.logo.url%>" width="50" height="50" style="border: solid 1px #F8F8F8; padding: 0px;" />
+	              </td>
+	              <td>
+	                <p style="height: 40px; margin: 0px;"><%= op.name%></p>
+	                <div style="width: 93%; color: red; font-size: 14px; font-weight: bold"><%= op.price%><span style="float: right; color: #F8F8F8"><%= op.total%></span></div>
+	              </td>
+	            </tr>
+	          </table>
+	        </div>
+	      <%end%>
+	    </div>
+	    <div style="width: 85%; border-bottom: dashed 1px #F8F8F8; margin: 5px auto auto auto; text-align: right; color: #999999">
+	      共计<%= order.order_products.count%>件商品&nbsp;&nbsp;合计：<span style="color: red; font-size: 16px; font-weight: bold"><%= order.total_fee%></span>（运费：<%= order.fare.to_f%>）
+	    </div>
+	    <div style="width: 92%;">
+	        <%if order.cancel?%>
+	          <a href="<%= delete_member_order_path(order)%>" class="action_btn white">删除订单</a>
+	        <%elsif order.create?%>
+	          <a href="#" class="action_btn">立即支付</a>
+	          <a href="<%= set_state_member_order_path(order, state: :cancel)%>" class="action_btn white">取消订单</a>
+	        <%elsif order.payment?%>
           
-        <%elsif order.sent?%>
-          <a href="<%= set_state_member_order_path(order, state: :receive)%>" class="action_btn white">确认收货</a>
-        <%end%>
-				<div style="clear: both"></div>
-    </div>
-  </div>
+	        <%elsif order.sent?%>
+	          <a href="<%= set_state_member_order_path(order, state: :receive)%>" class="action_btn white">确认收货</a>
+	        <%end%>
+					<div style="clear: both"></div>
+	    </div>
+	  </div>
+	</a>
 <%end%>
 
 <script type="text/javascript">
