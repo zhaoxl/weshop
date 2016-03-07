@@ -13,9 +13,6 @@ class WechatController < ApplicationController
     open_id = result["openid"]
     token = result["access_token"]
     
-    p "=============================="
-    p "open_id:#{open_id}"
-    p "token:#{token}"
     
     unless user = User.where(open_id: open_id).first
       #获取用户资料
@@ -30,6 +27,14 @@ class WechatController < ApplicationController
     session[:user_id] = user.id
     
     redirect_to "/?recommend=#{params[:state]}"
+  end
+  
+  def pay
+    
+  end
+  
+  def pay_notify
+    
   end
   
 end

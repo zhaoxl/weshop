@@ -3,6 +3,7 @@ defaults: &defaults
     appid: wx0e413d605383490e
     secret: cbcffda6ee24824dc37cc33fa76d3801
     mchid: 1244700102
+    partnerkey: qwertyuiop12345654321ASDFGHJKLZX
     
 development:
   <<: *defaults
