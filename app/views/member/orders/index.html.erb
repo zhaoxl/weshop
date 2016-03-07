@@ -22,16 +22,16 @@
 				<a href="/member/orders">全部订单</a>
 			</li>
 			<li>
-				<a href="/member/orders/?title=待付款">待付款</a>
+				<a href="/member/orders/?state=create&title=待付款">待付款</a>
 			</li>      
 			<li>       
-				<a href="/member/orders/?title=待发货">待发货</a>
+				<a href="/member/orders/?state=payment&title=待发货">待发货</a>
 			</li>      
 			<li>       
-				<a href="/member/orders/?title=已发货">已发货</a>
+				<a href="/member/orders/?state=sent&title=已发货">已发货</a>
 			</li>      
 			<li>       
-				<a href="/member/orders/?title=已收货">已收货</a>
+				<a href="/member/orders/?state=receive&title=已收货">已收货</a>
 			</li>
 		</ul>
 	</div>
@@ -46,19 +46,6 @@
     <div style="padding-bottom: 20px">
       <%order.order_products.each do |op|%>
         <div style="width: 98%; border-top: solid 1px #F8F8F8; margin: 5px auto auto auto; padding-top: 5px;">
-          <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td align="left" width="60" style="padding: 0px">
-                <img src="<%= op.logo.url%>" width="50" height="50" style="border: solid 1px #F8F8F8; padding: 0px;" />
-              </td>
-              <td>
-                <p style="height: 40px; margin: 0px;"><%= op.name%></p>
-                <div style="width: 93%; color: red; font-size: 14px; font-weight: bold"><%= op.price%><span style="float: right; color: #F8F8F8"><%= op.total%></span></div>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div style="width: 98%; border-top: solid 1px #F8F8F8; margin: 5px auto auto auto;padding-top: 5px;">
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td align="left" width="60" style="padding: 0px">
