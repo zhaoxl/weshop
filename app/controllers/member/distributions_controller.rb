@@ -16,7 +16,7 @@ class Member::DistributionsController < Member::BaseController
   end
   
   def qrcode
-    
+    render layout: false
   end
   
   def withdraw
