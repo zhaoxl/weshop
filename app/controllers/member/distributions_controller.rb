@@ -19,6 +19,14 @@ class Member::DistributionsController < Member::BaseController
     
   end
   
+  def withdraw
+    
+  end
+  
+  def withdraw_save
+    
+  end
+  
   private
   
   def post_params

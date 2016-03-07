@@ -1,0 +1,21 @@
+<%@title = params[:title]||"申请提现"%>
+<style type="text/css" media="screen">
+body{background: #E6E6E6;}
+p{margin: 0px; padding: 0px;}
+input[type="text"]{border: none; border-left: solid 2px #E1E1E1;}
+.form{width: 100%; padding-left: 12px; background: white;}
+.form .line{width: 100%; line-height: 42px; border-bottom: solid 1px #F8F8F8;}
+.price{color: red;}
+.float_bottom_btn{width: 100%; line-height: 43px; border-top: solid 1px #BBBBBB; border-bottom: solid 1px #BBBBBB; background: #82B770; text-align: center; font-size: 15px; font-weight: bold; color: white; display: block; position: absolute; bottom: 0px;}
+</style>
+
+<div class="form">
+  <div class="line">
+    <p>可提现金额：<span class="price">￥140642</span></p>
+  </div>
+  <div class="line">
+    <p>提现金额：<input type="text" placeholder="请输入提现金额"/></p>
+  </div>
+</div>
+
+<a href="#" class="float_bottom_btn">确认提现</a>

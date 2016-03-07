@@ -91,6 +91,8 @@ Rails.application.routes.draw do
     resources :distributions do
       collection do
         get :qrcode
+        get :withdraw
+        post :withdraw_save
       end
     end
   end

@@ -38,7 +38,11 @@
 </div>
 
 <div class="nav_link">
-  <a class="distribution">我的分销</a>
+  <%if current_user.is_distribution?%>
+    <a class="distribution" href="/member/distributions">我的分销</a>
+  <%else%>
+    <a class="distribution" href="#">我的分销<span style="color: red">（首次购物后自动开通分销功能）</span></a>
+  <%end%>
 </div>
 
 <div class="nav_link">
