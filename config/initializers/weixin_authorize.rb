@@ -1,0 +1,1 @@
+$weixin_client ||= WeixinAuthorize::Client.new(Settings.wechat.appid, Settings.wechat.secret)

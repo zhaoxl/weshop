@@ -55,6 +55,8 @@ gem 'wechat'
 gem 'unicorn'
 #微信支付
 gem 'wx_pay', git: 'https://github.com/jasl/wx_pay.git'
+#微信公众号客户端
+gem 'weixin_authorize'
 
 group :development do
   gem 'pry_debug'
