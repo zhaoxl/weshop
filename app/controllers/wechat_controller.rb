@@ -75,6 +75,7 @@ class WechatController < ApplicationController
         trade_type: result[:trade_type],
         log: result
       )
+      order.save
       #TODO:支付成功后，减库存
       Rails.logger.debug("支付成功")
       render xml: {
