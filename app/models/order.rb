@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
   belongs_to  :user
   has_many    :order_products
+  has_many    :pay_logs
   
   include AASM
 
@@ -57,4 +58,7 @@ class Order < ActiveRecord::Base
     end
   end
   
+  def to_s
+    self.order_products.map{|op| "#{op.name} x #{op.total}"}.join("、")
+  end
 end

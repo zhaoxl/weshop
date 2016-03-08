@@ -53,6 +53,9 @@ Rails.application.routes.draw do
     collection do
       get :login
       get :login_get_code_callback
+      get :pay
+      post :pay_notify
+      post :pay_exception_notify
     end
   end
   resources :index

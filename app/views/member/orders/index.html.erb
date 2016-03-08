@@ -68,7 +68,7 @@
 	        <%if order.cancel?%>
 	          <a href="<%= delete_member_order_path(order)%>" class="action_btn white">删除订单</a>
 	        <%elsif order.create?%>
-	          <a href="#" class="action_btn">立即支付</a>
+	          <a href="/wechat/pay?id=<%= order.id%>" class="action_btn">立即支付</a>
 	          <a href="<%= set_state_member_order_path(order, state: :cancel)%>" class="action_btn white">取消订单</a>
 	        <%elsif order.payment?%>
           
