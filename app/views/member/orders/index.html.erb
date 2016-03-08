@@ -7,7 +7,7 @@
 	#float_nav .body ul li {list-style: none;}
 	#float_nav .body ul li a{width: 95%; display: block; line-height: 39px; border-bottom: solid 1px #F8F8F8; color: #999999; font-size: 13px;}
 	
-	.order_block{width: 100%; border-top: solid 10px #F8F8F8; padding-left: 12px;}
+	.order_block{border-top: solid 10px #F8F8F8; padding-left: 12px;}
 	.action_btn{width: 83px; line-height: 29px; display: block; text-align: center; background: url(/images/member_orders_btn_bg_green.png); color: white; font-weight: bold; font-size: 13px; float: right; margin-left: 5px; margin-bottom: 10px;}
 	.action_btn.white{background: url(/images/member_orders_btn_bg_white.png); color: #999999;}
 </style>
@@ -61,10 +61,10 @@
 	        </div>
 	      <%end%>
 	    </div>
-	    <div style="width: 85%; border-bottom: dashed 1px #F8F8F8; margin: 5px auto auto auto; text-align: right; color: #999999">
+	    <div style="border-bottom: dashed 1px #F8F8F8; margin: 5px 5px auto auto; text-align: right; color: #999999">
 	      共计<%= order.order_products.count%>件商品&nbsp;&nbsp;合计：<span style="color: red; font-size: 16px; font-weight: bold"><%= order.total_fee%></span>（运费：<%= order.fare.to_f%>）
 	    </div>
-	    <div style="width: 92%;">
+	    <div style="padding-right: 12px">
 	        <%if order.cancel?%>
 	          <a href="<%= delete_member_order_path(order)%>" class="action_btn white">删除订单</a>
 	        <%elsif order.create?%>
