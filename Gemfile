@@ -54,7 +54,7 @@ gem 'wechat'
 #服务器
 gem 'unicorn'
 #微信支付
-gem 'wx_pay'
+gem 'wx_pay', git: 'https://github.com/jasl/wx_pay.git'
 
 group :development do
   gem 'pry_debug'

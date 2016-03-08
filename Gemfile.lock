@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/jasl/wx_pay.git
+  revision: 4fe3eed298eff64edd7dad5c515db3fdedfb9381
+  specs:
+    wx_pay (0.5.0)
+      activesupport (>= 3.2)
+      rest-client (>= 1.7)
+
 GEM
   remote: https://ruby.taobao.org/
   specs:
@@ -248,9 +256,6 @@ GEM
       http (~> 1.0, >= 1.0.1)
       nokogiri (>= 1.6.0)
       thor
-    wx_pay (0.5.0)
-      activesupport (>= 3.2)
-      rest-client (>= 1.7)
 
 PLATFORMS
   ruby
@@ -287,7 +292,7 @@ DEPENDENCIES
   uglifier (>= 1.3.0)
   unicorn
   wechat
-  wx_pay
+  wx_pay!
 
 BUNDLED WITH
    1.11.2
