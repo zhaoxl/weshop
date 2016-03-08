@@ -58,7 +58,6 @@
     </script>
     <script type="text/javascript">
       wx.ready(function () {
-        alert(wx);
         wx.chooseWXPay({
           "timestamp": "<%= @pay_p[:timeStamp] %>",
           "nonceStr": "<%= @pay_p[:nonceStr] %>",
