@@ -1,8 +1,8 @@
 <style type="text/css" media="screen">
-.nav{background: url(/images/show_nav_bg.png) repeat-x; width: 100%; height: 37px;}
-.nav .back{display: block; background: url(/images/show_nav_back.png); margin: auto auto auto 12px; width: 8px; height: 37px; }
-.nav .title{display: block; background: url(/images/show_nav_title.png); margin: auto auto auto auto; width: 108px; height: 37px; }
-.nav .cart{display: block; background: url(/images/show_nav_cart.png); margin: auto 12px auto auto; width: 20px; height: 37px; }
+.nav{background: url(/images/orders_new_nav_bg.jpg) repeat-x; width: 100%; height: 36px;}
+.nav .back{display: block; background: url(/images/orders_new_nav_back.jpg); margin: auto auto auto 12px; width: 8px; height: 37px; }
+.nav .title{display: block; margin: auto auto auto auto; width: 108px; height: 37px; font-size: 16px; color: white; line-height: 37px;;}
+.nav .cart{display: block; background: url(/images/show_nav_cart.png) no-repeat 0px 10px; margin: auto 12px auto auto; width: 20px; height: 37px; }
 
 .attrs{padding: 12px;}
 .attrs .description{font-size: 12px;}
@@ -10,7 +10,7 @@
 .attrs .old_price{font-size: 11px; text-decoration: line-through; color: #AFAFAF; margin: 0;}
 .attrs .price{font-size: 14px; color: red; font-weight: bold; margin: 0; }
 .attrs .sub_attrs{color: #AFAFAF; font-size: 11px;}
-.attrs .buy_btn{width: 60px; height: 30px; display: block; background: #e14104; color: white; text-align: center; line-height: 30px; font-weight:none; font-size: 12px; text-decoration: none; margin: 10px;}
+.attrs .buy_btn{width: 60px; height: 30px; display: block; background: #e14104; color: white; text-align: center; line-height: 30px; font-weight:none; font-size: 12px; text-decoration: none; margin: 10px; margin-top: 20px;}
 
 .content{border-top: solid 12px #e6e6e6}
 .content .title{width: 100%; height: 40px; border-bottom: solid 1px #E6E6E6; background: url(/images/show_content_icon.jpg) no-repeat; background-position: 12px 13px;}
@@ -24,13 +24,13 @@
 <div class="nav">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
 		<tr>
-			<td align="left">
+			<td align="left" width="33%">
 				<a href="/" class="back"></a>
 			</td>
-			<td align="center">
-				<a href="#" class="title"></a>
+			<td align="center" width="33%">
+				<a href="#" class="title">商品详情</a>
 			</td>
-			<td align="right">
+			<td align="right" width="33%">
 				<a href="/orders/new" class="cart"></a>
 			</td>
 		</tr>

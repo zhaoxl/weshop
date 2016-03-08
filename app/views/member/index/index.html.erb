@@ -11,6 +11,7 @@
   
   .nav_link .distribution{width: 94%; background: url(/images/member_index_distribution_icon.jpg) no-repeat 0px 7px; padding-left: 25px;}
   .nav_link .address{width: 94%; background: url(/images/member_index_address_icon.jpg) no-repeat 0px 7px; padding-left: 25px;}
+  .nav_link .qrcode{width: 94%; background: url(/images/member_index_qrcode_icon.jpg) no-repeat 0px 7px; padding-left: 25px;}
 </style>
 
 
@@ -38,9 +39,17 @@
 </div>
 
 <div class="nav_link">
-  <a class="distribution">我的分销</a>
+  <%if current_user.is_distribution?%>
+    <a class="distribution" href="/member/distributions">我的分销</a>
+  <%else%>
+    <a class="distribution" href="#">我的分销<span style="color: red">（首次购物后自动开通分销功能）</span></a>
+  <%end%>
 </div>
 
 <div class="nav_link">
   <a class="address" href="/shippin_address">地址管理</a>
+</div>
+
+<div class="nav_link">
+  <a class="qrcode" href="/member/distributions/qrcode">我的二维码</a>
 </div>
