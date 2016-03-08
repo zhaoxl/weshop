@@ -1,12 +1,17 @@
-<script type="text/javascript">
-wx.chooseWXPay({
-  "timestamp": "<%= @pay_p[:timeStamp] %>",
-  "nonceStr": "<%= @pay_p[:nonceStr] %>",
-  "package": "<%= @pay_p[:package] %>",
-  "signType": "<%= @pay_p[:signType] %>",
-  "paySign": "<%= @pay_sign %>", // 支付签名
-  success: function (res) {
-    window.location.href = "/orders/" + order_id + "/pay_success";
-  }
-});
-</script>
+<html>
+  <body>
+    <script type="text/javascript">
+    alert(wx);
+    wx.chooseWXPay({
+      "timestamp": "<%= @pay_p[:timeStamp] %>",
+      "nonceStr": "<%= @pay_p[:nonceStr] %>",
+      "package": "<%= @pay_p[:package] %>",
+      "signType": "<%= @pay_p[:signType] %>",
+      "paySign": "<%= @pay_sign %>", // 支付签名
+      success: function (res) {
+        window.location.href = "/member/orders/<%= params[:id]%>";
+      }
+    });
+    </script>
+  </body>
+</html>
