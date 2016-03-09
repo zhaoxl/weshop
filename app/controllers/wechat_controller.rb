@@ -79,7 +79,8 @@ class WechatController < ApplicationController
       #TODO:支付成功后，减库存
       Rails.logger.debug("支付成功")
       render xml: {
-        return_code: "SUCCESS"
+        return_code: "SUCCESS",
+        return_msg: "OK"
       }.to_xml(root: 'xml', dasherize: false)
     else
       Rails.logger.debug("支付失败")
@@ -88,6 +89,14 @@ class WechatController < ApplicationController
         return_msg: "签名失败"
       }.to_xml(root: 'xml', dasherize: false)
     end
+    Rails.logger.debug("weixin pay_notify end=======================")
+  end
+  
+  def test
+    render xml: {
+      return_code: cdatga("SUCCESS"),
+      return_msg: "OK"
+    }.to_xml(root: 'xml', dasherize: false)
     Rails.logger.debug("weixin pay_notify end=======================")
   end
   
