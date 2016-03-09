@@ -9,5 +9,5 @@ WxPay.mch_id =  Settings.wechat.mchid.to_s
 #WxPay.set_apiclient_by_pkcs12(File.read("#{Rails.root}/config/cert/apiclient_cert.p12"), pass)
 
 # optional - configurations for RestClient timeout, etc.
-WxPay.extra_rest_client_options = {timeout: 2, open_timeout: 3}
+# WxPay.extra_rest_client_options = {timeout: 2, open_timeout: 3}
 

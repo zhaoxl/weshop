@@ -56,6 +56,7 @@ Rails.application.routes.draw do
       get :pay
       post :pay_notify
       post :pay_exception_notify
+      get :test
     end
   end
   resources :index
