@@ -23,4 +23,20 @@ class Member::OrdersController < Member::BaseController
     
     redirect_to :back
   end
+  
+  def express
+    order = current_user.orders.find(params[:id])
+    express_name = order.express
+    express_number = order.express_number
+    
+    conn = Faraday.new(:url => 'http://api.kuaidi100.com') do |faraday|
+      faraday.request  :url_encoded             # form-encode POST params
+      faraday.response :logger                  # log requests to STDOUT
+      faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+    end
+
+    response = conn.get "/api?id=163a5d8783f7ef61&com=#{express_name}&nu=#{express_number}&show=2&muti=1&order=desc"
+    @body = response.body.force_encoding("UTF-8")
+    
+  end
 end

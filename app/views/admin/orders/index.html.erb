@@ -1,6 +1,6 @@
 <%@page_title = "待处理订单" if params[:state] == "payment"%>
 <%@page_title ||= "订单管理"%>
-<%@page_title += "——用户：#{@user.try(:name).to_s}"%>
+<%@page_title += "——用户：#{@user.try(:name).to_s}" if @user%>
 
 <style type="text/css" media="screen">
 .table > tbody > tr > td{vertical-align: middle;}
@@ -84,6 +84,9 @@
                     <%end%>
                     <%if order.state == "payment"%>
 										<a href="<%= sent_admin_order_path(order)%>">发货</a>
+                    <%end%>
+                    <%if order.state == "sent"%>
+										<a href="<%= sent_admin_order_path(order)%>">修改物流</a>
                     <%end%>
 									</td>
 								</tr>

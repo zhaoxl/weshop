@@ -67,6 +67,7 @@
       <%elsif @order.payment?%>
         
       <%elsif @order.sent?%>
+	      <a href="/member/orders/<%= @order.id%>/express" class="action_btn white">查看物流</a>
         <a href="<%= set_state_member_order_path(@order, state: :receive)%>" class="action_btn white">确认收货</a>
       <%end%>
 			<div style="clear: both"></div>

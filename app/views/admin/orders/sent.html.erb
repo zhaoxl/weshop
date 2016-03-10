@@ -5,7 +5,7 @@
 				<div class="box-body">
 					<div class="form-group">
 						<label for="exampleInputPassword1">快递公司</label>
-						<%= f.text_field :express, class: 'form-control'%>
+						<%= f.select :express, options_for_select(Express.all.map{|e| [e.name, e.code]}, @data.express), {}, class: 'form-control'%>
 					</div>
 					<div class="form-group">
 						<label for="exampleInputPassword1">快递单号</label>

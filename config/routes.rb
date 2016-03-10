@@ -82,6 +82,7 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :agents
   
   namespace :member do
     root 'index#index'
@@ -90,6 +91,7 @@ Rails.application.routes.draw do
       member do
         get :set_state
         get :delete
+        get :express
       end
     end
     resources :distributions do

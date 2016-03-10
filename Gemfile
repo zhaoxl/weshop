@@ -57,6 +57,8 @@ gem 'unicorn'
 gem 'wx_pay', git: 'https://github.com/jasl/wx_pay.git'
 #微信公众号客户端
 gem 'weixin_authorize'
+#http client
+gem 'faraday'
 
 group :development do
   gem 'pry_debug'

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+    <title>芬尼湾</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <link rel="stylesheet" href="/css/swiper.min.css" type="text/css" media="screen">
+    <script src="/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <style type="text/css" media="screen">
+    html{
+    }
+    body{
+      width: 100%;
+      font-size: 12px;
+      margin: 0px; 
+      padding: 0px; 
+    }
+		a{text-decoration: none; color: black;}
+  input {-webkit-appearance:none; border-radius: 0;}
+
+  input[type="submit"],
+
+  input[type="reset"],
+
+  input[type="button"],
+  
+  input[type="text"],
+
+  input{-webkit-appearance:none;}
+  
+    .swiper-container {
+    	width: 100%;
+    }
+    .swiper-slide {
+    	text-align: center;
+    	font-size: 18px;
+    	background: #fff;
+
+    	/* Center slide text vertically */
+    	display: -webkit-box;
+    	display: -ms-flexbox;
+    	display: -webkit-flex;
+    	display: flex;
+    	-webkit-box-pack: center;
+    	-ms-flex-pack: center;
+    	-webkit-justify-content: center;
+    	justify-content: center;
+    	-webkit-box-align: center;
+    	-ms-flex-align: center;
+    	-webkit-align-items: center;
+    	align-items: center;
+    }
+    .nav{background: url(/images/orders_new_nav_bg.jpg) repeat-x; width: 100%; height: 36px;}
+    .nav .back{display: block; background: url(/images/orders_new_nav_back.jpg); margin: auto auto auto 12px; width: 8px; height: 36px; }
+    .nav .title{display: block; margin: auto auto auto -20px; height: 36px; font-weight: bold; font-size: 16px; color: white; line-height: 36px;}
+    .nav .switch_btn{}
+    
+    #footer{margin-top: 20px; background: white; padding: 20px; text-align: center; color: #999999;}
+    #footer p{margin-top: 10px; margin-bottom: 10px;}
+    #footer .hotline{color: #5f9e4b; margin: auto auto; text-align: center;}
+    </style>
+    <div class="nav">
+    	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    		<tr>
+    			<td align="left" widht="8">
+    			  <%= link_to '', '/', class: 'back'%>
+    			</td>
+    			<td align="center" width="100%">
+    				<p class="title"><%= @title||'特色商城'%></p>
+    			</td>
+    			<td align="right" width="20">
+    				<a href="#" class="switch_btn"><img src="/images/nav_agents_switch_icon.jpg" width="22" /></a>
+    			</td>
+    		</tr>
+    	</table>
+    </div>
+		
+    
+    <%= yield %>
+    
+    <div id="footer">
+      <div class="hotline">
+        <img src="/images/hotline_icon.jpg" style="vertical-align: bottom" />
+        服务热线：400-1887-077
+      </div>
+      <p>COPYRIGHT 2007-2015 大连山河投资有限公司</p>
+      <p>ALL RIGHTS RESERVED.</p>
+      <p>辽ICP备13008748号-2</p>
+    </div>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <script src="/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
+  </body>
+</html>

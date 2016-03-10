@@ -1,3 +1,5 @@
+<%@title = "朝批商贸"%>
+
 <style>
 body{background: #E6E6E6;}
 .recommend_box{margin-top: 5px;}
@@ -100,33 +102,6 @@ body{background: #E6E6E6;}
 	<div class="swiper-pagination"></div>
 </div>
 
-<div class="index_nav">
-  <table width="100%" cellpadding="0" cellspacing="0">
-    <tr>
-      <td width="25%" align="center" valign="top">
-        <a href="/member/orders">
-          <img src="/images/index_btn1.jpg" style="width: 45px;"/>
-        </a>
-      </td>           
-      <td width="25%" align="center" valign="top">
-        <a href="/agents">
-          <img src="/images/index_btn2.jpg" style="width: 44px;"/>
-        </a>  
-      </td>           
-      <td width="25%" align="center" valign="top">
-        <a href="/orders/new">
-          <img src="/images/index_btn3.jpg" style="width: 42px; height: 50px"/>
-        </a>
-      </td>           
-      <td width="25%" align="center" valign="top">
-        <a href="/member">
-          <img src="/images/index_btn4.jpg" width=""/>
-        </a>
-      </td>
-    </tr>
-  </table>
-</div>
-
 <div class="recommends">
   <div class="title">
     推荐商品
@@ -215,45 +190,6 @@ body{background: #E6E6E6;}
     <div style="clear:both"></div>
   </div>
 </div>
-<div class="quality">
-  <div class="title">
-    产品品质
-  </div>
-  <div class="body">
-    <img src="/images/quality_1.jpg" class="icon" width="55" height="55" />
-    <p class="body_title">低有机物含量</p>
-    <p>
-      有机物含量决定了水的质量，有机物种类急剧增多是水体污染
-      的重要特点之一，水体中的有机物绝大部分对...
-    </p>
-    <a href="#" class="more">
-      <img src="/images/quality_more.jpg" width="55" height="11" />
-    </a>
-  </div>
-  <div class="body">
-    <img src="/images/quality_2.jpg" class="icon" width="55" height="55" />
-    <p class="body_title">紫外线杀菌</p>
-    <p>
-      有机物含量决定了水的质量，有机物种类急剧增多是水体污染
-      的重要特点之一，水体中的有机物绝大部分对...
-    </p>
-    <a href="#" class="more">
-      <img src="/images/quality_more.jpg" width="55" height="11" />
-    </a>
-  </div>
-  <div class="body">
-    <img src="/images/quality_3.jpg" class="icon" width="55" height="55" />
-    <p class="body_title">适矿化</p>
-    <p>
-      有机物含量决定了水的质量，有机物种类急剧增多是水体污染
-      的重要特点之一，水体中的有机物绝大部分对...
-    </p>
-    <a href="#" class="more">
-      <img src="/images/quality_more.jpg" width="55" height="11" />
-    </a>
-  </div>
-</div>
-
 
 <div class="company_desc">
   <div class="title">
@@ -276,23 +212,3 @@ body{background: #E6E6E6;}
     </p>
   </div>
 </div>
-
-<script>
-$(function() {
-	var swiper = new Swiper('.swiper-container', {
-		pagination: '.swiper-pagination',
-		paginationClickable: true,
-		spaceBetween: 30,
-		centeredSlides: true,
-		autoplay:5000,
-		speed:300,
-		autoplayDisableOnInteraction: false
-	});
-
-//	$(function(){
-//		var height = $('.swiper-slide img:eq(0)').height();
-//		if(height<=0){height=200;}
-//		$('.swiper-wrapper').css('height', height);
-//	})
-});
-</script>

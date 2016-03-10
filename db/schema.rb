@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301084228) do
+ActiveRecord::Schema.define(version: 20160310142942) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -98,6 +98,12 @@ ActiveRecord::Schema.define(version: 20160301084228) do
     t.string   "remark",     limit: 2000
   end
 
+  create_table "expresses", force: true do |t|
+    t.string  "name"
+    t.string  "code"
+    t.integer "position"
+  end
+
   create_table "favorites", force: true do |t|
     t.integer  "user_id"
     t.integer  "product_id"
@@ -131,6 +137,15 @@ ActiveRecord::Schema.define(version: 20160301084228) do
     t.datetime "updated_at"
     t.string   "express"
     t.string   "express_number"
+  end
+
+  create_table "pay_logs", force: true do |t|
+    t.integer  "order_id"
+    t.string   "pay_type"
+    t.string   "trade_type"
+    t.string   "log",        limit: 5000
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "product_categories", force: true do |t|
