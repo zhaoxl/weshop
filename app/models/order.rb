@@ -37,9 +37,8 @@ class Order < ActiveRecord::Base
     today_order_count = "%04d" % today_order_count.to_s
     rand_code = "%03d" % rand(1000).to_s
     scode = "#{Time.now.strftime("%y%m%d%H%M%S")}#{today_order_count}#{rand_code}"
-    
+    order = user.orders.build(receiver_address: address.to_s, receiver_name: address.name, total_fee: total_fee, receiver_phone: address.phone, scode: scode, remark: remark)
     ActiveRecord::Base.transaction do
-      order = user.orders.build(receiver_address: address.to_s, receiver_name: address.name, total_fee: total_fee, receiver_phone: address.phone, scode: scode, remark: remark)
       order.save!
       carts.each do |cart|
         op = order.order_products.build(user: user, product_id: cart.product_id, total: cart.total, price: cart.price, amount: cart.total*cart.price, name: cart.product_name)
