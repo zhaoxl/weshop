@@ -195,6 +195,7 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
+    rmagick (2.15.4)
     rqrcode (0.10.1)
       chunky_png (~> 1.0)
     ruby2ruby (2.2.0)
@@ -279,6 +280,7 @@ DEPENDENCIES
   bootstrap-sass
   brakeman (= 3.1.4)
   carrierwave
+  chunky_png
   devise (~> 3.5.1)
   exception_notification (= 4.1.4)
   faraday
@@ -292,6 +294,7 @@ DEPENDENCIES
   pry_debug
   rails (= 4.1.0)
   rails_kindeditor
+  rmagick
   rqrcode
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

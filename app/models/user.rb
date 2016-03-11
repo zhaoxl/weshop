@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
   has_many  :shippin_address
   has_one   :distribution
   
+  mount_uploader :qrcode, UserQrcodeUploader
+  
   def is_distribution?
     self.distribution && !["cancel", "create"].include?(self.distribution.state)
   end

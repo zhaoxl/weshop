@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310142942) do
+ActiveRecord::Schema.define(version: 20160311151301) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -198,6 +198,7 @@ ActiveRecord::Schema.define(version: 20160310142942) do
     t.string   "open_id"
     t.string   "token",             limit: 500
     t.string   "headimgurl",        limit: 1000
+    t.string   "qrcode"
   end
 
   create_table "wechat_sessions", force: true do |t|

@@ -59,6 +59,10 @@ gem 'wx_pay', git: 'https://github.com/jasl/wx_pay.git'
 gem 'weixin_authorize'
 #http client
 gem 'faraday'
+#png生成
+gem 'chunky_png'
+#图片处理
+gem 'rmagick'
 
 group :development do
   gem 'pry_debug'

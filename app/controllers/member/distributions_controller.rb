@@ -16,6 +16,17 @@ class Member::DistributionsController < Member::BaseController
   end
   
   def qrcode
+    if current_user.qrcode.blank?
+      qrcode = RQRCode::QRCode.new("#{Settings.base}/wechat/login?recommend=#{current_user.id}", :size => 6, :level => :h)
+      png = qrcode.to_img(ChunkyPNG::Color::TRANSPARENT, ChunkyPNG::Color.rgb(0, 0, 0)).resize(215, 215)   
+      qrcode = ::ChunkyPNG::Image.from_file(File.join(Rails.root, "public/images/qrcode_layout.png")).compose!(png, 138, 410)
+    
+      qrcode.save("tmp/qrcodes/#{current_user.id}.png")
+      current_user.update_attribute(:qrcode, File.open("tmp/qrcodes/#{current_user.id}.png"))
+      sleep(0.5)
+      File.delete("tmp/qrcodes/#{current_user.id}.png")
+    end
+    
     render layout: false
   end
   
