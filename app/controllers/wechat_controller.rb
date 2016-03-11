@@ -4,6 +4,7 @@ class WechatController < ApplicationController
   layout false
   
   def login
+    session[:goto] = params[:goto]
     redirect_to "https://open.weixin.qq.com/connect/oauth2/authorize?appid=#{Settings.wechat.appid}&redirect_uri=#{Settings.base}/wechat/login_get_code_callback&response_type=code&scope=snsapi_userinfo&state=#{params[:recommend].to_i}#wechat_redirect"
   end
   
@@ -28,7 +29,11 @@ class WechatController < ApplicationController
     end
     session[:user_id] = user.id
     
-    redirect_to "/?recommend=#{params[:state]}"
+    if session[:goto].present?
+      redirect_to session.delete(:goto) and return
+    else
+      redirect_to "/?recommend=#{params[:state]}" and return
+    end
   end
   
   def pay

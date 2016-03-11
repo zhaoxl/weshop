@@ -50,6 +50,7 @@ class Order < ActiveRecord::Base
       end
       
     end
+    return order
   end
   
   def auto_generate_user_distribution
