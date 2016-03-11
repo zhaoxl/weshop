@@ -21,6 +21,7 @@
         <img src="<%= current_user.headimgurl%>" style="width: 100px; margin-left: 12px" />
       </td>
       <td>
+        <p style="font-size: 14px; color: #999999">您好，<%= current_user.name%></p>
         <p style="font-size: 14px; color: #999999">余额：<%= current_user.balance%></p>
         <p style="font-size: 14px; color: #999999">积分：<%= current_user.score%></p>
       </td>
@@ -53,9 +54,9 @@
 
 <div class="nav_link">
   <%if current_user.is_distribution?%>
-    <a class="distribution" href="/member/distributions">我的分销</a>
+    <a class="distribution" href="/member/distributions">我的推荐</a>
   <%else%>
-    <a class="distribution" href="#">我的分销<span style="color: red">（首次购物后自动开通分销功能）</span></a>
+    <a class="distribution" href="#">我的推荐<span style="color: red">（首次购物后自动开通推荐功能）</span></a>
   <%end%>
 </div>
 
@@ -68,5 +69,9 @@
 </div>
 
 <div class="nav_link">
-  <a class="qrcode" href="/member/distributions/qrcode">我的二维码</a>
+  <a class="qrcode" href="/member/distributions/qrcode">我要推广</a>
+</div>
+
+<div class="nav_link">
+  <a class="qrcode" href="#">优惠券</a>
 </div>
