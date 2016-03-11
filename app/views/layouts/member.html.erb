@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>个人中心</title>
+<title>会员中心</title>
   <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -38,7 +38,7 @@ input{-webkit-appearance:none;}
   			  <%= link_to '', :back, class: 'back'%>
   			</td>
   			<td align="center" width="100%">
-  				<p class="title"><%= @title||'个人中心'%></p>
+  				<p class="title"><%= @title||'会员中心'%></p>
   			</td>
   			<td align="right" width="20">
   				<a href="/orders/new" class="cart"></a>
