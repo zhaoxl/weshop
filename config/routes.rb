@@ -105,6 +105,7 @@ Rails.application.routes.draw do
         post :withdraw_save
       end
     end
+    resources :wallets
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

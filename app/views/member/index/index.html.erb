@@ -14,6 +14,19 @@
   .nav_link .qrcode{width: 94%; background: url(/images/member_index_qrcode_icon.jpg) no-repeat 0px 7px; padding-left: 25px;}
 </style>
 
+<div class="my_header">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="124px">
+        <img src="<%= current_user.headimgurl%>" style="width: 100px; margin-left: 12px" />
+      </td>
+      <td>
+        <p style="font-size: 14px; color: #999999">余额：<%= current_user.balance%></p>
+        <p style="font-size: 14px; color: #999999">积分：<%= current_user.score%></p>
+      </td>
+    </tr>
+  </table>
+</div>
 
 <div class="nav_link">
   <a href="/member/orders">我的订单</a>
@@ -48,6 +61,10 @@
 
 <div class="nav_link">
   <a class="address" href="/shippin_address">地址管理</a>
+</div>
+
+<div class="nav_link">
+  <a class="address" href="/member/wallets/new">会员充值</a>
 </div>
 
 <div class="nav_link">

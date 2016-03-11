@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311151301) do
+ActiveRecord::Schema.define(version: 20160311200713) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -180,6 +180,20 @@ ActiveRecord::Schema.define(version: 20160311151301) do
     t.integer "order_products_count",                          default: 0
   end
 
+  create_table "recharge_card_categories", force: true do |t|
+    t.string  "name"
+    t.decimal "price", precision: 10, scale: 2
+  end
+
+  create_table "recharge_cards", force: true do |t|
+    t.integer  "recharge_card_id"
+    t.integer  "user_id"
+    t.string   "state"
+    t.decimal  "price",            precision: 10, scale: 2
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "shippin_addresses", force: true do |t|
     t.integer "user_id"
     t.string  "province_code"
@@ -199,6 +213,13 @@ ActiveRecord::Schema.define(version: 20160311151301) do
     t.string   "token",             limit: 500
     t.string   "headimgurl",        limit: 1000
     t.string   "qrcode"
+  end
+
+  create_table "wallets", force: true do |t|
+    t.integer "user_id"
+    t.decimal "balance", precision: 10, scale: 2, default: 0.0
+    t.decimal "lock",    precision: 10, scale: 2, default: 0.0
+    t.integer "score",                            default: 0
   end
 
   create_table "wechat_sessions", force: true do |t|
