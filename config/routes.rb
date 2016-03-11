@@ -82,7 +82,11 @@ Rails.application.routes.draw do
       end
     end
   end
-  resources :agents
+  resources :agents do
+    collection do
+      get :switch
+    end
+  end
   
   namespace :member do
     root 'index#index'
