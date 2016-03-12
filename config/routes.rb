@@ -84,6 +84,7 @@ Rails.application.routes.draw do
   end
   resources :agents do
     collection do
+      get :index2
       get :switch
     end
   end

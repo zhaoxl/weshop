@@ -5,6 +5,10 @@ class AgentsController < ApplicationController
     
   end
   
+  def index2
+    
+  end
+  
   def switch
     
   end
