@@ -37,8 +37,9 @@ class WechatController < ApplicationController
   end
   
   def pay
-    Rails.logger.debug("weixin pay begin=======================")
     order = Order.find(params[:id])
+    redirect_to :back and return if order.state != "create"
+    Rails.logger.debug("weixin pay begin=======================")
     unifiedorder = {
       body:             order.to_s,
       out_trade_no:     order.scode, # prepay order number
