@@ -10,5 +10,11 @@ class Wallet < ActiveRecord::Base
     wallet.save
   end
   
+  def self.recharge(user, recharge)
+    wallet = user.wallet||user.build_wallet
+    wallet.balance += recharge.amount
+    wallet.save
+  end
+  
   
 end

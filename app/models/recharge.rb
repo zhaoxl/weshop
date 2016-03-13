@@ -12,10 +12,13 @@ class Recharge < ActiveRecord::Base
       transitions :from => :create, :to => :cancel
     end
     
-    event :set_state_payment, after: :gen_coupon do
+    event :set_state_payment, after: :wallet_recharge do
       transitions :from => :create, :to => :payment
     end
   end
   
+  def wallet_recharge
+    Wallet.recharge(self.user, self)
+  end
   
 end
