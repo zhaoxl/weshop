@@ -35,7 +35,15 @@ class Member::DistributionsController < Member::BaseController
   end
   
   def withdraw_save
-    
+    begin
+      amount = params[:amount].to_f
+      unless wallet = current.wallet
+        raise InsufficientBalanceException
+      end
+      sdfsdfsdf
+    rescue InsufficientBalanceException
+      flash[:error] = "余额不足！"
+    end
   end
   
   private

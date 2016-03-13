@@ -9,7 +9,7 @@ GIT
 GEM
   remote: https://ruby.taobao.org/
   specs:
-    代金卷 (4.8.0)
+    aasm (4.8.0)
     actionmailer (4.1.0)
       actionpack (= 4.1.0)
       actionview (= 4.1.0)
@@ -270,7 +270,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  代金卷
+  aasm
   acts_as_list
   awesome_nested_set (= 3.0.2)
   awesome_print (= 1.6.1)

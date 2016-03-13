@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
   
   include AASM
 
-  代金卷 column: :state do
+  aasm column: :state do
     state :cancel
     state :create, :initial => true
     state :payment
@@ -25,7 +25,7 @@ class Order < ActiveRecord::Base
       transitions :from => :payment, :to => :sent
     end
     
-    event :set_state_receive, after: :auto_generate_user_distribution do
+    event :set_state_receive, after: :receive_callback do
       transitions :from => :sent, :to => :receive
     end
   end
@@ -60,14 +60,20 @@ class Order < ActiveRecord::Base
     return order
   end
   
-  #自动升级分销
-  def auto_generate_user_distribution
+  def receive_callback
+    #自动升级分销
     unless self.user.distribution
       self.user.build_distribution(state: :pass, level: 1).save
     end
+    
+    #给上家分红
+    parent_user = User.find(self.user.recommend_user_id) rescue nil
+    if parent_user
+      parent_user.dividend(self)
+    end
   end
   
-  #生成代金卷
+  #生成优惠券
   def gen_coupon
     self.order_products.each do |op|
       begin

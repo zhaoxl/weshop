@@ -29,5 +29,13 @@ class User < ActiveRecord::Base
     w.save
   end
   
-  
+  #获得分销分红
+  def dividend(order)
+    wallet ||= self.build_wallet
+    amount = order.total_fee*Distribution::DIVIDEND_RATIO[self.distribution.level].to_f
+    wallet.balance += amount
+    wallet.save
+    
+    DividendLog.create(user: order.user, recommend_user: self, order: order, amount: amount)
+  end
 end

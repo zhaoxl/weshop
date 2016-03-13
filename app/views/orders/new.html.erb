@@ -94,7 +94,7 @@
   </div>
   
   <div class="coupon">
-    <label>可用代金卷<%= select_tag :coupon_id, options_for_select(Coupon.where(user: current_user, state: "create").map{|c| [c.name, c.id]}.unshift(["不使用代金卷", nil]))%></label>
+    <label>可用优惠券<%= select_tag :coupon_id, options_for_select(Coupon.where(user: current_user, state: "create").map{|c| [c.name, c.id]}.unshift(["不使用优惠券", nil]))%></label>
   </div>
   
   <div class="total">

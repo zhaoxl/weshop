@@ -9,7 +9,7 @@ class Product < ActiveRecord::Base
   
   include AASM
 
-  代金卷 column: :state do
+  aasm column: :state do
     state :create, :initial => true
     state :pause
     

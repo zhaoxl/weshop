@@ -10,8 +10,10 @@ body{background: #E6E6E6;}
 .incomes{background: white;}
 .incomes .income_box{padding-left: 12px; border-bottom: solid 1px #F8F8F8; padding-bottom: 10px; padding-top: 10px;}
 .incomes .income_box .title{font-size: 15px; font-weight: bold; padding: 0px; margin: 0px; line-height: 30px;}
-.incomes .income_box .price{font-size: 15px; font-weight: bold; padding: 0px; margin: 0px; line-height: 30px; color: red;}
-.incomes .income_box .attrs tr td{color: #999999; font-size: 14px;}
+.price{font-size: 15px; font-weight: bold; padding: 0px; margin: 0px; line-height: 30px; color: red;}
+.incomes .attrs{margin-left: 12px;}
+.incomes  .attrs tr td{color: #999999; font-size: 12px;}
+.incomes  .attrs .price{}
 
 .float_bottom_btn{width: 100%; line-height: 43px; border-top: solid 1px #BBBBBB; border-bottom: solid 1px #BBBBBB; background: #82B770; text-align: center; font-size: 15px; font-weight: bold; color: white; display: block; position: absolute; bottom: 0px;}
 </style>
@@ -20,7 +22,7 @@ body{background: #E6E6E6;}
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td>
-        收益：￥0.0
+        收益：￥<%= DividendLog.where(recommend_user: current_user).sum(:amount)%>
       </td>
     </tr>
   </table>
@@ -29,48 +31,27 @@ body{background: #E6E6E6;}
 <div class="live_bottom_space"></div>
 
 <div class="incomes">
+  <%DividendLog.where(recommend_user: current_user).order("created_at DESC").each do |dl|%>
+  <%dl.order.order_products.each do |op|%>
   <div class="income_box">
-    <p class="title"> 芬尼湾 天然冰川矿泉水 加拿大进口 350毫升</p>
-    <p class="price">￥15.00</p>
-    <table class="attrs" width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td>
-          购买人：张某某
-        </td>
-        <td>
-          2015.02.15
-        </td>
-      </tr>
-    </table>
+    <p class="title"> <%= op.name%></p>
+    <p class="price">￥<%= op.price%></p>
   </div>
-  <div class="income_box">
-    <p class="title"> 芬尼湾 天然冰川矿泉水 加拿大进口 350毫升</p>
-    <p class="price">￥15.00</p>
-    <table class="attrs" width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td>
-          购买人：张某某
-        </td>
-        <td>
-          2015.02.15
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div class="income_box">
-    <p class="title"> 芬尼湾 天然冰川矿泉水 加拿大进口 350毫升</p>
-    <p class="price">￥15.00</p>
-    <table class="attrs" width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td>
-          购买人：张某某
-        </td>
-        <td>
-          2015.02.15
-        </td>
-      </tr>
-    </table>
-  </div>
+  <%end%>
+  <table class="attrs" width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>
+        购买人：<%= dl.user.name%>
+      </td>
+      <td>
+        收益：<span class="price">￥<%= dl.amount%></span>
+      </td>
+      <td>
+        时间：<%= dl.created_at.strftime("%Y.%m.%d")%>
+      </td>
+    </tr>
+  </table>
+  <%end%>
 </div>
 
 <a href="/member/distributions/withdraw" class="float_bottom_btn">申请提现</a>
