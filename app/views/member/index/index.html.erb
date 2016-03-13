@@ -38,7 +38,7 @@
         &nbsp;
       </td>
       <td style="padding-left: 20px">
-        <p>推荐人：<%= User.where(id: current_user.recommend_user_id).first.try(:name)%></p>
+        <p>推荐人：<%= User.where(id: current_user.recommend_user_id).first.try(:name)||"无"%></p>
         <p>积　分：<%= current_user.score%></p>
       </td>
     </tr>
