@@ -29,7 +29,7 @@ class Member::PaymentsController < Member::BaseController
             payment.save
           end
           #跳转微信支付
-          redirect_to '/wechat/pay', id: payment.id
+          redirect_to '/wechat/pay', id: payment.id and return
         end
       end
     
