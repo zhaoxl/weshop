@@ -13,7 +13,7 @@ class Payment < ActiveRecord::Base
       transitions :from => :create, :to => :cancel
     end
     
-    event :set_state_payment, after: :gen_coupon do
+    event :set_state_payment do
       transitions :from => :create, :to => :payment
     end
   end
