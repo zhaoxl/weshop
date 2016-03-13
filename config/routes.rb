@@ -110,7 +110,11 @@ Rails.application.routes.draw do
     end
     resources :wallets
     resources :recharges
-    resources :payments
+    resources :payments do
+      collection do
+        get :create
+      end
+    end
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

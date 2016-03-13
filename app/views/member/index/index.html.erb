@@ -1,29 +1,45 @@
 <style type="text/css" media="screen">
-  .nav_link{width: 95%; padding-left: 12px;  background: url(/images/member_index_more_icon.jpg) no-repeat 95% 14px;}
-  .nav_link a{width: 100%; line-height: 42px; display: block; color: #82B770; font-weight: bold; border-bottom: solid 1px #F8F8F8;}
-  .order_links{width: 100%; line-height: 64px; border-bottom: solid 13px #E3E3E3;}
+  a{color: white;}
+  p{font-size: 12px;}
+  body{background: #82b770; }
+  .my_header{padding: 12px;}
+  .my_header table tr td{ color: white;}
+  .my_header .space{border-left: solid 1px #9bc58d;}
+  .nav_link{padding-left: 12px;  background: #95c285}
+  .nav_link a{width: 100%; line-height: 42px; display: block; font-weight: bold; border-bottom: solid 1px #F8F8F8;}
+  .order_links{width: 100%; background: #95c285; line-height: 64px; }
   .order_links table tr td{text-align: center;}
-  .order_links table tr td a{width: 100%; line-height: 58px; display: block; color: #999999; font-size: 12px; font-weight: none; padding-top: 10px;}
-  .order_links table tr td .link_1{background: url(/images/member_index_order_icon1.jpg) no-repeat; background-position: 50% 10px;}
-  .order_links table tr td .link_2{background: url(/images/member_index_order_icon3.jpg) no-repeat; background-position: 50% 10px;}
-  .order_links table tr td .link_3{background: url(/images/member_index_order_icon4.png) no-repeat; background-position: 50% 10px;}
-  .order_links table tr td .link_4{background: url(/images/member_index_order_icon2.jpg) no-repeat; background-position: 50% 10px;}
-  
+  .order_links table tr td a{width: 100%; line-height: 25px; display: block;font-size: 12px; font-weight: none; padding-top: 10px; border-right: solid 1px #EEEEEE; margin-top: 10px; margin-bottom: 10px;}
+  .order_links table tr td a img{width: 35px;}
+  .order_links table tr td a p{padding: 0; margin: 0;}
   .nav_link .distribution{width: 94%; background: url(/images/member_index_distribution_icon.jpg) no-repeat 0px 7px; padding-left: 25px;}
   .nav_link .address{width: 94%; background: url(/images/member_index_address_icon.jpg) no-repeat 0px 7px; padding-left: 25px;}
   .nav_link .qrcode{width: 94%; background: url(/images/member_index_qrcode_icon.jpg) no-repeat 0px 7px; padding-left: 25px;}
+  
+  .main_navs{width: 90%; background: #95c285; margin: 10px auto auto auto;}
+  .main_navs a{width: 70px; display: block; margin: 10 auto; text-align: center;}
+  .main_navs a div{height: 60px;}
+  .main_navs table tr td a img{width: 35px;}
+  .main_navs a p{padding: 0; margin: 0;}
+  
 </style>
 
 <div class="my_header">
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
-      <td width="124px">
-        <img src="<%= current_user.headimgurl%>" style="width: 100px; margin-left: 12px" />
+      <td width="100">
+        <img src="<%= current_user.headimgurl%>" style="width: 80px; " />
       </td>
       <td>
-        <p style="font-size: 14px; color: #999999">您好，<%= current_user.name%></p>
-        <p style="font-size: 14px; color: #999999">余额：<%= current_user.balance%></p>
-        <p style="font-size: 14px; color: #999999">积分：<%= current_user.score%></p>
+        <p>用户名：<%= current_user.name%></p>
+        <p>余　额：<%= current_user.balance%></p>
+      </td>
+      <td class="space">
+        &nbsp;
+      </td>
+      <td style="padding-left: 20px">
+        <p>推荐人：<%= User.where(id: current_user.recommend_user_id).first.try(:name)%></p>
+        <p>积　分：<%= current_user.score%></p>
       </td>
     </tr>
   </table>
@@ -37,41 +53,70 @@
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td>
-        <a href="/member/orders/?state=create&title=待付款" class="link_1">待付款</a>
+        <a href="/member/orders/?state=create&title=待付款">
+          <img src="/images/member_index_order_icon1.png" />
+          <p>待付款</p>
+        </a>
       </td>
       <td>
-        <a href="/member/orders/?state=payment&title=待发货" class="link_2">待发货</a>
+        <a href="/member/orders/?state=payment&title=待发货">
+          <img src="/images/member_index_order_icon2.png" />
+          <p>待发货</p>
+        </a>
       </td>
       <td>
-        <a href="/member/orders/?state=sent&title=已发货" class="link_3">已发货</a>
+        <a href="/member/orders/?state=sent&title=已发货">
+          <img src="/images/member_index_order_icon3.png" />
+          <p>已发货</p>
+        </a>
       </td>
       <td>
-        <a href="/member/orders/?state=receive&title=已收货" class="link_4">已收货</a>
+        <a href="/member/orders/?state=receive&title=已收货">
+          <img src="/images/member_index_order_icon4.png" />
+          <p>已收货</p>
+        </a>
       </td>
     </tr>
   </table>
 </div>
 
-<div class="nav_link">
-    <a class="distribution" href="/member/distributions">我的推荐</a>
-</div>
-
-<div class="nav_link">
-  <a class="address" href="/shippin_address">地址管理</a>
-</div>
-
-<div class="nav_link">
-  <a class="address" href="/member/wallets/new">会员卡充值</a>
-</div>
-
-<div class="nav_link">
-  <a class="address" href="/member/recharges/new">微信充值</a>
-</div>
-
-<div class="nav_link">
-  <a class="qrcode" href="/member/distributions/qrcode">我要推广</a>
-</div>
-
-<div class="nav_link">
-  <a class="qrcode" href="#">优惠券</a>
+<div class="main_navs">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td>
+        <a href="/member/distributions">
+          <div><img src="/images/member_nav_icon_1.png"></div>
+          <p>我的推荐</p>
+        </a>
+      </td>
+      <td>
+        <a href="/shippin_address">
+          <div><img src="/images/member_nav_icon_2.png"></div>
+          <p>地址管理</p>
+        </a>
+      </td>
+      <td>
+        <a href="/member/wallets/">
+          <div><img src="/images/member_nav_icon_3.png"></div>
+          <p>会员充值</p>
+        </a>
+      </td>
+      <td>
+        <a href="/member/recharges/new">
+          <div><img src="/images/member_nav_icon_4.png"></div>
+          <p>微信充值</p>
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="/member/distributions/qrcode">
+          <div><img src="/images/member_nav_icon_5.png"></div>
+          <p>我要推广</p>
+        </a>
+      </td></tr>
+  </table>
+  
+  
+  
 </div>

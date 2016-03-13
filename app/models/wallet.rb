@@ -3,7 +3,7 @@ class Wallet < ActiveRecord::Base
   end
   
   def self.waste(user, payment)
-    wallet = Wallet.where(user: user).first
+    wallet = Wallet.where(user_id: user).first
     raise InsufficientBalanceException unless wallet
     wallet.balance -= payment.amount
     raise InsufficientBalanceException if wallet.balance < 0
