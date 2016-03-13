@@ -37,13 +37,21 @@ class Member::DistributionsController < Member::BaseController
   def withdraw_save
     begin
       amount = params[:amount].to_f
-      unless wallet = current.wallet
-        raise InsufficientBalanceException
+      unless wallet = current_user.wallet
+        raise Wallet::InsufficientBalanceException
       end
-      sdfsdfsdf
-    rescue InsufficientBalanceException
-      flash[:error] = "余额不足！"
+      wallet.balance -= amount
+      wallet.lock += amount
+      raise Wallet::InsufficientBalanceException if wallet.balance < 0
+      wallet.save
+      
+      Withdraw.create(user: current_user, amount: amount)
+      flash[:notice] = "申请成功，请等待处理"
+    rescue Wallet::InsufficientBalanceException
+      flash[:notice] = "余额不足！"
     end
+    
+    redirect_to :back
   end
   
   private

@@ -37,13 +37,13 @@ class WechatController < ApplicationController
   end
   
   def pay
-    order = Order.find(params[:id])
-    redirect_to :back and return if order.state != "create"
-    Rails.logger.debug("weixin pay begin=======================")
+    payment = Payment.find(params[:id])
+    redirect_to '/member' and return if payment.state != "create"
+    Rails.logger.debug("wechat pay begin=======================")
     unifiedorder = {
-      body:             order.to_s,
-      out_trade_no:     order.scode, # prepay order number
-      total_fee:        (order.total_fee*100).to_i,          # 注意：单位是分，不是元
+      body:             payment.desc,
+      out_trade_no:     payment.id, # prepay order number
+      total_fee:        (payment.amount.to_f*100).to_i,          # 注意：单位是分，不是元
       spbill_create_ip: '127.0.0.1',
       notify_url:       'http://jt.fannybay.net/wechat/pay_notify',
       trade_type:       'JSAPI',
@@ -65,23 +65,27 @@ class WechatController < ApplicationController
     else
       Rails.logger.debug("set prepay_id fail: #{res}")
     end
-    Rails.logger.debug("weixin pay end=======================")
+    Rails.logger.debug("wechat pay end=======================")
   end
   
   def pay_notify
-    Rails.logger.debug("weixin pay_notify begin=======================")
+    Rails.logger.debug("wechat pay_notify begin=======================")
     result = Hash.from_xml(request.body.read)["xml"]
-    Rails.logger.debug("weixin notify: #{result}")
+    Rails.logger.debug("wechat notify: #{result}")
     if WxPay::Sign.verify?(result)
-      pay_serial_number = result["out_trade_no"]
-      order = Order.find_by(scode: pay_serial_number)
-      order.set_state_payment!
-      order.pay_logs.new(
-        pay_type: "weixin",
-        trade_type: result[:trade_type],
-        log: result
-      )
-      order.save
+      ActiveRecord::Base.transaction do
+        pay_serial_number = result["out_trade_no"]
+        payment = Payment.find(pay_serial_number)
+        payment.set_state_payment!
+        order.set_state_payment!
+        order = payment.item
+        order.pay_logs.new(
+          pay_type: "wechat",
+          trade_type: result[:trade_type],
+          log: result
+        )
+        order.save
+      end
       #TODO:支付成功后，减库存
       Rails.logger.debug("支付成功")
       render xml: {
@@ -95,15 +99,7 @@ class WechatController < ApplicationController
         return_msg: "签名失败"
       }.to_xml(root: 'xml', dasherize: false)
     end
-    Rails.logger.debug("weixin pay_notify end=======================")
-  end
-  
-  def test
-    render xml: {
-      return_code: cdatga("SUCCESS"),
-      return_msg: "OK"
-    }.to_xml(root: 'xml', dasherize: false)
-    Rails.logger.debug("weixin pay_notify end=======================")
+    Rails.logger.debug("wechat pay_notify end=======================")
   end
   
 end

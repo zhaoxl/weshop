@@ -1,0 +1,9 @@
+<%= form_for [:member, Payment.new] do |f|%>
+<%= f.hidden_field :item_type, value: params[:item_type]%>
+<%= f.hidden_field :item_id, value: params[:item_id]%>
+<%if params[:item_type] != "Recharge"%>
+<label><input type="radio" name="category" value="wallet">余额支付</label>
+<%end%>
+<label><input type="radio" name="category" value="wechat">微信支付</label>
+<%= f.submit "去支付"%>
+<%end%>

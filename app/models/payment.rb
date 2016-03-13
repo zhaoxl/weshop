@@ -1,5 +1,6 @@
-class Recharge < ActiveRecord::Base
+class Payment < ActiveRecord::Base
   belongs_to  :user
+  belongs_to  :item, polymorphic: true
   
   include AASM
 
