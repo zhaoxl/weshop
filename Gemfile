@@ -22,7 +22,7 @@ gem 'bootstrap-kaminari-views'
 #require辅助插件
 #gem 'require_all'
 #状态机
-gem 'aasm'
+gem '代金卷'
 #排序插件
 gem 'acts_as_list'
 #软删除

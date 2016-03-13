@@ -13,9 +13,10 @@ class OrdersController < ApplicationController
     cart_ids = params[:cart_ids]
     address_id = params[:address_id]
     remark = params[:remark]
+    coupon_id = params[:coupon_id]
     redirect_to :back, notice: '请选择商品' and return if cart_ids.blank?
     
-    order = Order.generate(current_user, cart_ids, address_id, remark)
+    order = Order.generate(current_user, cart_ids, address_id, remark, coupon_id)
     
     redirect_to member_order_path(order)
   end

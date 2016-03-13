@@ -35,6 +35,10 @@ cn:
         payment: 待发货
         sent: 已发货
         receive: 已收货
+    coupon:
+      states:
+        create: 未使用
+        used: 已使用
     distribution:
       states:
         cancel: 已取消

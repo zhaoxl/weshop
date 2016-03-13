@@ -4,7 +4,7 @@ class Distribution < ActiveRecord::Base
     
     include AASM
 
-    aasm column: :state do
+    代金卷 column: :state do
       state :cancel
       state :create, :initial => true
       state :reject

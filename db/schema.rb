@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311200713) do
+ActiveRecord::Schema.define(version: 20160313024719) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -64,6 +64,20 @@ ActiveRecord::Schema.define(version: 20160311200713) do
     t.integer  "user_id"
     t.integer  "product_id"
     t.integer  "total",      default: 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "coupon_templates", force: true do |t|
+    t.string  "name"
+    t.decimal "price", precision: 10, scale: 2, default: 0.0
+  end
+
+  create_table "coupons", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "coupon_template_id"
+    t.string   "name"
+    t.decimal  "price",              precision: 10, scale: 2, default: 0.0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -137,6 +151,8 @@ ActiveRecord::Schema.define(version: 20160311200713) do
     t.datetime "updated_at"
     t.string   "express"
     t.string   "express_number"
+    t.integer  "coupon_id"
+    t.decimal  "coupon_fee",       precision: 10, scale: 2, default: 0.0
   end
 
   create_table "pay_logs", force: true do |t|
@@ -178,6 +194,7 @@ ActiveRecord::Schema.define(version: 20160311200713) do
     t.boolean "recommend",                                     default: false
     t.boolean "sticky",                                        default: false
     t.integer "order_products_count",                          default: 0
+    t.integer "coupon_template_id"
   end
 
   create_table "recharge_card_categories", force: true do |t|
@@ -188,6 +205,8 @@ ActiveRecord::Schema.define(version: 20160311200713) do
   create_table "recharge_cards", force: true do |t|
     t.integer  "recharge_card_id"
     t.integer  "user_id"
+    t.string   "scode"
+    t.string   "name"
     t.string   "state"
     t.decimal  "price",            precision: 10, scale: 2
     t.datetime "created_at"

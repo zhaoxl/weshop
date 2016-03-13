@@ -45,6 +45,8 @@ Rails.application.routes.draw do
     resources :users
     resources :distributions
     resources :distribution_settings
+    resources :coupon_templates
+    resources :coupons
     
   end
   

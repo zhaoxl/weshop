@@ -2,13 +2,14 @@ class Product < ActiveRecord::Base
   acts_as_list
   
   belongs_to  :product_category
+  belongs_to  :coupon_template
   has_many  :product_logos
   has_many  :order_products
   has_many  :orders
   
   include AASM
 
-  aasm column: :state do
+  代金卷 column: :state do
     state :create, :initial => true
     state :pause
     

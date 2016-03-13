@@ -26,6 +26,11 @@ class Admin::BannersController < Admin::BaseController
     redirect_to admin_banners_path(@data), notice: '编辑成功'
   end
   
+  def destroy
+    @data.destroy!
+    redirect_to :back, notice: '删除成功'
+  end
+  
   def move_down
     @data.move_lower
     redirect_to :back
