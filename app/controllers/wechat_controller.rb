@@ -38,6 +38,7 @@ class WechatController < ApplicationController
   
   def pay
     payment = Payment.find(params[:id])
+    @goto = payment.goto || "/member"
     redirect_to '/member' and return if payment.state != "create"
     Rails.logger.debug("wechat pay begin=======================")
     unifiedorder = {

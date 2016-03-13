@@ -11,6 +11,7 @@ class Member::PaymentsController < Member::BaseController
           if payment.item_type == "Order"
             payment.amount = order.total_fee
             payment.desc = order.to_s
+            payment.goto = "/member/orders/#{order.id}"
             payment.save
           end
           #钱包扣款
@@ -22,10 +23,12 @@ class Member::PaymentsController < Member::BaseController
           if payment.item_type == "Order"
             payment.amount = order.total_fee
             payment.desc = order.order_products.map{|op| "#{op.name}x#{op.total}"}*"、"
+            payment.goto = "/member/orders/#{order.id}"
             payment.save
           elsif payment.item_type == "Recharge"
             payment.amount = order.amount
             payment.desc = "充值#{order.amount}元"
+            payment.goto = "/member"
             payment.save
           end
           #跳转微信支付

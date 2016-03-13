@@ -65,7 +65,7 @@
           "signType": "<%= @pay_p[:signType] %>",
           "paySign": "<%= @pay_sign %>", // 支付签名
           success: function (res) {
-            window.location.href = "/member/orders/<%= params[:id]%>";
+            window.location.href = "<%= @goto%>";
           }
         });
       });
