@@ -76,9 +76,9 @@ class WechatController < ApplicationController
       ActiveRecord::Base.transaction do
         pay_serial_number = result["out_trade_no"]
         payment = Payment.find(pay_serial_number.to_i)
+        order = payment.item
         payment.set_state_payment!
         order.set_state_payment!
-        order = payment.item
         order.pay_logs.new(
           pay_type: "wechat",
           trade_type: result[:trade_type],
