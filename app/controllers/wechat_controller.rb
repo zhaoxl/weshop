@@ -42,7 +42,7 @@ class WechatController < ApplicationController
     Rails.logger.debug("wechat pay begin=======================")
     unifiedorder = {
       body:             payment.desc,
-      out_trade_no:     "%8d" % payment.id, # prepay order number
+      out_trade_no:     "%08d" % payment.id, # prepay order number
       total_fee:        (payment.amount.to_f*100).to_i,          # 注意：单位是分，不是元
       spbill_create_ip: '127.0.0.1',
       notify_url:       'http://jt.fannybay.net/wechat/pay_notify',
