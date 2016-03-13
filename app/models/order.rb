@@ -2,7 +2,7 @@ class Order < ActiveRecord::Base
   belongs_to  :user
   belongs_to  :coupon
   has_many    :order_products
-  has_many    :pay_logs, :as => :resource
+  has_many    :pay_logs, :as => :item
   
   include AASM
 

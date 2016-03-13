@@ -1,6 +1,6 @@
 class Recharge < ActiveRecord::Base
   belongs_to  :user
-  has_many    :pay_logs, :as => :resource
+  has_many    :pay_logs, :as => :item
   
   include AASM
 
