@@ -76,7 +76,7 @@ class Order < ActiveRecord::Base
     wallet = self.user.wallet || self.user.build_wallet(balance: 0, score: 0)
     self.order_products.each do |op|
       next if op.product.blank?
-      wallet += op.product.handsel_score.to_i * op.total.to_i
+      wallet.score += op.product.handsel_score.to_i * op.total.to_i
     end
     wallet.save
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314095600) do
+ActiveRecord::Schema.define(version: 20160314111041) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -220,6 +220,7 @@ ActiveRecord::Schema.define(version: 20160314095600) do
     t.integer "order_products_count",                          default: 0
     t.integer "coupon_template_id"
     t.string  "front_logo"
+    t.integer "handsel_score"
   end
 
   create_table "recharge_card_categories", force: true do |t|
