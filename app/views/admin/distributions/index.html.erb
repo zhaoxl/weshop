@@ -40,8 +40,7 @@
 									<th>用户</th>
 									<th>分销等级</th>
 									<th>状态</th>
-									<th>积分</th>
-									<th>备注</th>
+									<th>订单数</th>
 									<th>操作</th>
 								</tr>
 								<%@distributions.each do |distribution|%>
@@ -58,8 +57,7 @@
 									<td><%= distribution.user.try(:name)%></td>
 									<td>V<%= distribution.level%></td>
 									<td><%= t "activerecord.distribution.states.#{distribution.state}"%></td>
-									<td><%= distribution.score%></td>
-									<td><%= distribution.remark%></td>
+									<td><%= DividendLog.where(recommend_user_id: distribution.user_id).count%></td>
 									<td>
 										<a href="<%= edit_admin_distribution_path(distribution)%>">修改</a>
 									</td>

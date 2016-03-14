@@ -37,9 +37,12 @@
 							<tbody>
 								<tr>
 									<th><label><input type="checkbox" />全选</label></th>
+									<th>头像</th>
 									<th>用户名</th>
-									<th>分销</th>
+									<th>余额</th>
+									<th>积分</th>
 									<th>订单数</th>
+									<th>分销</th>
 									<th>操作</th>
 								</tr>
 								<%@users.each do |user|%>
@@ -53,13 +56,16 @@
 											</div>
 										</div>
 									</td>
+									<td><img src="<%= user.headimgurl%>" style="width: 40px; border-radius:50%; overflow:hidden;" /></td>
 									<td><%= user.try(:name)%></td>
-									<td><%= user.is_distribution? ? "V#{user.distribution.level}" : '否'%></td>
+									<td><%= user.balance%></td>
+									<td><%= user.score%></td>
 									<td><%= user.orders.count%></td>
+									<td><%= user.is_distribution? ? "V#{user.distribution.level}" : '否'%></td>
 									<td>
 										<a href="<%= admin_orders_path(user_id: user.id)%>">订单</a>
 										<%if user.is_distribution?%>
-											<a href="<%= edit_admin_distribution_path(user.distribution.id)%>">分销</a>
+											<a href="<%= admin_distribution_path(user.distribution.id, user_id: user.id)%>">分销</a>
 										<%end%>
 									</td>
 								</tr>

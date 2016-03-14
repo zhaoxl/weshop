@@ -7,6 +7,11 @@ class Admin::DistributionsController < Admin::BaseController
     @distributions = @distributions.page(params[:page]).per(100)
   end
   
+  def show
+    @data = Distribution.find(params[:id])
+    @logs = DividendLog.where(recommend_user_id: params[:user_id]).order("created_at DESC")
+  end
+  
   def edit
     
   end
