@@ -11,13 +11,16 @@
 .address table tr td p{line-height: 18px;}
 .address table tr td .delete{display: block; width: 60px; height: 89px; background: red; color: white; line-height: 89px; text-align: center;}
 
-.form{width: 100%; }
-.form td{padding-top: 10px;}
-.form td input, .form td select{width: 99%; border: none; border-bottom: solid 1px #DDDDDD;}
-.form td input[type="text"]{width: 97%;}
+.form{}
+.form td{padding-top: 10px; padding-left: 12px;}
+.form td input, .form td input{height: 30px;}
+.form td input, .form td select{width: 100%; height: 30px; border: none; border-bottom: solid 1px #DDDDDD;}
+.form td input[type="text"]{width: 100%;}
 .form td input[type="checkbox"]{width: 15px; vertical-align:middle}
 .form td label{vertical-align:middle}
 .submit{width: 100%; line-height: 50px; text-align: center; background: #82B770; color: white; border: none; border-top: solid 40px #E6E6E6; font-size: 14px;}
+
+.error{color: red;}
 </style>
 
 <div class="nav">
@@ -40,7 +43,7 @@
   <%= flash[:error]%>
 </div>
 
-<%= form_for @address, url:  shippin_address_path(@address) do |f|%>
+<%= form_for @address, url:  shippin_address_path(@address), html: {id: "form"} do |f|%>
   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="form">
     <tr>
       <td>
@@ -83,6 +86,65 @@
   <input type="submit" value="保存" class="submit" />
 <%end%>
 
+<script type="text/javascript" src="/js/jquery.validate.min.js" ></script>
+<script>
+	var validate = $("#form").validate({
+  	debug: false, //调试模式取消submit的默认提交功能   
+    //errorClass: "label.error", //默认为错误的样式类为：error   
+    focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
+    onkeyup: false,
+    submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
+    	form.submit();   //提交表单   
+    },   
+		errorPlacement: function(error, element) {
+			$("#form input.error").each(function() {
+				if ($(element).is("select"))
+				{
+					$(element).css("color", "red");
+				}
+				else
+				{
+					$(element).attr("placeholder", $(error).html());
+				}
+			});
+		},          
+    rules:{
+			"shippin_address[name]":{
+				required: true
+			},
+			"shippin_address[phone]":{
+				area: true
+			},
+			"shippin_address[province_code]":{
+				area: true
+			},
+			"shippin_address[city_code]":{
+				area: true
+			} ,
+			"shippin_address[detail]":{
+				required: true
+			}
+    },
+    messages:{
+      "shippin_address[name]":{
+      	required: "请输入收货人姓名"
+      },
+			"shippin_address[phone]":{
+				required: "请输入联系电话"
+			},
+			"shippin_address[detail]":{
+				required: "请输入详细地址"
+			}
+   	}
+	});    
+  jQuery.validator.addMethod("area", function(value, element) {
+  	if(value == "") return false;
+		return true;
+	}, "请选择地区");  
+
+
+</script>
+  
 <script type="text/javascript">
 $(function(){
 	//get cities
