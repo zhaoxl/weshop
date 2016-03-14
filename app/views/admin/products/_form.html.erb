@@ -26,7 +26,7 @@
 		</div>
 		<div class="form-group">
 			<label for="exampleInputPassword1">赠送优惠券</label>
-			<%= f.select :coupon_template_id, options_for_select(CouponTemplate.all.map{|ct| [ct.name, ct.id]}.unshift(["不赠送优惠券", nil]), @data.coupon_template_id), {}, class: 'form-control'%>
+			<%= f.select :coupon_template_id, options_for_select(CouponTemplate.all.map{|ct| [ct.name, ct.id]}.unshift(["不赠送优惠券", nil]), product.coupon_template_id), {}, class: 'form-control'%>
 		</div>
 		<div class="form-group">
 			<label for="exampleInputPassword1">推荐</label>
