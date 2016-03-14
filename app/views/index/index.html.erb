@@ -178,7 +178,7 @@ body{background: #E6E6E6;}
     -----  猜你喜欢  -----
   </div>
   <div class="body">
-		<%Product.limit(4).each do |product|%>
+		<%Product.all.each do |product|%>
     <div class="product_box">
       <a href="/products/<%= product.id%>">
 	      <img src="<%= product.logo.url%>" width="60" height="102" />
