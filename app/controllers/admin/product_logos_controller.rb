@@ -1,6 +1,6 @@
 class Admin::ProductLogosController < Admin::BaseController
   before_action :find_product
-  before_action :find_data, except: [:index, :new, :create]
+  before_action :find_data, except: [:index, :new, :create, :destroy]
   
   def index
     @logos = @product.product_logos
@@ -25,6 +25,11 @@ class Admin::ProductLogosController < Admin::BaseController
     @data.update_attributes(post_params)
     
     redirect_to admin_product_product_logos_path(@product), notice: '编辑成功'
+  end
+  
+  def destroy
+    @data.destroy!
+    redirect_to :back, notice: '删除成功'
   end
   
   def move_down

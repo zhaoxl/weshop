@@ -108,6 +108,15 @@
 			speed:300,
 			autoplayDisableOnInteraction: false
 		});
-
+		
+		//自动设置图片大小
+		$.each($(".body img"), function(index, img){
+		  var img = $(img);
+		  if(img.width() >= 320)
+		  {
+		    img.width("100%")
+		  }
+		})
+		
 	})
 </script>

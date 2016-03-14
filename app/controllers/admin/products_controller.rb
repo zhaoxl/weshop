@@ -1,5 +1,5 @@
 class Admin::ProductsController < Admin::BaseController
-  before_filter :find_data, except: [:index, :new, :create]
+  before_filter :find_data, except: [:index, :new, :create, :destroy]
     
   def index
     @products = Product.page(params[:page]).per(100)
@@ -26,6 +26,12 @@ class Admin::ProductsController < Admin::BaseController
     flash[:success] = "编辑成功"
     
     redirect_to :back 
+  end
+
+  
+  def destroy
+    @data.destroy!
+    redirect_to :back, notice: '删除成功'
   end
   
   def move_down
