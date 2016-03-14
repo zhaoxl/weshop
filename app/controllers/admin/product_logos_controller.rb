@@ -1,6 +1,6 @@
 class Admin::ProductLogosController < Admin::BaseController
   before_action :find_product
-  before_action :find_data, except: [:index, :new, :create, :destroy]
+  before_action :find_data, except: [:index, :new, :create]
   
   def index
     @logos = @product.product_logos

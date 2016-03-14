@@ -1,5 +1,5 @@
 class Admin::ProductsController < Admin::BaseController
-  before_filter :find_data, except: [:index, :new, :create, :destroy]
+  before_filter :find_data, except: [:index, :new, :create]
     
   def index
     @products = Product.page(params[:page]).per(100)
