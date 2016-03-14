@@ -178,34 +178,15 @@ body{background: #E6E6E6;}
     -----  猜你喜欢  -----
   </div>
   <div class="body">
+		<%Product.limit(4).each do |product|%>
     <div class="product_box">
-      <a href="/products/1">
-	      <img src="/images/350ml.png" width="60" height="102" />
-	      <p class="desc">芬尼湾冰川饮用天然水（350ML）</p>
-	      <p class="price">￥102.00</p>
+      <a href="/products/<%= product.id%>">
+	      <img src="<%= product.logo.url%>" width="60" height="102" />
+	      <p class="desc"><%= product.name%></p>
+	      <p class="price">￥<%= product.price%></p>
       </a>
     </div>
-    <div class="product_box">
-			<a href="/products/1">
-	      <img src="/images/500ml.png" width="60" height="102" />
-	      <p class="desc">芬尼湾冰川饮用天然水（500ML）</p>
-	      <p class="price">￥114.00</p>
-			</a>
-    </div>
-    <div class="product_box">
-			<a href="/products/1">
-	      <img src="/images/1L.png" width="60" height="102" />
-	      <p class="desc">芬尼湾冰川饮用天然水（1L）</p>
-	      <p class="price">￥126.00</p>
-			</a>
-    </div>
-    <div class="product_box">
-			<a href="/products/1">
-	      <img src="/images/5L.png" width="60" height="102" />
-	      <p class="desc">芬尼湾冰川饮用天然水（5L）</p>
-	      <p class="price">￥236.00</p>
-			</a>
-    </div>
+		<%end%>
     <div style="clear:both"></div>
   </div>
 </div>
