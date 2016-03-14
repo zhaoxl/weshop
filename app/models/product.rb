@@ -25,7 +25,10 @@ class Product < ActiveRecord::Base
   end
   
   def logo
-    (self.front_logo.present? ? self.front_logo : ProductLogo.find(4)).logo
+    logo = self.front_logo if self.front_logo.present?
+    logo = self.product_logos.first.logo if logo.blank?
+    logo = ProductLogo.find(4).logo if logo.blank?
+    return logo
   end
   
   
