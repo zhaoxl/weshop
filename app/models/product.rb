@@ -7,6 +7,8 @@ class Product < ActiveRecord::Base
   has_many  :order_products
   has_many  :orders
   
+  mount_uploader :front_logo, ProductFrontLogoUploader
+  
   include AASM
 
   aasm column: :state do
@@ -23,7 +25,7 @@ class Product < ActiveRecord::Base
   end
   
   def logo
-    (self.product_logos.first || ProductLogo.find(4)).logo
+    (self.front_logo.present? ? self.front_logo : ProductLogo.find(4)).logo
   end
   
   

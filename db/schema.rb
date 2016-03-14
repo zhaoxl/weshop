@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313121726) do
+ActiveRecord::Schema.define(version: 20160314095600) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -166,7 +166,8 @@ ActiveRecord::Schema.define(version: 20160313121726) do
   end
 
   create_table "pay_logs", force: true do |t|
-    t.integer  "order_id"
+    t.string   "item_type"
+    t.integer  "item_id"
     t.string   "pay_type"
     t.string   "trade_type"
     t.string   "log",        limit: 5000
@@ -178,12 +179,13 @@ ActiveRecord::Schema.define(version: 20160313121726) do
     t.integer  "user_id"
     t.string   "item_type"
     t.integer  "item_id"
-    t.string   "desc"
+    t.string   "desc",       limit: 500
     t.string   "scode"
-    t.decimal  "amount",     precision: 10, scale: 2, default: 0.0
+    t.decimal  "amount",                 precision: 10, scale: 2, default: 0.0
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "goto",       limit: 500
   end
 
   create_table "product_categories", force: true do |t|
@@ -217,6 +219,7 @@ ActiveRecord::Schema.define(version: 20160313121726) do
     t.boolean "sticky",                                        default: false
     t.integer "order_products_count",                          default: 0
     t.integer "coupon_template_id"
+    t.string  "front_logo"
   end
 
   create_table "recharge_card_categories", force: true do |t|
