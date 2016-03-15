@@ -6,6 +6,10 @@ class IndexController < ApplicationController
     
     render text: "请使用微信客户端打开", layout: false and return if current_user.blank?
     
-    render layout: 'application_new' unless current_user.blank?
+    render layout: 'application_new'
+  end
+  
+  def about
+    render layout: 'application_new'
   end
 end

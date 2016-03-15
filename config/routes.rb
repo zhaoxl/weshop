@@ -61,7 +61,12 @@ Rails.application.routes.draw do
       get :test
     end
   end
-  resources :index
+  resources :index do
+    collection do
+      get :about
+    end
+  end
+  
   resources :products
   resources :orders
   resources :carts do
