@@ -132,7 +132,7 @@ body{background: #E6E6E6;}
     推荐商品
   </div>
   <div class="body">
-		<%recommend_products = Product.where(recommend: true)%>
+		<%recommend_products = Product.where(recommend: true).limit(4)%>
     <table width="96%" cellpadding="1" cellspacing="1" style="background: #DDDDDD">
       <tr>
         <td rowspan="2">
