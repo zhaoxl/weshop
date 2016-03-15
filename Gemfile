@@ -70,6 +70,11 @@ group :development do
   #页面debug工具
   gem 'better_errors', '2.1.1'
   gem 'binding_of_caller', '0.7.2'
+  #部署工具
+  gem 'capistrano'#, group: :development
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
 end
 
 
