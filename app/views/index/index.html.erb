@@ -132,48 +132,49 @@ body{background: #E6E6E6;}
     推荐商品
   </div>
   <div class="body">
+		<%recommend_products = Product.where(recommend: true)%>
     <table width="96%" cellpadding="1" cellspacing="1" style="background: #DDDDDD">
       <tr>
         <td rowspan="2">
-          <%product = Product.where(id: 1).first%>
+          <%product = recommend_products[0]%>
 					<%if product%>
           <a href="/products/<%= product.id%>">
 	          <p class="product_title"><%= product.name%></p>
 	          <p class="price">￥<%= product.price%></p>
-	          <img src="<%= product.logo.url%>" width="60" height="102" />
+	          <img src="<%= product.logo.url%>" width="60" height="100" />
           </a>
 					<%end%>
         </td>
         <td>
-          <%product = Product.where(id: 2).first%>
+          <%product = recommend_products[1]%>
 					<%if product%>
           <a href="/products/<%= product.id%>">
 	          <p class="product_title"><%= product.name%></p>
 	          <p class="old_price">原价：￥<%= product.old_price%></p>
 	          <p class="price">￥<%= product.price%></p>
-	          <img src="<%= product.logo.url%>" width="60" height="102" />
+	          <img src="<%= product.logo.url%>" width="60" height="100" />
           </a>
 					<%end%>
         </td>
         <td rowspan="2">
-          <%product = Product.where(id: 4).first%>
+          <%product = recommend_products[2]%>
 					<%if product%>
           <a href="/products/4">
 	          <p class="product_title"><%= product.name%></p>
 	          <p class="price">￥<%= product.price%></p>
-	          <img src="<%= product.logo.url%>" width="60" height="102" />
+	          <img src="<%= product.logo.url%>" width="60" height="100" />
           </a>
 					<%end%>
         </td>
       </tr>
       <tr>
         <td rowspan="2">
-          <%product = Product.where(id: 3).first%>
+          <%product = recommend_products[3]%>
 					<%if product%>
           <a href="/products/3">
 	          <p class="product_title"><%= product.name%></p>
 	          <p class="price">￥<%= product.price%></p>
-	          <img src="<%= product.logo.url%>" width="60" height="102" />
+	          <img src="<%= product.logo.url%>" width="60" height="100" />
           </a>
 					<%end%>
         </td>
