@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     resources :distribution_settings
     resources :coupon_templates
     resources :coupons
+    resources :single_articles
     
   end
   
@@ -95,6 +96,7 @@ Rails.application.routes.draw do
       get :switch
     end
   end
+  resources :single_articles
   
   namespace :member do
     root 'index#index'
