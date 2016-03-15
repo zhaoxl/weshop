@@ -37,9 +37,9 @@
   
     #header{width: 100%; background: #81b770;}
     #header .logo{width: 96px; height: 36px; display: block;}
-    #header .search_left{width: 24px; height: 38px;}
-    #header .search_key{width: 100%; border: none; height: 22px; margin-top: 8px; background: url(/images/search_bg.jpg) repeat-x; color: white;}
-    #header .search_right{width: 13px; height: 38px; }
+    #header .search_left{}
+    #header .search_key{width: 100%; border: none; height: 21px;background: url(/images/search_bg.jpg) repeat-x; color: white;}
+    #header .search_right{}
     #header .index img{width: 45px; height: 36px;}
     .swiper-container {
     	width: 100%;
@@ -79,13 +79,19 @@
             </a>
           </td>
           <td>
-            <img src="/images/search_left.jpg" class="search_left" />
-          </td>
-          <td width="100%" valign=top>
-            <input type="text" class="search_key" />
-          </td>
-          <td width="3%">
-            <img src="/images/search_right.jpg" class="search_right" />
+            <table cellpadding="0" cellspacing="0">
+              <tr>
+                <td valign="top">
+                  <img src="/images/search_left.jpg" class="search_left" />
+                </td>
+                <td width="100%" valign=top>
+                  <input type="text" class="search_key" />
+                </td>
+                <td valign="top" width="3%">
+                  <img src="/images/search_right.jpg" class="search_right" />
+                </td>
+              </tr>
+            </table>
           </td>
           <td width="3%">
             <a href="/" class="index">
