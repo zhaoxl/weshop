@@ -11,13 +11,13 @@ set :repo_url, 'git@github.com:zhaoxl/weshop.git'
 # set :deploy_to, '/var/www/my_app_name'
 
 # Default value for :scm is :git
-# set :scm, :git
+set :scm, :git
 
 # Default value for :format is :pretty
 # set :format, :pretty
 
 # Default value for :log_level is :debug
-# set :log_level, :debug
+set :log_level, :debug
 
 # Default value for :pty is false
 # set :pty, true
@@ -32,25 +32,29 @@ set :repo_url, 'git@github.com:zhaoxl/weshop.git'
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for keep_releases is 5
-# set :keep_releases, 5
+set :keep_releases, 2
+
+namespace :deploy do
+
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      execute 'cd /var/www/weshop/current && kill -USR2 `cat tmp/pids/unicorn.pid`'
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
+    end
+  end
+
+end
+
 
 # namespace :deploy do
-#
-#   after :restart, :clear_cache do
-#     on roles(:web), in: :groups, limit: 3, wait: 10 do
-#       # Here we can do anything such as:
-#       # within release_path do
-#       #   execute :rake, 'cache:clear'
-#       # end
-#     end
+#   task :restart do
+#      execute :rake,  "/var/www/weshop/current && unicorn -c config/unicorn.rb -E development -D"
 #   end
 #
+#   task :restart do
+#     execute :rake,  '/var/www/weshop/current && kill -USR2 `cat tmp/pids/unicorn.pid`'
+#   end
 # end
-
-task :start do
-   run "/var/www/weshop && unicorn -c config/unicorn.rb -E development -D"
-end
-
-task :restart do
-  run '/var/www/weshop && kill -USR2 `cat tmp/pids/unicorn.pid`'
-end
