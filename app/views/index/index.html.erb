@@ -159,7 +159,7 @@ body{background: #E6E6E6;}
         <td rowspan="2">
           <%product = recommend_products[2]%>
 					<%if product%>
-          <a href="/products/4">
+          <a href="/products/<%= product.id%>">
 	          <p class="product_title"><%= product.name%></p>
 	          <p class="price">￥<%= product.price%></p>
 	          <img src="<%= product.logo.url%>" />
@@ -171,7 +171,7 @@ body{background: #E6E6E6;}
         <td rowspan="2">
           <%product = recommend_products[3]%>
 					<%if product%>
-          <a href="/products/3">
+          <a href="/products/<%= product.id%>">
 	          <p class="product_title"><%= product.name%></p>
 	          <p class="price">￥<%= product.price%></p>
 	          <img src="<%= product.logo.url%>" />
