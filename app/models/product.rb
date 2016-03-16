@@ -1,5 +1,6 @@
 class Product < ActiveRecord::Base
   acts_as_list
+  default_scope { order('position') }
   
   belongs_to  :product_category
   belongs_to  :coupon_template
