@@ -3,9 +3,11 @@ lock '3.4.0'
 
 set :application, 'weshop'
 set :repo_url, 'git@github.com:zhaoxl/weshop.git'
-
+set :stages, %w(master)
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+
+set :default_stage, "master"
 
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, '/var/www/my_app_name'
@@ -26,27 +28,27 @@ set :log_level, :debug
 # set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
 
 # Default value for linked_dirs is []
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for keep_releases is 5
-set :keep_releases, 2
+set :keep_releases, 5
 
-namespace :deploy do
-
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      execute 'cd /var/www/weshop/current && kill -USR2 `cat tmp/pids/unicorn.pid`'
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
-
-end
+# namespace :deploy do
+#
+#   after :restart, :clear_cache do
+#     on roles(:web), in: :groups, limit: 3, wait: 10 do
+#       execute 'cd /var/www/weshop/current && kill -USR2 `cat tmp/pids/unicorn.pid`'
+#       # Here we can do anything such as:
+#       # within release_path do
+#       #   execute :rake, 'cache:clear'
+#       # end
+#     end
+#   end
+#
+# end
 
 
 # namespace :deploy do
@@ -58,3 +60,10 @@ end
 #     execute :rake,  '/var/www/weshop/current && kill -USR2 `cat tmp/pids/unicorn.pid`'
 #   end
 # end
+
+task :restart do
+  on roles(:web) do
+    execute "cd /var/www/weshop/current && kill -USR2 `cat tmp/pids/unicorn.pid`"
+  end
+end
+after "deploy:published", "restart"
