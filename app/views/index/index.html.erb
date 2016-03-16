@@ -213,14 +213,15 @@ $(function() {
 		autoplayDisableOnInteraction: false
 	});
 	
+	
 	//猜你喜欢图片超出div自动个缩小
-	$.each($(".product_box>a>img"), function(img){
+	$.each($(".product_box>a>img"), function(index, img){
 		var img = $(img);
 		var div = img.parent().parent();
 		
 		if(img.width() > div.width())
 		{
-			img.width(div.width());
+			img.width(div.width()-8);
 		}
 	});
 
