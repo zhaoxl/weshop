@@ -191,7 +191,7 @@ body{background: #E6E6E6;}
 		<%Product.where(recommend: false).all.each do |product|%>
     <div class="product_box">
       <a href="/products/<%= product.id%>">
-	      <img src="<%= product.logo.url%>" width="60" height="102" />
+	      <img src="<%= product.logo.url%>"/>
 	      <p class="desc"><%= product.name%></p>
 	      <p class="price">￥<%= product.price%></p>
       </a>
