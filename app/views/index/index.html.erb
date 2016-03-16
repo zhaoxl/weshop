@@ -212,6 +212,17 @@ $(function() {
 		speed:300,
 		autoplayDisableOnInteraction: false
 	});
+	
+	//猜你喜欢图片超出div自动个缩小
+	$.each($(".product_box>a>img"), function(img){
+		var img = $(img);
+		var div = img.parent().parent();
+		
+		if(img.width() > div.width())
+		{
+			img.width(div.width());
+		}
+	});
 
 //	$(function(){
 //		var height = $('.swiper-slide img:eq(0)').height();
