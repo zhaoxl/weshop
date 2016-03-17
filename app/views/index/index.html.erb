@@ -1,10 +1,10 @@
 <style>
-body{background: #E6E6E6;}
+body{}
 .recommend_box{margin-top: 5px;}
 .recommend_box .name{line-height: 30px; margin-top: 10px; font-size: 16px; font-weight: bold;}
 .recommend_box .price{line-height: 30px; margin-top: 10px; color: red; float: right; font-size: 16px; font-weight: bold;}
 
-.index_nav{margin: auto auto auto auto; border-bottom: solid 10px #E6E6E6; background: white; padding-top: 20px;}
+.index_nav{margin: auto auto 10px auto; background: white; padding-top: 20px;}
 .index_nav a{margin-bottom: 20px; display: block;}
 .index_nav a img{width: 49px; height: 50px;}
 
@@ -24,7 +24,7 @@ body{background: #E6E6E6;}
 .price{color: red; margin: 0px;}
 .desc{color: #8C8C8C; text-align: left; padding: 5px; margin: 0px;}
 
-.products{width: 100%; background: #E6E6E6;}
+.products{width: 100%; }
 .products .title{
   color: #5f9e4b;
   font-size: 15px;
@@ -33,7 +33,7 @@ body{background: #E6E6E6;}
   text-align: center;
   width: 200px;
 }
-.products .body{background: #E6E6E6;}
+.products .body{}
 .products .body .product_box{
   width: 49%;
   float: left;
@@ -88,6 +88,8 @@ body{background: #E6E6E6;}
 }
 .quality .body .icon{margin: auto auto;}
 .quality .body .more{display: block; margin: 10px auto 20px auto; text-align: center;}
+
+.index_context{background: url(/images/index_bg.jpg);}
 </style>
 
 <!-- Swiper -->
@@ -100,105 +102,107 @@ body{background: #E6E6E6;}
 	<div class="swiper-pagination"></div>
 </div>
 
-<div class="index_nav">
-  <table width="100%" cellpadding="0" cellspacing="0">
-    <tr>
-      <td width="25%" align="center" valign="top">
-        <a href="/index/about">
-          <img src="/images/index_btn1.jpg" style="width: 45px;"/>
-        </a>
-      </td>           
-      <td width="25%" align="center" valign="top">
-        <a href="/agents/switch">
-          <img src="/images/index_btn2.jpg" style="width: 43px;"/>
-        </a>  
-      </td>           
-      <td width="25%" align="center" valign="top">
-        <a href="/orders/new">
-          <img src="/images/index_btn3.jpg" style="width: 42px; height: 50px"/>
-        </a>
-      </td>           
-      <td width="25%" align="center" valign="top">
-        <a href="/member">
-          <img src="/images/index_btn4.jpg" width=""/>
-        </a>
-      </td>
-    </tr>
-  </table>
-</div>
+<div class="index_context">
+	<div class="index_nav">
+	  <table width="100%" cellpadding="0" cellspacing="0">
+	    <tr>
+	      <td width="25%" align="center" valign="top">
+	        <a href="/index/about">
+	          <img src="/images/index_btn1.jpg" style="width: 45px;"/>
+	        </a>
+	      </td>           
+	      <td width="25%" align="center" valign="top">
+	        <a href="/agents/switch">
+	          <img src="/images/index_btn2.jpg" style="width: 43px;"/>
+	        </a>  
+	      </td>           
+	      <td width="25%" align="center" valign="top">
+	        <a href="/orders/new">
+	          <img src="/images/index_btn3.jpg" style="width: 42px; height: 50px"/>
+	        </a>
+	      </td>           
+	      <td width="25%" align="center" valign="top">
+	        <a href="/member">
+	          <img src="/images/index_btn4.jpg" width=""/>
+	        </a>
+	      </td>
+	    </tr>
+	  </table>
+	</div>
 
-<div class="recommends">
-  <div class="title">
-    推荐商品
-  </div>
-  <div class="body">
-		<%recommend_products = Product.where(recommend: true).limit(4)%>
-    <table width="96%" cellpadding="1" cellspacing="1" style="background: #DDDDDD">
-      <tr>
-        <td rowspan="2">
-          <%product = recommend_products[0]%>
-					<%if product%>
-          <a href="/products/<%= product.id%>">
-	          <p class="product_title"><%= product.name%></p>
-	          <p class="price">￥<%= product.price%></p>
-	          <img src="<%= product.logo.url%>" />
-          </a>
-					<%end%>
-        </td>
-        <td>
-          <%product = recommend_products[1]%>
-					<%if product%>
-          <a href="/products/<%= product.id%>">
-	          <p class="product_title"><%= product.name%></p>
-	          <p class="old_price">原价：￥<%= product.old_price%></p>
-	          <p class="price">￥<%= product.price%></p>
-	          <img src="<%= product.logo.url%>" />
-          </a>
-					<%end%>
-        </td>
-        <td rowspan="2">
-          <%product = recommend_products[2]%>
-					<%if product%>
-          <a href="/products/<%= product.id%>">
-	          <p class="product_title"><%= product.name%></p>
-	          <p class="price">￥<%= product.price%></p>
-	          <img src="<%= product.logo.url%>" />
-          </a>
-					<%end%>
-        </td>
-      </tr>
-      <tr>
-        <td rowspan="2">
-          <%product = recommend_products[3]%>
-					<%if product%>
-          <a href="/products/<%= product.id%>">
-	          <p class="product_title"><%= product.name%></p>
-	          <p class="price">￥<%= product.price%></p>
-	          <img src="<%= product.logo.url%>" />
-          </a>
-					<%end%>
-        </td>
-      </tr>
-    </table>
-  </div>
-</div>
+	<div class="recommends">
+	  <div class="title">
+	    推荐商品
+	  </div>
+	  <div class="body">
+			<%recommend_products = Product.where(recommend: true).limit(4)%>
+	    <table width="96%" cellpadding="1" cellspacing="1" style="background: #DDDDDD">
+	      <tr>
+	        <td rowspan="2">
+	          <%product = recommend_products[0]%>
+						<%if product%>
+	          <a href="/products/<%= product.id%>">
+		          <p class="product_title"><%= product.name%></p>
+		          <p class="price">￥<%= product.price%></p>
+		          <img src="<%= product.logo.url%>" onload="resize(this)" />
+	          </a>
+						<%end%>
+	        </td>
+	        <td>
+	          <%product = recommend_products[1]%>
+						<%if product%>
+	          <a href="/products/<%= product.id%>">
+		          <p class="product_title"><%= product.name%></p>
+		          <p class="old_price">原价：￥<%= product.old_price%></p>
+		          <p class="price">￥<%= product.price%></p>
+		          <img src="<%= product.logo.url%>" onload="resize(this)" />
+	          </a>
+						<%end%>
+	        </td>
+	        <td rowspan="2">
+	          <%product = recommend_products[2]%>
+						<%if product%>
+	          <a href="/products/<%= product.id%>">
+		          <p class="product_title"><%= product.name%></p>
+		          <p class="price">￥<%= product.price%></p>
+		          <img src="<%= product.logo.url%>" onload="resize(this)" />
+	          </a>
+						<%end%>
+	        </td>
+	      </tr>
+	      <tr>
+	        <td rowspan="2">
+	          <%product = recommend_products[3]%>
+						<%if product%>
+	          <a href="/products/<%= product.id%>">
+		          <p class="product_title"><%= product.name%></p>
+		          <p class="price">￥<%= product.price%></p>
+		          <img src="<%= product.logo.url%>" onload="resize(this)" />
+	          </a>
+						<%end%>
+	        </td>
+	      </tr>
+	    </table>
+	  </div>
+	</div>
 
-<div class="products">
-  <div class="title">
-    -----  猜你喜欢  -----
-  </div>
-  <div class="body">
-		<%Product.where(recommend: false).all.each do |product|%>
-    <div class="product_box">
-      <a href="/products/<%= product.id%>">
-	      <img src="<%= product.logo.url%>"/>
-	      <p class="desc"><%= product.name%></p>
-	      <p class="price">￥<%= product.price%></p>
-      </a>
-    </div>
-		<%end%>
-    <div style="clear:both"></div>
-  </div>
+	<div class="products">
+	  <div class="title">
+	    -----  猜你喜欢  -----
+	  </div>
+	  <div class="body">
+			<%Product.where(recommend: false).all.each do |product|%>
+	    <div class="product_box">
+	      <a href="/products/<%= product.id%>">
+		      <img src="<%= product.logo.url%>" onload="resize(this)" />
+		      <p class="desc"><%= product.name%></p>
+		      <p class="price">￥<%= product.price%></p>
+	      </a>
+	    </div>
+			<%end%>
+	    <div style="clear:both"></div>
+	  </div>
+	</div>
 </div>
 
 <script>
@@ -214,16 +218,16 @@ $(function() {
 	});
 	
 	
-	//猜你喜欢图片超出div自动个缩小
-	$.each($(".product_box>a>img"), function(index, img){
-		var img = $(img);
-		var div = img.parent().parent();
-		
-		if(img.width() > div.width())
-		{
-			img.width(div.width()-8);
-		}
-	});
+	// //猜你喜欢图片超出div自动个缩小
+// 	$.each($(".product_box>a>img"), function(index, img){
+// 		var img = $(img);
+// 		var div = img.parent().parent();
+//
+// 		if(img.width() > div.width())
+// 		{
+// 			img.width(div.width()-8);
+// 		}
+// 	});
 
 //	$(function(){
 //		var height = $('.swiper-slide img:eq(0)').height();
@@ -231,4 +235,14 @@ $(function() {
 //		$('.swiper-wrapper').css('height', height);
 //	})
 });
+
+function resize(img)
+{
+	var parent_width = img.parentElement.parentElement.offsetWidth;
+	if(img.offsetWidth > parent_width)
+	{
+		img.style.width = (parent_width - 8)+"px";
+	}
+	
+}
 </script>

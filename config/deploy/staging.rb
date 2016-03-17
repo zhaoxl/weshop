@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 set :stage, :staging
-set :branch, 'wallet'
+set :branch, 'master'
 set :rvm_type, :user
 set :rvm_ruby_version, '2.1.0'
 set :deploy_user, 'root'
