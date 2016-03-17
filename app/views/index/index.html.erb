@@ -4,9 +4,10 @@ body{}
 .recommend_box .name{line-height: 30px; margin-top: 10px; font-size: 16px; font-weight: bold;}
 .recommend_box .price{line-height: 30px; margin-top: 10px; color: red; float: right; font-size: 16px; font-weight: bold;}
 
-.index_nav{margin: auto auto 10px auto; background: white; padding-top: 20px;}
+.index_nav{margin: auto auto 10px auto; padding-top: 20px;}
 .index_nav a{margin-bottom: 20px; display: block;}
-.index_nav a img{width: 49px; height: 50px;}
+.index_nav a img{width: 42px;}
+.index_nav a p{margin: 0px; padding: 0px; color: #999999; font-weight: bold}
 
 .recommends .title{
   border-top: 2px solid #5f9e4b;
@@ -19,7 +20,7 @@ body{}
 }
 .recommends .body{margin-bottom: 10px;}
 .recommends .body table{margin: auto auto;}
-.recommends .body table td{background: white; text-align: center;}
+.recommends .body table td{text-align: center;}
 .recommends .old_price{color: #DDDDDD; text-decoration: line-through;}
 .price{color: red; margin: 0px;}
 .desc{color: #8C8C8C; text-align: left; padding: 5px; margin: 0px;}
@@ -39,14 +40,13 @@ body{}
   float: left;
   text-align: center;
   margin-top: 10px;
-  background: white;
 }
 .products .body .product_box:nth-child(even){
   float: right;
 }
 .products .body .product_box img{margin: 10px auto 20px auto;}
-
-.company_desc{margin-top: 20px; background: white;}
+ font-weight: bold
+.company_desc{margin-top: 20px;}
 .company_desc .title{
   border-top: 2px solid #5f9e4b;
   color: #5f9e4b;
@@ -66,7 +66,7 @@ body{}
   width: 200px;
 }
 
-.quality{margin-top: 20px; background: white;}
+.quality{margin-top: 20px; }
 .quality .title{
   border-top: 2px solid #5f9e4b;
   color: #5f9e4b;
@@ -89,7 +89,7 @@ body{}
 .quality .body .icon{margin: auto auto;}
 .quality .body .more{display: block; margin: 10px auto 20px auto; text-align: center;}
 
-.index_context{background: url(/images/index_bg.jpg);}
+.index_context{background: url(/images/index_bg.jpg) repeat-y 50% 50%;}
 </style>
 
 <!-- Swiper -->
@@ -108,22 +108,26 @@ body{}
 	    <tr>
 	      <td width="25%" align="center" valign="top">
 	        <a href="/index/about">
-	          <img src="/images/index_btn1.jpg" style="width: 45px;"/>
+	          <img src="/images/index_btn1.png"/>
+						<p>品牌故事</p>
 	        </a>
 	      </td>           
 	      <td width="25%" align="center" valign="top">
 	        <a href="/agents/switch">
-	          <img src="/images/index_btn2.jpg" style="width: 43px;"/>
+	          <img src="/images/index_btn2.png"/>
+						<p>加盟商城</p>
 	        </a>  
 	      </td>           
 	      <td width="25%" align="center" valign="top">
 	        <a href="/orders/new">
-	          <img src="/images/index_btn3.jpg" style="width: 42px; height: 50px"/>
+	          <img src="/images/index_btn3.png"/>
+						<p>购物车</p>
 	        </a>
 	      </td>           
 	      <td width="25%" align="center" valign="top">
 	        <a href="/member">
-	          <img src="/images/index_btn4.jpg" width=""/>
+	          <img src="/images/index_btn4.png"/>
+						<p>会员中心</p>
 	        </a>
 	      </td>
 	    </tr>
@@ -136,7 +140,7 @@ body{}
 	  </div>
 	  <div class="body">
 			<%recommend_products = Product.where(recommend: true).limit(4)%>
-	    <table width="96%" cellpadding="1" cellspacing="1" style="background: #DDDDDD">
+	    <table width="96%" cellpadding="1" cellspacing="1">
 	      <tr>
 	        <td rowspan="2">
 	          <%product = recommend_products[0]%>
