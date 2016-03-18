@@ -207,4 +207,14 @@ $(function() {
 //		$('.swiper-wrapper').css('height', height);
 //	})
 });
+
+function resize(img)
+{
+	var parent_width = img.parentElement.parentElement.offsetWidth;
+	if(img.offsetWidth > parent_width)
+	{
+		img.style.width = (parent_width - 8)+"px";
+	}
+	
+}
 </script>
