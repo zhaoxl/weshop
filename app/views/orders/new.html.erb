@@ -90,10 +90,10 @@
             <p style="margin: auto"><%= product.name%></p>
             <p style="margin: auto; height: 44px;"><%= product.description%></p>
             <div class="counts">
-            	<a href="<%= reduce_carts_path(id: cart.id)%>" class="btn">-</a>
+            	<a href="<%= reduce_carts_path(id: cart.id, goto: 'back')%>" class="btn">-</a>
 							<input type="text" class="count" value="<%= cart.total%>" />
-            	<a href="<%= add_carts_path(product_id: product.id)%>" class="btn">+</a>
-            	<a href="<%= remove_carts_path(id: cart.id)%>" class="btn">X</a>
+            	<a href="<%= add_carts_path(product_id: product.id, count: 1, goto: 'back')%>" class="btn">+</a>
+            	<a href="<%= remove_carts_path(id: cart.id, goto: 'back')%>" class="btn">X</a>
             </div>
           </td>
         </tr>

@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
   def new
+    redirect_to '/' and return if current_user.carts.blank?
+    
     unless @shippin_address = current_user.shippin_address.where(id: session[:use_shippin_address_id]).first
       unless @shippin_address = current_user.shippin_address.where(default: true).first
         @shippin_address = current_user.shippin_address.first
