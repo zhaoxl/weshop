@@ -1,0 +1,45 @@
+<style type="text/css" media="screen">
+.sort tr td a{display: inline-block; width: 100%; text-align: center; line-height: 20px; color: #666666; margin: 5px auto 5px auto; border-right: solid 1px #dddddd;}
+.sort tr td .current{color: black;}
+
+.products{border-top: solid 5px #e6e6e6;}
+.products .img img{width:100px; height: 100px; border: solid 1px #dddddd;}
+.products .product_title{font-weight: bold; font-size: 15px;}
+.products .product_desc{color: #666666; font-size: 13px;}
+.products .price{font-weight: bold; color: red;}
+</style>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="sort">
+	<tr>
+    <td>
+      <a href="#" class="current">综合</a>
+    </td>
+    <td>
+      <a href="#">销量</a>
+    </td>
+    <td>
+      <a href="#">价格</a>
+    </td>
+  </tr>
+</table>
+
+<%Product.all.each do |product|%>
+<div class="products">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="product">
+  	<tr>
+      <td class="img" width="120px">
+        <a href="<%= product_path(product)%>" class="current">
+          <img src="">
+        </a>
+      </td>
+      <td>
+        <a href="<%= product_path(product)%>">
+          <p class="product_title"><%= product.name%></p>
+          <p class="product_desc"><%= product.description%></p>
+          <p class="price"><%= product.price%></p>
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+<%end%>
