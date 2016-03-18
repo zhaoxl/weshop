@@ -88,7 +88,7 @@
           </td>
           <td valign="top" style="padding-left: 10px; line-height: 22px">
             <p style="margin: auto"><%= product.name%></p>
-            <p style="margin: auto; height: 44px;"><%= product.description%></p>
+            <p style="margin: 5px auto 5px auto; color: red; font-size: 14px; font-weight: bold">￥<%= product.price%></p>
             <div class="counts">
             	<a href="<%= reduce_carts_path(id: cart.id, goto: 'back')%>" class="btn">-</a>
 							<input type="text" class="count" value="<%= cart.total%>" />
