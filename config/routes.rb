@@ -74,6 +74,7 @@ Rails.application.routes.draw do
     collection do
       get :add
       get :remove
+      get :reduce
     end
   end
   resources :shippin_address do
