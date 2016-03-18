@@ -23,6 +23,21 @@ body{background: #E6E6E6;}
 .recommends .body table{margin: auto auto;}
 .recommends .body table td{background: white; text-align: center;}
 .recommends .old_price{color: #DDDDDD; text-decoration: line-through;}
+
+.product.product_desc{color: white; text-align: left; padding: 5px; margin: 0px;}
+
+.product_box p{
+	padding: 0px;
+	margin: 0px;
+}
+
+.recommend_products .product_box{
+  width: 49%;
+  float: left;
+  text-align: center;
+  margin-top: 10px;
+}
+
 .price{color: red; margin: 0px;}
 .desc{color: #8C8C8C; text-align: left; padding: 5px; margin: 0px;}
 
@@ -106,54 +121,20 @@ body{background: #E6E6E6;}
     推荐商品
   </div>
   <div class="body">
-		<%recommend_products = Product.where(agent_id: 1, recommend: true).limit(4)%>
-    <table width="96%" cellpadding="1" cellspacing="1">
-      <tr>
-        <td rowspan="2">
-          <%product = recommend_products[0]%>
-					<%if product%>
-          <a href="/products/<%= product.id%>">
-	          <p class="product_title"><%= product.name%></p>
-	          <p class="price">￥<%= product.price%></p>
-	          <img src="<%= product.logo.url%>" onload="resize(this)" />
-          </a>
-					<%end%>
-        </td>
-        <td>
-          <%product = recommend_products[1]%>
-					<%if product%>
-          <a href="/products/<%= product.id%>">
-	          <p class="product_title"><%= product.name%></p>
-	          <p class="old_price">原价：￥<%= product.old_price%></p>
-	          <p class="price">￥<%= product.price%></p>
-	          <img src="<%= product.logo.url%>" onload="resize(this)" />
-          </a>
-					<%end%>
-        </td>
-        <td rowspan="2">
-          <%product = recommend_products[2]%>
-					<%if product%>
-          <a href="/products/<%= product.id%>">
-	          <p class="product_title"><%= product.name%></p>
-	          <p class="price">￥<%= product.price%></p>
-	          <img src="<%= product.logo.url%>" onload="resize(this)" />
-          </a>
-					<%end%>
-        </td>
-      </tr>
-      <tr>
-        <td rowspan="2">
-          <%product = recommend_products[3]%>
-					<%if product%>
-          <a href="/products/<%= product.id%>">
-	          <p class="product_title"><%= product.name%></p>
-	          <p class="price">￥<%= product.price%></p>
-	          <img src="<%= product.logo.url%>" onload="resize(this)" />
-          </a>
-					<%end%>
-        </td>
-      </tr>
-    </table>
+		<div class="recommend_products">
+			<%Product.where(agent_id: 1, recommend: true).limit(4).each do |product|%>
+	    <div class="product_box">
+        <a href="/products/<%= product.id%>">
+          <p class="product_title"><%= product.name%></p>
+          <p class="product_desc"><%= product.description%></p>
+          <p class="old_price">原价：￥<%= product.old_price%></p>
+          <p class="price">￥<%= product.price%></p>
+          <img src="<%= product.logo.url%>" onload="resize(this)" />
+        </a>
+	    </div>
+			<%end%>
+		</div>
+    <div style="clear:both"></div>
   </div>
 </div>
 

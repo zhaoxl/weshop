@@ -14,7 +14,7 @@ class ShippinAddressController < ApplicationController
   end
   
   def edit
-    @address = ShippinAddress.find(params[:id])
+    @address = ShippinAddress.where(user: current_user).find(params[:id])
     
     render layout: 'application_new'
   end
@@ -25,7 +25,7 @@ class ShippinAddressController < ApplicationController
       @address.user = current_user
       ActiveRecord::Base.transaction do
         if @address.default == true
-          ShippinAddress.update_all({default: false})
+          ShippinAddress.where(user: current_user).update_all({default: false})
         end
         @address.save!
       end
@@ -38,10 +38,10 @@ class ShippinAddressController < ApplicationController
   end
   
   def update
-    @address = ShippinAddress.find(params[:id])
+    @address = ShippinAddress.where(user: current_user).find(params[:id])
     ActiveRecord::Base.transaction do
       if post_params[:default] == "1"
-        ShippinAddress.update_all({default: false})
+        ShippinAddress.where(user: current_user).update_all({default: false})
       end
       @address.update_attributes(post_params)
     end
@@ -57,6 +57,8 @@ class ShippinAddressController < ApplicationController
   
   def use
     redirect_to edit_shippin_address_path(params[:id]) and return if session[:goto].blank?
+    ShippinAddress.where(user: current_user).update_all({default: false})
+    ShippinAddress.where(user: current_user).find(params[:id]).update_attribute(:default, true)
     
     session[:use_shippin_address_id] = params[:id]
     goto = session.delete(:goto)

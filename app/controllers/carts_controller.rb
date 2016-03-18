@@ -14,10 +14,26 @@ class CartsController < ApplicationController
   end
   
   def remove
-    current_user.carts.where(id: params[:id]).delete_all
+    current_user.carts.where(user: current_user, id: params[:id]).delete_all
     
     redirect_to :back and return if params[:goto] == "back"
     redirect_to params[:goto] and return if params[:goto].present?
     render text: 'OK'
   end
+  
+  def reduce
+    if cart = Cart.where(user: current_user, id: params[:id]).first
+      if cart.total > 1
+        cart.update_attribute(:total, cart.total-1)
+      else
+        cart.destroy!
+      end
+    end
+    
+    redirect_to :back and return if params[:goto] == "back"
+    redirect_to params[:goto] and return if params[:goto].present?
+    render text: 'OK'
+  end
+  
+  
 end
