@@ -39,7 +39,7 @@
 		</div>
 		<div class="form-group">
 			<label for="exampleInputPassword1">代理商</label>
-			<%= f.select :agent_id, options_for_select(Agent.all.map{|agent| [ct.name, ct.id]}.unshift(["主站", nil]), product.agent_id), {}, class: 'form-control'%>
+			<%= f.select :agent_id, options_for_select(Agent.all.map{|agent| [agent.name, agent.id]}.unshift(["主站", nil]), product.agent_id), {}, class: 'form-control'%>
 		</div>
 		<div class="form-group">
 			<label for="exampleInputPassword1">推荐</label>
