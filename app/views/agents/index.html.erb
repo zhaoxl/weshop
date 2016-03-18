@@ -136,7 +136,7 @@ function resize(img)
   </div>
   <div class="body">
 		<div class="recommend_products">
-			<%Product.where(agent_id: 1, recommend: true).limit(4).each do |product|%>
+			<%Product.where(agent_id: nil, recommend: true).limit(4).each do |product|%>
 	    <div class="product_box">
         <a href="/products/<%= product.id%>">
           <p class="product_title"><%= product.name%></p>

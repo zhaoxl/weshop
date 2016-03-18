@@ -156,7 +156,7 @@ function resize(img)
     -----  猜你喜欢  -----
   </div>
   <div class="body">
-		<%Product.where(agent_id: 2, recommend: false).each do |product|%>
+		<%Product.where(agent_id: nil, recommend: false).each do |product|%>
     <div class="product_box">
       <a href="/products/<%= product.id%>">
 	      <img src="<%= product.logo.url%>" onload="resize(this)" />
