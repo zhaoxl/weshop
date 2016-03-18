@@ -113,7 +113,9 @@
         </td>
         <td width="110">
 					<%if @shippin_address%>
-          <input type="submit" value="提交订单" class="submit" />
+	          <input type="submit" value="提交订单" class="submit" />
+					<%else%>
+	          <input type="button" value="提交订单" class="submit" onclick="alert('请选择收货地址');" />
 					<%end%>
         </td>
       </tr>
