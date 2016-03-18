@@ -21,7 +21,7 @@ class Member::OrdersController < Member::BaseController
     order = Order.find(params[:id])
     order.destroy if order.cancel?
     
-    redirect_to :back
+    redirect_to member_orders_path
   end
   
   def express
