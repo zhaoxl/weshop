@@ -69,7 +69,7 @@
     #footer .hotline{color: #5f9e4b; margin: auto auto; text-align: center; width: 175px;}
     </style>
   
-		<%if controller_name == "index"%>
+		<%if controller_name == "index" || controller_name == "single_articles"%>
     <div id="header">
       <table cellpadding="0" cellspacing="0">
         <tr>
@@ -105,15 +105,17 @@
     
     <%= yield %>
     
-    <div id="footer">
-      <div class="hotline">
-        <img src="/images/hotline_icon.jpg" style="margin-bottom: -14px" />
-        服务热线：400-1887-077
+    <%if controller_name != "index"%>
+      <div id="footer">
+        <div class="hotline">
+          <img src="/images/hotline_icon.jpg" style="margin-bottom: -14px" />
+          服务热线：400-1887-077
+        </div>
+        <p>COPYRIGHT 2007-2015 大连山河投资有限公司</p>
+        <p>ALL RIGHTS RESERVED.</p>
+        <p>辽ICP备13008748号-2</p>
       </div>
-      <p>COPYRIGHT 2007-2015 大连山河投资有限公司</p>
-      <p>ALL RIGHTS RESERVED.</p>
-      <p>辽ICP备13008748号-2</p>
-    </div>
+    <%end%>
 
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <script src="/js/swiper.min.js" type="text/javascript" charset="utf-8"></script>
