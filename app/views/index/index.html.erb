@@ -25,6 +25,11 @@ body{}
 .price{color: white; margin: 0px;}
 .desc{color: white; text-align: left; padding: 5px; margin: 0px;}
 
+.product_box p{
+	padding: 0px;
+	margin: 0px;
+}
+
 .recommend_products .product_box{
   width: 49%;
   float: left;
@@ -160,6 +165,7 @@ body{}
 		    <div class="product_box">
 	        <a href="/products/<%= product.id%>">
 	          <p class="product_title"><%= product.name%></p>
+	          <p class="product_title"><%= product.description%></p>
 	          <p class="old_price">原价：￥<%= product.old_price%></p>
 	          <p class="price">￥<%= product.price%></p>
 	          <img src="<%= product.logo.url%>" onload="resize(this)" />
@@ -181,6 +187,7 @@ body{}
 	      <a href="/products/<%= product.id%>">
 		      <img src="<%= product.logo.url%>" onload="resize(this)" />
 		      <p class="desc"><%= product.name%></p>
+	         <p class="product_title"><%= product.description%></p>
 		      <p class="price">￥<%= product.price%></p>
 	      </a>
 	    </div>
