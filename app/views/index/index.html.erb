@@ -45,7 +45,7 @@ body{}
   line-height: 40px;
   margin: auto;
   text-align: center;
-  width: 200px;
+  width: 100%;
 }
 .product_title{color: white;}
 .product_desc{color: white; text-align: left; padding: 5px; margin: 0px;}
@@ -183,7 +183,19 @@ body{}
 
 <div class="products">
   <div class="title">
-    -----  猜你喜欢  -----
+    <table width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <td>
+          <div style="width: 100%; border-bottom: solid 1px #5f9e4b"></div>
+        </td>
+        <td width="80" align="center">
+          猜你喜欢
+        </td>
+        <td>
+          <div style="width: 100%; border-bottom: solid 1px #5f9e4b"></div>
+        </td>
+      </tr>
+    </table>
   </div>
   <div class="body">
 		<%Product.where(agent_id: nil, recommend: false).each do |product|%>
