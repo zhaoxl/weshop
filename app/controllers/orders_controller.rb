@@ -1,14 +1,16 @@
 class OrdersController < ApplicationController
   def new
-    redirect_to '/' and return if current_user.carts.blank?
-    
     unless @shippin_address = current_user.shippin_address.where(id: session[:use_shippin_address_id]).first
       unless @shippin_address = current_user.shippin_address.where(default: true).first
         @shippin_address = current_user.shippin_address.first
       end
     end
     
-    render layout: 'application_new'
+    if current_user.carts.blank?
+      render 'empty', layout: 'application_new'
+    else
+      render layout: 'application_new'
+    end
   end
   
   def create
