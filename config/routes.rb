@@ -69,7 +69,12 @@ Rails.application.routes.draw do
   end
   
   resources :products
-  resources :orders
+  resources :orders do
+    collection do
+      get :calculate_coupon
+    end
+  end
+  
   resources :carts do
     collection do
       get :add
@@ -77,6 +82,7 @@ Rails.application.routes.draw do
       get :reduce
     end
   end
+  
   resources :shippin_address do
     member do
       get :use

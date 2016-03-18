@@ -132,4 +132,15 @@
   </div>
 <%end%>  
 
-  
+<script type="text/javascript">
+$("#coupon_id").click(function(){
+  $.ajax({
+    url: '<%= calculate_coupon_orders_path%>',
+    data: {coupon_id: $(this).val()},
+    dataType: 'text',
+    success: function(response){
+      $(".total_prices .price").html(response);
+    }
+  });
+});
+</script>

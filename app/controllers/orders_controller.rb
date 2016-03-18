@@ -23,6 +23,16 @@ class OrdersController < ApplicationController
     redirect_to member_order_path(order)
   end
   
+  def calculate_coupon
+    coupon = Coupon.where(user: current_user, state: "create", id: params[:coupon_id]).first
+    price = current_user.carts.to_a.sum{|cart| 
+  		cart.total * cart.product.try(:price)||0
+  	}.to_f - coupon.try(:price).to_f
+    
+    price = 0 if price < 0
+  	render text: price
+  end
+  
 
   def post_params
     params.require(:order).permit!
