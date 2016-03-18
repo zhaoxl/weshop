@@ -23,7 +23,8 @@ body{}
 .recommends .body table td{text-align: center;}
 .recommends .old_price{color: #DDDDDD; text-decoration: line-through;}
 .price{color: white; margin: 0px;}
-.desc{color: white; text-align: left; padding: 5px; margin: 0px;}
+
+.product.product_desc{color: white; text-align: left; padding: 5px; margin: 0px;}
 
 .product_box p{
 	padding: 0px;
@@ -100,111 +101,112 @@ body{}
 .quality .body .icon{margin: auto auto;}
 .quality .body .more{display: block; margin: 10px auto 20px auto; text-align: center;}
 
-.index_context{
-  background-image: url(/images/index_bg.jpg); background-position: 50% 0px; background-repeat: no-repeat; background-attachment: fixed; overflow-y: scroll;
-  overflow-x: hidden;
-  position: fixed;
+.index_bg{
+  background-image: url(/images/index_bg.jpg); background-position: 50% 0px; background-repeat: no-repeat; 
+	position: fixed;
   z-index: -1;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   background-size: cover;
+	width: 100%;
+	height: 800px;
 }
 </style>
 
-<div class="index_context">
-  <!-- Swiper -->
-  <div class="swiper-container" style="width:100%;">
-  	<div class="swiper-wrapper" style='height:170px;'>
-      <%Banner.order("position asc").each do |banner|%>
-  		  <div class="swiper-slide"><a href="<%= banner.url%>"><img style="width:100%; height: 170px;" src='<%= banner.image.url%>' alt="<%= banner.description%>"></a></div>
-      <%end%>
-    </div>
-  	<div class="swiper-pagination"></div>
+<div class="index_bg">
+</div>
+<!-- Swiper -->
+<div class="swiper-container" style="width:100%;">
+	<div class="swiper-wrapper" style='height:170px;'>
+    <%Banner.order("position asc").each do |banner|%>
+		  <div class="swiper-slide"><a href="<%= banner.url%>"><img style="width:100%; height: 170px;" src='<%= banner.image.url%>' alt="<%= banner.description%>"></a></div>
+    <%end%>
   </div>
-  
-	<div class="index_nav">
-	  <table width="100%" cellpadding="0" cellspacing="0">
-	    <tr>
-	      <td width="25%" align="center" valign="top">
-	        <a href="/index/about">
-	          <img src="/images/index_btn1.png"/>
-						<p>品牌故事</p>
-	        </a>
-	      </td>           
-	      <td width="25%" align="center" valign="top">
-	        <a href="/agents/switch">
-	          <img src="/images/index_btn2.png"/>
-						<p>加盟商城</p>
-	        </a>  
-	      </td>           
-	      <td width="25%" align="center" valign="top">
-	        <a href="/orders/new">
-	          <img src="/images/index_btn3.png"/>
-						<p>购物车</p>
-	        </a>
-	      </td>           
-	      <td width="25%" align="center" valign="top">
-	        <a href="/member">
-	          <img src="/images/index_btn4.png"/>
-						<p>会员中心</p>
-	        </a>
-	      </td>
-	    </tr>
-	  </table>
-	</div>
+	<div class="swiper-pagination"></div>
+</div>
 
-	<div class="recommends">
-	  <div class="title">
-	    推荐商品
-	  </div>
-	  <div class="body">
-			<div class="recommend_products">
-				<%Product.where(agent_id: nil, recommend: true).limit(4).each do |product|%>
-		    <div class="product_box">
-	        <a href="/products/<%= product.id%>">
-	          <p class="product_title"><%= product.name%></p>
-	          <p class="product_title"><%= product.description%></p>
-	          <p class="old_price">原价：￥<%= product.old_price%></p>
-	          <p class="price">￥<%= product.price%></p>
-	          <img src="<%= product.logo.url%>" onload="resize(this)" />
-	        </a>
-		    </div>
-				<%end%>
-			</div>
-	    <div style="clear:both"></div>
-	  </div>
-	</div>
+<div class="index_nav">
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="25%" align="center" valign="top">
+        <a href="/index/about">
+          <img src="/images/index_btn1.png"/>
+					<p>品牌故事</p>
+        </a>
+      </td>           
+      <td width="25%" align="center" valign="top">
+        <a href="/agents/switch">
+          <img src="/images/index_btn2.png"/>
+					<p>加盟商城</p>
+        </a>  
+      </td>           
+      <td width="25%" align="center" valign="top">
+        <a href="/orders/new">
+          <img src="/images/index_btn3.png"/>
+					<p>购物车</p>
+        </a>
+      </td>           
+      <td width="25%" align="center" valign="top">
+        <a href="/member">
+          <img src="/images/index_btn4.png"/>
+					<p>会员中心</p>
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
 
-	<div class="products">
-	  <div class="title">
-	    -----  猜你喜欢  -----
-	  </div>
-	  <div class="body">
-			<%Product.where(agent_id: nil, recommend: false).each do |product|%>
+<div class="recommends">
+  <div class="title">
+    推荐商品
+  </div>
+  <div class="body">
+		<div class="recommend_products">
+			<%Product.where(agent_id: nil, recommend: true).limit(4).each do |product|%>
 	    <div class="product_box">
-	      <a href="/products/<%= product.id%>">
-		      <img src="<%= product.logo.url%>" onload="resize(this)" />
-		      <p class="desc"><%= product.name%></p>
-	         <p class="product_title"><%= product.description%></p>
-		      <p class="price">￥<%= product.price%></p>
-	      </a>
+        <a href="/products/<%= product.id%>">
+          <p class="product_title"><%= product.name%></p>
+          <p class="product_desc"><%= product.description%></p>
+          <p class="old_price">原价：￥<%= product.old_price%></p>
+          <p class="price">￥<%= product.price%></p>
+          <img src="<%= product.logo.url%>" onload="resize(this)" />
+        </a>
 	    </div>
 			<%end%>
-	    <div style="clear:both"></div>
-	  </div>
-	</div>
-  
-  <div id="footer">
-    <div class="hotline">
-      <img src="/images/hotline_icon.jpg" style="margin-bottom: -14px" />
-      服务热线：400-1887-077
-    </div>
-    <p>COPYRIGHT 2007-2015 大连山河投资有限公司</p>
-    <p>ALL RIGHTS RESERVED.</p>
-    <p>辽ICP备13008748号-2</p>
+		</div>
+    <div style="clear:both"></div>
   </div>
+</div>
+
+<div class="products">
+  <div class="title">
+    -----  猜你喜欢  -----
+  </div>
+  <div class="body">
+		<%Product.where(agent_id: nil, recommend: false).each do |product|%>
+    <div class="product_box">
+      <a href="/products/<%= product.id%>">
+	      <img src="<%= product.logo.url%>" onload="resize(this)" />
+	      <p class="product_title"><%= product.name%></p>
+         <p class="product_desc"><%= product.description%></p>
+	      <p class="price">￥<%= product.price%></p>
+      </a>
+    </div>
+		<%end%>
+    <div style="clear:both"></div>
+  </div>
+</div>
+
+<div id="footer">
+  <div class="hotline">
+    <img src="/images/hotline_icon.jpg" style="margin-bottom: -14px" />
+    服务热线：400-1887-077
+  </div>
+  <p>COPYRIGHT 2007-2015 大连山河投资有限公司</p>
+  <p>ALL RIGHTS RESERVED.</p>
+  <p>辽ICP备13008748号-2</p>
 </div>
 
 <script>
