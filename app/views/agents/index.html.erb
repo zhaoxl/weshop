@@ -107,6 +107,18 @@ body{background: #E6E6E6;}
 .quality .body .more{display: block; margin: 10px auto 20px auto; text-align: center;}
 </style>
 
+<script type="text/javascript">
+function resize(img)
+{
+	var parent_width = img.parentElement.parentElement.offsetWidth;
+	if(img.offsetWidth > parent_width)
+	{
+		img.style.width = (parent_width - 8)+"px";
+	}
+	
+}
+</script>
+
 <!-- Swiper -->
 <div class="swiper-container" style="width:100%;">
 	<div class="swiper-wrapper" style='height:170px;'>
@@ -143,34 +155,16 @@ body{background: #E6E6E6;}
     -----  猜你喜欢  -----
   </div>
   <div class="body">
+		<%Product.where(agent_id: 1, recommend: false).each do |product|%>
     <div class="product_box">
-      <a href="/products/1">
-	      <img src="/images/agents/index_product_4.jpg" width="140" />
-	      <p class="desc">芬尼湾冰川饮用天然水（350ML）</p>
-	      <p class="price">￥100.00</p>
+      <a href="/products/<%= product.id%>">
+	      <img src="<%= product.logo.url%>" onload="resize(this)" />
+	      <p class="product_title"><%= product.name%></p>
+         <p class="product_desc"><%= product.description%></p>
+	      <p class="price">￥<%= product.price%></p>
       </a>
     </div>
-    <div class="product_box">
-			<a href="/products/1">
-	      <img src="/images/agents/index_product_5.jpg" width="140" />
-	      <p class="desc">芬尼湾冰川饮用天然水（500ML）</p>
-	      <p class="price">￥100.00</p>
-			</a>
-    </div>
-    <div class="product_box">
-			<a href="/products/1">
-	      <img src="/images/agents/index_product_6.jpg" width="80" />
-	      <p class="desc">芬尼湾冰川饮用天然水（1L）</p>
-	      <p class="price">￥100.00</p>
-			</a>
-    </div>
-    <div class="product_box">
-			<a href="/products/1">
-	      <img src="/images/agents/index_product_7.jpg" width="72" />
-	      <p class="desc">芬尼湾冰川饮用天然水（5L）</p>
-	      <p class="price">￥100.00</p>
-			</a>
-    </div>
+		<%end%>
     <div style="clear:both"></div>
   </div>
 </div>
@@ -215,13 +209,4 @@ $(function() {
 //	})
 });
 
-function resize(img)
-{
-	var parent_width = img.parentElement.parentElement.offsetWidth;
-	if(img.offsetWidth > parent_width)
-	{
-		img.style.width = (parent_width - 8)+"px";
-	}
-	
-}
 </script>
