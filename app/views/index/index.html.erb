@@ -4,14 +4,14 @@ body{}
 .recommend_box .name{line-height: 30px; margin-top: 10px; font-size: 16px; font-weight: bold;}
 .recommend_box .price{line-height: 30px; margin-top: 10px; color: red; float: right; font-size: 16px; font-weight: bold;}
 
-.index_nav{margin: auto auto 10px auto; padding-top: 20px; border-top: 2px solid #5f9e4b;}
+.index_nav{margin: auto auto 10px auto; padding-top: 20px;}
 .index_nav a{margin-bottom: 20px; display: block;}
 .index_nav a img{width: 42px;}
 .index_nav a p{margin: 0px; padding: 0px; color: white; font-weight: bold}
 
 .recommends .title{
-  border-top: 2px solid #5f9e4b;
-  color: #5f9e4b;
+  border-top: 2px solid #CCCCCC;
+  color: #CCCCCC;
   font-size: 15px;
   line-height: 25px;
   margin: auto;
@@ -21,9 +21,9 @@ body{}
 .recommends .body{margin-bottom: 10px;}
 .recommends .body table{margin: auto auto;}
 .recommends .body table td{text-align: center;}
-.recommends .old_price{color: #DDDDDD; text-decoration: line-through;}
-.price{color: red; margin: 0px;}
-
+.prices{padding: 5px; text-align: left;}
+.old_price{color: #DDDDDD; text-decoration: line-through;}
+.price{color: red; margin: 0px; font-weight: bold;}
 
 
 .product_box p{
@@ -43,7 +43,7 @@ body{}
 
 .products{width: 100%; }
 .products .title{
-  color: #5f9e4b;
+  color: #CCCCCC;
   font-size: 15px;
   line-height: 40px;
   margin: auto;
@@ -180,13 +180,16 @@ body{}
 	    <div class="product_box">
         <a href="/products/<%= product.id%>">
           <img src="<%= product.logo.url%>" onload="resize(this)" />
-          <div class="white_bg_attrs">
-            <p class="product_title"><%= product.name%></p>
-            <p class="product_desc"><%= product.description%></p>
-            <p class="old_price">原价：￥<%= product.old_price%></p>
-            <p class="price">￥<%= product.price%></p>
-          </div>
         </a>
+        <div class="white_bg_attrs">
+          <p class="product_title"><%= product.name%></p>
+          <p class="product_desc"><%= product.description%></p>
+          <div class="prices">
+            <span class="price">￥<%= product.price%></span>
+            <span class="old_price">原价：￥<%= product.old_price%></span>
+            <span><a href="<%= add_carts_path(product_id: product, goto: new_order_path)%>"><img src="/images/add_to_cart_icon.png" width="14" style="vertical-align: bottom" /></a></span>
+          </div>
+        </div>
 	    </div>
 			<%end%>
       <div style="clear:both"></div>
@@ -199,13 +202,13 @@ body{}
     <table width="100%" cellpadding="0" cellspacing="0">
       <tr>
         <td>
-          <div style="width: 100%; border-bottom: solid 1px #5f9e4b"></div>
+          <div style="width: 100%; border-bottom: solid 1px #CCCCCC"></div>
         </td>
         <td width="80" align="center">
           猜你喜欢
         </td>
         <td>
-          <div style="width: 100%; border-bottom: solid 1px #5f9e4b"></div>
+          <div style="width: 100%; border-bottom: solid 1px #CCCCCC"></div>
         </td>
       </tr>
     </table>
@@ -214,13 +217,17 @@ body{}
 		<%Product.where(agent_id: nil, recommend: false).each do |product|%>
     <div class="product_box">
       <a href="/products/<%= product.id%>">
-	      <img src="<%= product.logo.url%>" onload="resize(this)" />
-	      <div class="white_bg_attrs">
-  	      <p class="product_title"><%= product.name%></p>
-          <p class="product_desc"><%= product.description%></p>
-  	      <p class="price">￥<%= product.price%></p>
-	      </div>
+        <img src="<%= product.logo.url%>" onload="resize(this)" />
       </a>
+      <div class="white_bg_attrs">
+        <p class="product_title"><%= product.name%></p>
+        <p class="product_desc"><%= product.description%></p>
+        <div class="prices">
+          <span class="price">￥<%= product.price%></span>
+          <span class="old_price">原价：￥<%= product.old_price%></span>
+          <span><a href="<%= add_carts_path(product_id: product, goto: new_order_path)%>"><img src="/images/add_to_cart_icon.png" width="14" style="vertical-align: bottom; margin: auto" /></a></span>
+        </div>
+      </div>
     </div>
 		<%end%>
     <div style="clear:both"></div>
