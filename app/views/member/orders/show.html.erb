@@ -56,7 +56,7 @@
     <%end%>
   </div>
   <div style="border-bottom: dashed 1px #F8F8F8; margin: 5px 5px auto auto; text-align: right; color: #999999">
-    共计<%= @order.order_products.count%>件商品&nbsp;&nbsp;合计：<span style="color: red; font-size: 16px; font-weight: bold"><%= @order.total_fee%></span>（运费：<%= @order.fare.to_f%>）
+    共计<%= @order.order_products.sum("total")%>件商品&nbsp;&nbsp;合计：<span style="color: red; font-size: 16px; font-weight: bold"><%= @order.total_fee%></span>（运费：<%= @order.fare.to_f%>）
   </div>
   <div style="padding-right: 12px">
       <%if @order.cancel?%>
