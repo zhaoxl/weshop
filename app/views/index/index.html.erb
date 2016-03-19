@@ -176,13 +176,13 @@ body{}
 			<%Product.where(agent_id: nil, recommend: true).limit(4).each do |product|%>
 	    <div class="product_box">
         <a href="/products/<%= product.id%>">
+          <img src="<%= product.logo.url%>" onload="resize(this)" />
           <div class="white_bg_attrs">
             <p class="product_title"><%= product.name%></p>
             <p class="product_desc"><%= product.description%></p>
             <p class="old_price">原价：￥<%= product.old_price%></p>
             <p class="price">￥<%= product.price%></p>
           </div>
-          <img src="<%= product.logo.url%>" onload="resize(this)" />
         </a>
 	    </div>
 			<%end%>
