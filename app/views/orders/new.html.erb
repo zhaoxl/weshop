@@ -91,7 +91,7 @@
             <p style="margin: 5px auto 5px auto; color: red; font-size: 14px; font-weight: bold">￥<%= product.price%></p>
             <div class="counts">
             	<a href="<%= reduce_carts_path(id: cart.id, goto: 'back')%>" class="btn">-</a>
-							<input type="text" class="count" value="<%= cart.total%>" />
+							<input type="text" class="count" value="<%= cart.total%>" data-product_id="<%= product.id%>" />
             	<a href="<%= add_carts_path(product_id: product.id, count: 1, goto: 'back')%>" class="btn">+</a>
             	<a href="<%= remove_carts_path(id: cart.id, goto: 'back')%>" class="btn">X</a>
             </div>
@@ -133,6 +133,15 @@
 <%end%>  
 
 <script type="text/javascript">
+//禁止回车事件响应
+ $(this).keydown( function(e) {
+  var key = window.event?e.keyCode:e.which;
+  //alert(key.toString());
+  if(key.toString() == "13"){
+    return false;
+  }
+});
+
 $("#coupon_id").change(function(){
   $.ajax({
     url: '<%= calculate_coupon_orders_path%>',
@@ -143,4 +152,16 @@ $("#coupon_id").change(function(){
     }
   });
 });
+
+$(".counts>.count").change(function(){
+  location.href = "/carts/change?count="+$(this).val()+"&goto=back&product_id="+$(this).attr("data-product_id");
+});
+
+$(".counts>.count").bind('keypress',function(event){
+  if(event.keyCode == "13")    
+  {
+     location.href = "/carts/change?count="+$(this).val()+"&goto=back&product_id="+$(this).attr("data-product_id");
+  }
+});
+
 </script>

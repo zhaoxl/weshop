@@ -90,6 +90,7 @@ Rails.application.routes.draw do
       get :add
       get :remove
       get :reduce
+      get :change
     end
   end
   
