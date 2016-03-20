@@ -24,3 +24,15 @@ input[type="text"]{border: none; border-left: solid 2px #E1E1E1;}
 
   <input type="submit" class="float_bottom_btn" value="确认充值" />
 <%end%>
+
+
+<script type="text/javascript">
+//禁止回车事件响应
+ $(this).keydown( function(e) {
+  var key = window.event?e.keyCode:e.which;
+  //alert(key.toString());
+  if(key.toString() == "13"){
+    return false;
+  }
+});
+</script>
