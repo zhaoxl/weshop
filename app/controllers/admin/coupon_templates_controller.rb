@@ -11,6 +11,7 @@ class Admin::CouponTemplatesController < Admin::BaseController
   
   def create
     coupon_template = CouponTemplate.new(post_params)
+    coupon_template.product_categories = ProductCategory.where(id: params[:categories])
     coupon_template.save!
     
     redirect_to admin_coupon_templates_path(coupon_template), notice: '添加成功'
@@ -21,7 +22,9 @@ class Admin::CouponTemplatesController < Admin::BaseController
   end
   
   def update
-    @data.update_attributes(post_params)
+    @data.assign_attributes(post_params)
+    @data.product_categories = ProductCategory.where(id: params[:categories])
+    @data.save
     
     redirect_to admin_coupon_templates_path(@data), notice: '编辑成功'
   end

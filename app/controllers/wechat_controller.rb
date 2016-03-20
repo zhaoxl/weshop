@@ -26,6 +26,15 @@ class WechatController < ApplicationController
       
       user = User.new(open_id: open_id, token: token, name: nickname, headimgurl: headimgurl)
       user.save!
+      
+      #新用户赠送优惠券
+      if setting = Setting.where(key: :new_user_handsel_coupon).first
+        if setting.value.to_i > 0
+          if coupon_template = CouponTemplate.where(setting.value).first
+            Coupon.create(user: user, coupon_template: coupon_template, name: coupon_template.name, price: coupon_template.price)
+          end
+        end
+      end
     end
     session[:user_id] = user.id
     

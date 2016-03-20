@@ -48,6 +48,12 @@ Rails.application.routes.draw do
     resources :coupon_templates
     resources :coupons
     resources :single_articles
+    resources :settings do
+      collection do
+        get :new_user_handsel_coupon
+        post :new_user_handsel_coupon_save
+      end
+    end
     
   end
   

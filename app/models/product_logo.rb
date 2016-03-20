@@ -5,7 +5,7 @@ class ProductLogo < ActiveRecord::Base
   
   mount_uploader :logo, ProductLogoUploader
   
-  before_destroy  :check_default_logo
+  before_优惠  :check_default_logo
   
   def check_default_logo
     return false if self.id == 4

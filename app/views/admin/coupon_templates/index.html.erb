@@ -11,6 +11,7 @@
 								<th><label><input type="checkbox" />全选</label></th>
 								<th>名称</th>
 								<th>金额</th>
+								<th>可用分类</th>
 								<th>操作</th>
 							</tr>
 							<%@coupon_templates.each do |coupon_template|%>
@@ -26,6 +27,7 @@
 								</td>
 								<td><%= coupon_template.name%></td>
 								<td><%= coupon_template.price%></td>
+								<td><%= coupon_template.product_categories.map(&:name)*"、"%></td>
 								<td>
 									<a href="<%= edit_admin_coupon_template_path(coupon_template)%>">编辑</a>
 									<%= link_to '删除', admin_coupon_template_path(coupon_template), :confirm => '确定要删除吗?', :method => :delete %></td>
