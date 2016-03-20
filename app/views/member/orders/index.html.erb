@@ -82,6 +82,12 @@
 	</a>
 <%end%>
 
+<%if flash[:notice].present?%>
+<script type="text/javascript">
+  alert('<%= flash[:notice]%>');
+</script>
+<%end%>
+
 <script type="text/javascript">
 $(function(){
 	$("#float_nav .handle").click(function(){

@@ -14,6 +14,8 @@ class Member::OrdersController < Member::BaseController
       order.send("set_state_#{params[:state]}!")
     rescue AASM::InvalidTransition
     end
+    flash[:notice] = "操作成功"
+    
     redirect_to :back
   end
   
