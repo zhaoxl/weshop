@@ -27,7 +27,7 @@ cn:
     product:
       states:
         create: 上架
-        pluse: 下架
+        pause: 下架
     order:
       states:
         cancel: 已取消

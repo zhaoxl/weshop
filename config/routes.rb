@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       member do
         get :move_up
         get :move_down
+        get :set_state
       end
       
       resources :product_logos do
@@ -135,6 +136,7 @@ Rails.application.routes.draw do
         get :create
       end
     end
+    resources :coupons
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

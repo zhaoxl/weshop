@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320022556) do
+ActiveRecord::Schema.define(version: 20160320135825) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 20160320022556) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state"
+    t.string   "desc"
   end
 
   create_table "distribution_incomes", force: true do |t|
@@ -220,22 +221,23 @@ ActiveRecord::Schema.define(version: 20160320022556) do
   end
 
   create_table "products", force: true do |t|
-    t.integer "product_category_id"
-    t.string  "name"
-    t.string  "description"
-    t.integer "inventory"
-    t.decimal "old_price",            precision: 10, scale: 2
-    t.decimal "price",                precision: 10, scale: 2
-    t.text    "content"
-    t.string  "state"
-    t.integer "position",                                      default: 0
-    t.boolean "recommend",                                     default: false
-    t.boolean "sticky",                                        default: false
-    t.integer "order_products_count",                          default: 0
-    t.integer "coupon_template_id"
-    t.string  "front_logo"
-    t.integer "handsel_score"
-    t.integer "agent_id"
+    t.integer  "product_category_id"
+    t.string   "name"
+    t.string   "description"
+    t.integer  "inventory"
+    t.decimal  "old_price",            precision: 10, scale: 2
+    t.decimal  "price",                precision: 10, scale: 2
+    t.text     "content"
+    t.string   "state"
+    t.integer  "position",                                      default: 0
+    t.boolean  "recommend",                                     default: false
+    t.boolean  "sticky",                                        default: false
+    t.integer  "order_products_count",                          default: 0
+    t.integer  "coupon_template_id"
+    t.string   "front_logo"
+    t.integer  "handsel_score"
+    t.integer  "agent_id"
+    t.datetime "deleted_at"
   end
 
   create_table "recharge_card_categories", force: true do |t|

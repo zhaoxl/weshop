@@ -177,7 +177,7 @@ body{}
   </div>
   <div class="body">
 		<div class="recommend_products">
-			<%Product.where(agent_id: nil, recommend: true).limit(4).each do |product|%>
+			<%Product.where(state: :create, agent_id: nil, recommend: true).limit(4).each do |product|%>
 	    <div class="product_box">
         <a href="/products/<%= product.id%>">
           <img src="<%= product.logo.url%>" onload="resize(this)" width="100%" />
@@ -215,7 +215,7 @@ body{}
     </table>
   </div>
   <div class="body">
-		<%Product.where(agent_id: nil, recommend: false).each do |product|%>
+		<%Product.where(state: :create, agent_id: nil, recommend: false).each do |product|%>
     <div class="product_box">
       <a href="/products/<%= product.id%>">
         <img src="<%= product.logo.url%>" onload="resize(this)" width="100%" />

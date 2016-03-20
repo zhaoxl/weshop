@@ -26,6 +26,8 @@
   position: relative;
 }
 .filter div[class^='col-xs-']{padding-left: 0px;}
+.state_create{color: green;}
+.state_pause{color: red;}
 </style>
 
 	<div class="row">
@@ -67,7 +69,7 @@
 											<img src="<%= logo.logo.url%>" width="50" height="50">
 										<%end%>
 									</td>
-									<td><%= t "activerecord.product.states.#{product.state}"%></td>
+									<td class="state_<%= product.state%>"><%= t "activerecord.product.states.#{product.state}"%></td>
 									<td><%= product.old_price%> / <span style="color: red; font-weight: bold"><%= product.price%></span></td>
 									<td><%= product.inventory%></td>
 									<td><%= product.order_products_count%></td>
@@ -78,6 +80,11 @@
 										<a href="<%= edit_admin_product_path(product)%>">编辑</a>
 										<a href="<%= move_up_admin_product_path(product)%>">上移</a>
 										<a href="<%= move_down_admin_product_path(product)%>">下移</a>
+                    <%if product.create?%>
+  										<a href="<%= set_state_admin_product_path(product, state: 'pause')%>">下架</a>
+                    <%else%>
+  										<a href="<%= set_state_admin_product_path(product, state: 'create')%>">上架</a>
+                    <%end%>
 										<%if product.can_delete?%>
 											<%= link_to '删除', admin_product_path(product), :confirm => '确定要删除商品吗?', :method => :delete %></td>
 										<%end%>

@@ -44,6 +44,18 @@ class Admin::ProductsController < Admin::BaseController
     redirect_to :back
   end
   
+  def set_state
+    begin
+      @data.send("set_state_#{params[:state]}!")
+      #如果是下架，在所有人购物车中删除这个产品
+      Cart.where(product: @data).destroy_all if @data.state.pause?
+      flash[:success] = "设置成功"
+    rescue
+      flash[:notice] = "设置失败"
+    end
+    redirect_to :back
+  end
+  
   private
   def find_data
     @data = Product.find(params[:id])

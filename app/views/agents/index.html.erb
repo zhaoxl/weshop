@@ -136,7 +136,7 @@ function resize(img)
   </div>
   <div class="body">
 		<div class="recommend_products">
-			<%Product.where(agent_id: nil, recommend: true).limit(4).each do |product|%>
+			<%Product.where(state: :create, agent_id: nil, recommend: true).limit(4).each do |product|%>
 	    <div class="product_box">
         <a href="/products/<%= product.id%>">
           <p class="product_title"><%= product.name%></p>
@@ -157,7 +157,7 @@ function resize(img)
     -----  猜你喜欢  -----
   </div>
   <div class="body">
-		<%Product.where(agent_id: 1, recommend: false).each do |product|%>
+		<%Product.where(state: :create, agent_id: 1, recommend: false).each do |product|%>
     <div class="product_box">
       <a href="/products/<%= product.id%>">
 	      <img src="<%= product.logo.url%>" onload="resize(this)" />

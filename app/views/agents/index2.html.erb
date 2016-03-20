@@ -124,7 +124,7 @@ function resize(img)
 <div class="swiper-container" style="width:100%;">
 	<div class="swiper-wrapper" style='height:170px;'>
       <div class="swiper-slide"><a href="http://jt.fannybay.net/products/4"><img style="width:100%;" src='/uploads/banner/image/1/banner1.jpg' alt="banner11111111"></a></div>
-		  <div class="swiper-slide"><a href="http://jt.fannybay.net/products/20"><img style="width:100%;" src='/images/banner6.3.1.jpg'></a></div>
+		  <div class="swiper-slide"><a href="http://jt.fannybay.net/products/21"><img style="width:100%;" src='/images/banner6.3.1.jpg'></a></div>
   </div>
 	<div class="swiper-pagination"></div>
 </div>
@@ -135,7 +135,7 @@ function resize(img)
   </div>
   <div class="body">
 		<div class="recommend_products">
-			<%Product.where(agent_id: nil, recommend: true).limit(4).each do |product|%>
+			<%Product.where(state: :create, agent_id: nil, recommend: true).limit(4).each do |product|%>
 	    <div class="product_box">
         <a href="/products/<%= product.id%>">
           <p class="product_title"><%= product.name%></p>
@@ -156,7 +156,7 @@ function resize(img)
     -----  猜你喜欢  -----
   </div>
   <div class="body">
-		<%Product.where(agent_id: 2, recommend: false).each do |product|%>
+		<%Product.where(state: :create, agent_id: 2, recommend: false).each do |product|%>
     <div class="product_box">
       <a href="/products/<%= product.id%>">
 	      <img src="<%= product.logo.url%>" onload="resize(this)" />
