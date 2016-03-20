@@ -2,7 +2,7 @@ class Admin::OrdersController < Admin::BaseController
   before_filter :find_data, except: [:index, :new, :create]
     
   def index
-    @orders = Order.where("")
+    @orders = Order.where("").order("created_at DESC")
     @orders = @orders.where(state: params[:state]) if params[:state].present?
     if params[:user_id].present?
       @orders = @orders.where(user_id: params[:user_id])

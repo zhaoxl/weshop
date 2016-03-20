@@ -43,8 +43,8 @@ class User < ActiveRecord::Base
   
   #获得分销分红
   def dividend(order)
-    wallet ||= self.build_wallet
-    amount = order.total_fee*Distribution::DIVIDEND_RATIO[self.distribution.level].to_f
+    wallet ||= self.build_wallet(balance: 0, score: 0)
+    amount = order.total_fee*0.15
     wallet.balance += amount
     wallet.save
     
