@@ -19,7 +19,7 @@ class Coupon < ActiveRecord::Base
     return [] if coupons.blank?
     
     product_categories = Product.where(id: product_ids)
-    template_categories = CouponTemplateProductCategory.where(product_category: product_categories)
+    template_categories = CouponTemplateProductCategory.where(product_category: product_categories.map(&:product_category_id))
     templates = CouponTemplate.where(id: template_categories.map(&:coupon_template_id))
     coupons = coupons.where(coupon_template: templates)
   end
