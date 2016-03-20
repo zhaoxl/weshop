@@ -133,7 +133,7 @@
 <%end%>  
 
 <script type="text/javascript">
-$("#coupon_id").click(function(){
+$("#coupon_id").change(function(){
   $.ajax({
     url: '<%= calculate_coupon_orders_path%>',
     data: {coupon_id: $(this).val()},
