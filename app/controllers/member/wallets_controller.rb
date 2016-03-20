@@ -8,7 +8,7 @@ class Member::WalletsController < Member::BaseController
   
   def create
     scode = params[:scode]
-    if card = RechargeCard.where(scode: scode).first
+    if card = RechargeCard.where(scode: scode, state: :create).first
       current_user.recharge(card)
       redirect_to "/member" and return
     else
