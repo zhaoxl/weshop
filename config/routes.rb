@@ -55,6 +55,7 @@ Rails.application.routes.draw do
         post :new_user_handsel_coupon_save
       end
     end
+    resources :recharge_cards
     
   end
   

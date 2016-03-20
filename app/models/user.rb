@@ -21,12 +21,19 @@ class User < ActiveRecord::Base
     self.wallet.try(:score).to_i
   end
   
+  #充值卡充值
   def recharge(card)
-    unless w = self.wallet
-      w = self.build_wallet(balance: 0, score: 0)
+    ActiveRecord::Base.transaction do
+      #修改充值卡状态
+      card.user = self
+      card.set_state_used!
+    
+      unless w = self.wallet
+        w = self.build_wallet(balance: 0, score: 0)
+      end
+      w.balance += card.price
+      w.save
     end
-    w.balance += card.price
-    w.save
   end
   
   #获得分销分红

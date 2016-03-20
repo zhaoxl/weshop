@@ -39,6 +39,10 @@ cn:
       states:
         create: 未使用
         used: 已使用
+    recharge_card:
+      states:
+        create: 未使用
+        used: 已使用
     distribution:
       states:
         cancel: 已取消

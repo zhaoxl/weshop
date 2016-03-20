@@ -210,6 +210,17 @@ $(function() {
 //		if(height<=0){height=200;}
 //		$('.swiper-wrapper').css('height', height);
 //	})
+
+//解决浮动问题
+var maxHeight = 0,curH = 0;
+ $(".body .product_box").each(function(){
+	curH = $(this).height();
+	if(curH > maxHeight){
+		maxHeight = curH;
+	}
+ });
+$(".body .product_box").css("height",maxHeight+"px");
+  
 });
 
 </script>
