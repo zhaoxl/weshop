@@ -4,7 +4,7 @@ class Product < ActiveRecord::Base
   
   belongs_to  :product_category
   belongs_to  :coupon_template
-  has_many  :product_logos, dependent: :优惠
+  has_many  :product_logos, dependent: :destroy
   has_many  :order_products
   has_many  :orders
   
