@@ -22,7 +22,7 @@ class Admin::RechargeCardsController < Admin::BaseController
 
   
   def destroy
-    @data.destroy!
+    @data.destroy! if @data.create?
     redirect_to :back, notice: '删除成功'
   end
   

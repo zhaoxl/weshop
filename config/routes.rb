@@ -53,6 +53,8 @@ Rails.application.routes.draw do
       collection do
         get :new_user_handsel_coupon
         post :new_user_handsel_coupon_save
+        get :recharge_card_recharge_handsel
+        post :recharge_card_recharge_handsel_save
       end
     end
     resources :recharge_cards

@@ -27,11 +27,16 @@ class User < ActiveRecord::Base
       #修改充值卡状态
       card.user = self
       card.set_state_used!
+      #根据设置调整赠送金额
+      handsel = 0
+      if setting = Setting.where(key: :recharge_card_recharge_handsel).first
+        handsel = card.price * setting.value.to_f
+      end
     
       unless w = self.wallet
         w = self.build_wallet(balance: 0, score: 0)
       end
-      w.balance += card.price
+      w.balance += card.price + handsel
       w.save
     end
   end
