@@ -154,14 +154,12 @@ $("#coupon_id").change(function(){
 });
 
 $(".counts>.count").change(function(){
+  if(isNaN(parseInt($(this).val())) || parseInt($(this).val()) < 1)
+  {
+    $(this).val(1);
+  }
   location.href = "/carts/change?count="+$(this).val()+"&goto=back&product_id="+$(this).attr("data-product_id");
 });
 
-$(".counts>.count").bind('keypress',function(event){
-  if(event.keyCode == "13")    
-  {
-     location.href = "/carts/change?count="+$(this).val()+"&goto=back&product_id="+$(this).attr("data-product_id");
-  }
-});
 
 </script>

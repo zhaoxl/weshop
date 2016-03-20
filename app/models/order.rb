@@ -54,7 +54,7 @@ class Order < ActiveRecord::Base
         op.logo = cart.product.logo.sanitized_file
         op.save!
         #删除购物车中商品
-        cart.优惠!
+        cart.destroy!
       end
     end
     return order
