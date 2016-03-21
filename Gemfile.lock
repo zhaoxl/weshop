@@ -304,6 +304,7 @@ DEPENDENCIES
   capistrano-rvm
   carrierwave
   chunky_png
+  coderay
   devise (~> 3.5.1)
   exception_notification (= 4.1.4)
   faraday
