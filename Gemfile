@@ -64,7 +64,7 @@ gem 'chunky_png'
 #图片处理
 gem 'rmagick'
 
-group :development do
+# group :development do
   gem 'pry_debug'
   gem 'pry-nav'
   #页面debug工具
@@ -75,7 +75,7 @@ group :development do
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
-end
+# end
 
 
 

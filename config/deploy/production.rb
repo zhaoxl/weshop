@@ -1,3 +1,20 @@
+# -*- encoding : utf-8 -*-
+set :stage, :production
+set :branch, 'master'
+set :rvm_type, :user
+set :rvm_ruby_version, '2.1.0'
+set :deploy_user, 'root'
+set :rails_env, "production"
+
+server 'jt.fannybay.net', user: 'root', roles: %w{web app db}, primary: true
+
+
+set :deploy_to, "/var/www/weshop"
+
+
+
+
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
