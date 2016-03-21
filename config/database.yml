@@ -54,8 +54,6 @@ test:
 production:
   <<: *default
   database: weshop_development
-  username: root
-  password: root
 
 
 

@@ -12,24 +12,10 @@ default: &default
   jsapi_ticket: "/var/tmp/wechat/[user_name]/jsapi_ticket"
 
 production:
-  corpid:     <%= ENV['WECHAT_CORPID'] %>
-  corpsecret: <%= ENV['WECHAT_CORPSECRET'] %>
-  agentid:    <%= ENV['WECHAT_AGENTID'] %>
-# Or if using public account, only need above two line
-#  appid:      
-#  secret:     
-  token:      <%= ENV['WECHAT_TOKEN'] %>
-  timeout:    30,
-  skip_verify_ssl: true
-  access_token:  <%= ENV['WECHAT_ACCESS_TOKEN'] %>
-  encrypt_mode: false # if true must fill encoding_aes_key
-  encoding_aes_key:  <%= ENV['WECHAT_ENCODING_AES_KEY'] %>
-  jsapi_ticket: 
-
+  <<: *default
 development:
   <<: *default
   trusted_domain_fullname: "http://your_dev.proxy.qqbrowser.cc"
-
 test:
   <<: *default
   
