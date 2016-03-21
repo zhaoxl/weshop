@@ -2,7 +2,7 @@
 set :stage, :production
 set :branch, 'master'
 set :rvm_type, :user
-set :rvm_ruby_version, '2.1.0'
+set :rvm_ruby_version, '2.0.0'
 set :deploy_user, 'root'
 set :rails_env, "production"
 
