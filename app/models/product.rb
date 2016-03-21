@@ -17,6 +17,10 @@ class Product < ActiveRecord::Base
     state :create, :initial => true
     state :pause
     
+    event :set_state_create do
+      transitions :from => :pause, :to => :create
+    end
+    
     event :set_state_pause do
       transitions :from => :create, :to => :pause
     end
