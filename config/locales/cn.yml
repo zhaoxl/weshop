@@ -50,6 +50,10 @@ cn:
         reject: 审核失败
         pass: 正常
         invalid: 不可用
+    withdraw:
+      states:
+        create: 待处理
+        finish: 已处理
       
       
       

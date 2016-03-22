@@ -58,7 +58,7 @@ Rails.application.routes.draw do
       end
     end
     resources :recharge_cards
-    
+    resources :withdraws
   end
   
   root 'index#index'
