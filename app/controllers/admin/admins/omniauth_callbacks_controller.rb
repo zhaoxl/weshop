@@ -1,4 +1,5 @@
 class Admin::Admins::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  skip_before_action :current_user
   layout false
   # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]

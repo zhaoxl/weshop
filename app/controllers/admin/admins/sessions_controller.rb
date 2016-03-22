@@ -1,4 +1,5 @@
 class Admin::Admins::SessionsController < Devise::SessionsController
+  skip_before_action :current_user
   layout false
 # before_filter :configure_sign_in_params, only: [:create]
 

@@ -1,4 +1,5 @@
 class Admin::Admins::PasswordsController < Devise::PasswordsController
+  skip_before_action :current_user
   layout false
   # GET /resource/password/new
   # def new

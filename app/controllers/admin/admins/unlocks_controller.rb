@@ -1,4 +1,5 @@
 class Admin::Admins::UnlocksController < Devise::UnlocksController
+  skip_before_action :current_user
   layout false
   # GET /resource/unlock/new
   # def new

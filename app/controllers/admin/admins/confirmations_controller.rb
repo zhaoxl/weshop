@@ -1,4 +1,5 @@
 class Admin::Admins::ConfirmationsController < Devise::ConfirmationsController
+  skip_before_action :current_user
   layout false
   # GET /resource/confirmation/new
   # def new

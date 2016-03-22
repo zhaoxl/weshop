@@ -1,4 +1,5 @@
-class WechatController < ActionController::Base
+class WechatController < BaseController
+  before_action :current_user, only: [:pay]
   skip_before_filter :verify_authenticity_token, :only => [:pay_notify]
   
   layout false
@@ -58,7 +59,7 @@ class WechatController < ActionController::Base
       notify_url:       'http://jt.fannybay.net/wechat/pay_notify',
       trade_type:       'JSAPI',
       nonce_str:        SecureRandom.uuid.tr('-', ''),
-      openid:          current_user.open_id
+      openid:           current_user.open_id
     }
     Rails.logger.debug("unifiedorder_params: #{unifiedorder}")
     res = WxPay::Service.invoke_unifiedorder(unifiedorder)
