@@ -5,7 +5,11 @@ class Member::OrdersController < Member::BaseController
   end
   
   def show
-    @order = current_user.orders.find(params[:id])
+    begin
+      @order = current_user.orders.find(params[:id])
+    rescue
+      redirect_to member_orders_path and return
+    end
   end
   
   def set_state
