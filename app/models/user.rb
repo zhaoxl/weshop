@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   end
   
   def score=(val)
-    self_wallet = self.wallet||self.build_wallet
+    self_wallet = self.wallet||self.build_wallet(balance: 0, score: 0)
     self_wallet.score = val.to_f
     self_wallet.save
   end
@@ -55,10 +55,10 @@ class User < ActiveRecord::Base
   
   #获得分销分红
   def dividend(order)
-    wallet ||= self.build_wallet(balance: 0, score: 0)
+    self_wallet = self.wallet||self.build_wallet(balance: 0, score: 0)
     amount = order.total_fee*0.15
-    wallet.balance += amount
-    wallet.save
+    self_wallet.balance += amount
+    self_wallet.save
     
     DividendLog.create(user: order.user, recommend_user: self, order: order, amount: amount)
   end
