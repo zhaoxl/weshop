@@ -61,7 +61,7 @@
 		wx.onMenuShareTimeline({
 		    title: '芬妮湾', // 分享标题
 		    link: '<%= "#{Settings.base}/wechat/login?recommend=#{current_user.id}"%>', // 分享链接
-		    imgUrl: '<%= current_user.qrcode.url%>', // 分享图标
+		    imgUrl: '<%= "#{Settings.base}/#{current_user.qrcode.url}"%>', // 分享图标
 		    success: function () { 
 		        // 用户确认分享后执行的回调函数
 		    },
