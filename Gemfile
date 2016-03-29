@@ -66,6 +66,7 @@ gem 'rmagick'
 #语法高亮
 gem 'coderay'
 
+
 group :development do
   gem 'pry_debug'
   gem 'pry-nav'

@@ -17,11 +17,11 @@ class Order < ActiveRecord::Base
       transitions :from => :create, :to => :cancel
     end
     
-    event :set_state_payment, after: :gen_coupon do
+    event :set_state_payment, after: :payment_callback do
       transitions :from => :create, :to => :payment
     end
     
-    event :set_state_sent do
+    event :set_state_sent, after: :sent_callback do
       transitions :from => :payment, :to => :sent
     end
     
@@ -60,7 +60,10 @@ class Order < ActiveRecord::Base
     return order
   end
   
+  #确认收货callback
   def receive_callback
+    #设置收货时间
+    self.update_attribute(:receive_at, Time.now)
     #自动升级分销
     unless self.user.distribution
       self.user.build_distribution(state: :pass, level: 1).save
@@ -81,8 +84,9 @@ class Order < ActiveRecord::Base
     wallet.save
   end
   
-  #生成优惠券
-  def gen_coupon
+  #支付成功callback
+  def payment_callback
+    #生成优惠券
     self.order_products.each do |op|
       begin
         product = op.product
@@ -92,6 +96,14 @@ class Order < ActiveRecord::Base
         next
       end
     end
+    #设置支付时间
+    self.update_attribute(:payment_at, Time.now)
+  end
+  
+  #发货callback
+  def sent_callback
+    #设置发货时间
+    self.update_attribute(:sent_at, Time.now)
   end
   
   def to_s

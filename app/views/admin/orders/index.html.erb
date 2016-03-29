@@ -45,6 +45,9 @@
 									<th>金额</th>
 									<th>运费</th>
 									<th>状态</th>
+									<th>下单时间</th>
+									<th>支付时间</th>
+									<th>收货时间</th>
 									<th>操作</th>
 								</tr>
 								<%@orders.each do |order|%>
@@ -78,6 +81,9 @@
                   <td><%= order.total_fee%></td>
                   <td><%= order.fare.to_f%></td>
 									<td><%= t "activerecord.order.states.#{order.state}"%></td>
+                  <td><%= order.created_at.strftime("%Y-%m-%d %H:%M:%S")%></td>
+                  <td><%= order.payment_at ? order.payment_at.strftime("%Y-%m-%d %H:%M:%S") : ''%></td>
+                  <td><%= order.receive_at ? order.receive_at.strftime("%Y-%m-%d %H:%M:%S") : ''%></td>
 									<td>
                     <%if order.state == "create"%>
 										<a href="<%= edit_admin_order_path(order)%>">修改</a>
