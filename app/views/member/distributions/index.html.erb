@@ -41,7 +41,7 @@ body{background: #E6E6E6;}
   <table class="attrs" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td>
-        购买人：<%= dl.user.name%>
+        购买人：<%= dl.user.try(:name)%>
       </td>
       <td>
         收益：<span class="price">￥<%= dl.amount%></span>
