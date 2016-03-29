@@ -17,8 +17,20 @@ class User < ActiveRecord::Base
     self.wallet.try(:balance).to_f
   end
   
+  def balance=(val)
+    self_wallet = self.wallet||self.build_wallet
+    self_wallet.balance = val.to_f
+    self_wallet.save
+  end
+  
   def score
     self.wallet.try(:score).to_i
+  end
+  
+  def score=(val)
+    self_wallet = self.wallet||self.build_wallet
+    self_wallet.score = val.to_f
+    self_wallet.save
   end
   
   #充值卡充值
