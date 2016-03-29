@@ -1,4 +1,4 @@
-<%= image_tag current_user.qrcode.url, style: "width: 100%", alt: "正在获取你的专属二维码海报，请等待..."%>
+<%= image_tag current_user.qrcode.url, style: "width: 100%", alt: "正在获取你的专属二维码海报，请等待...", title: '识别图片中的二维码'%>
 
 <% sign_package = $weixin_client.get_jssign_package(request.url) %>
 <!-- 此处不是错误，"//" 为自适应HTTP/HTTPS头，无需添加HTTP/HTTPS。 -->
@@ -60,7 +60,7 @@
   wx.ready(function () {
 		wx.onMenuShareTimeline({
 		    title: '芬妮湾', // 分享标题
-		    link: '<%= "#{Settings.base}/wechat/login?recommend=#{current_user.id}"%>', // 分享链接
+		    link: '<%= "#{Settings.base}#{current_user.qrcode.url}"%>', // 分享链接
 		    imgUrl: '<%= "#{Settings.base}#{current_user.qrcode.url}"%>', // 分享图标
 		    success: function () { 
 		        // 用户确认分享后执行的回调函数
@@ -73,7 +73,7 @@
 		wx.onMenuShareAppMessage({
 		    title: '芬妮湾', // 分享标题
 		    desc: '芬妮湾', // 分享描述
-		    link: '<%= "#{Settings.base}/wechat/login?recommend=#{current_user.id}"%>', // 分享链接
+		    link: '<%= "#{Settings.base}#{current_user.qrcode.url}"%>', // 分享链接
 		    imgUrl: '<%= "#{Settings.base}#{current_user.qrcode.url}"%>', // 分享图标
 		    type: '', // 分享类型,music、video或link，不填默认为link
 		    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
@@ -88,7 +88,7 @@
 		wx.onMenuShareQQ({
 		    title: '芬妮湾', // 分享标题
 		    desc: '芬妮湾', // 分享描述
-		    link: '<%= "#{Settings.base}/wechat/login?recommend=#{current_user.id}"%>', // 分享链接
+		    link: '<%= "#{Settings.base}#{current_user.qrcode.url}"%>', // 分享链接
 		    imgUrl: '<%= "#{Settings.base}#{current_user.qrcode.url}"%>', // 分享图标
 		    success: function () { 
 		       // 用户确认分享后执行的回调函数
