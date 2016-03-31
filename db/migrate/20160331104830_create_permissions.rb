@@ -5,6 +5,7 @@ class CreatePermissions < ActiveRecord::Migration
       t.string  :controller
       t.string  :action
       t.text    :description
+      t.boolean :hide, default: false
       
       t.integer :parent_id, :null => true, :index => true
       t.integer :lft, :null => false, :index => true

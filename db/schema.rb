@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160329064041) do
+ActiveRecord::Schema.define(version: 20160331153121) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20160329064041) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.integer  "role_id"
   end
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
@@ -206,6 +207,20 @@ ActiveRecord::Schema.define(version: 20160329064041) do
     t.string   "goto",       limit: 500
   end
 
+  create_table "permissions", force: true do |t|
+    t.string   "name"
+    t.string   "controller"
+    t.string   "action"
+    t.text     "description"
+    t.integer  "parent_id"
+    t.integer  "lft",                        null: false
+    t.integer  "rgt",                        null: false
+    t.integer  "depth",          default: 0, null: false
+    t.integer  "children_count", default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "product_categories", force: true do |t|
     t.string  "name"
     t.string  "logo"
@@ -266,6 +281,16 @@ ActiveRecord::Schema.define(version: 20160329064041) do
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "roles", force: true do |t|
+    t.string "name"
+    t.string "state"
+  end
+
+  create_table "roles_permissions", force: true do |t|
+    t.integer "role_id"
+    t.integer "permission_id"
   end
 
   create_table "settings", force: true do |t|

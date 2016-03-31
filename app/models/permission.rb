@@ -1,9 +1,23 @@
 class Permission < ActiveRecord::Base
   acts_as_nested_set
+  default_scope { where(hide: false) }
   
-	has_and_belongs_to_many :roles, :join_table => :shop_roles_permissions
+	has_and_belongs_to_many :roles, :join_table => :roles_permissions
   
-  ALLOW_CONTROLLERS = {'member_admins' => '员工', 'category_product_items' => '分类商品', 'member_categories' => '分类', 'members' => '登录注册', 'orders' => '订单', 'products' => '商品', "roles"=>"角色管理"}
+  ALLOW_CONTROLLERS = {
+    'banners' => 'Banner', 
+    'coupon_templates' => '代金卷模板', 
+    'coupons' => '代金卷', 
+    'permissions' => '功能管理', 
+    'roles' => '角色', 
+    'orders' => '订单',
+    'product_categories' => '商品分类',
+    'products_logos' => '商品图标',
+    'products' => '商品',
+    'settings' => '设置',
+    'users' => '用户',
+    'withdraws' => '提现'
+  }
   
   REJECT_ACTIONS = []
   
@@ -11,7 +25,7 @@ class Permission < ActiveRecord::Base
   scope :get_names, -> { select(:name).group(:name).map(&:name) }
   
   def self.refresh
-    Dir.glob(Permission::ALLOW_CONTROLLERS.keys.map{|controller| "#{Rails.root}/app/controllers/member/#{controller}_controller.rb"}).each do |controller_file|
+    Dir.glob(Permission::ALLOW_CONTROLLERS.keys.map{|controller| "#{Rails.root}/app/controllers/admin/#{controller}_controller.rb"}).each do |controller_file|
       File.open(controller_file) do |file|
         controller_name = controller_file.match(/([a-z_]+)_controller.rb/)[1]
         unless parent_controller = Permission.where(controller: controller_name, action: nil).first

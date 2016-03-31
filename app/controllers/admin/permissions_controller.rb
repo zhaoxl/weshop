@@ -10,6 +10,12 @@ class Admin::PermissionsController < Admin::BaseController
     redirect_to :back
   end
   
+  def destroy
+    Permission.find(params[:id]).update_attribute(:hide, true)
+    flash[:notice] = "隐藏成功!"
+    redirect_to :back
+  end
+  
   def refresh
     Permission.refresh
     flash[:success] = "刷新成功!"

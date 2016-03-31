@@ -59,6 +59,12 @@ Rails.application.routes.draw do
     end
     resources :recharge_cards
     resources :withdraws
+    resources :permissions do
+      collection do
+        post :refresh
+      end
+    end
+    resources :roles
   end
   
   root 'index#index'
