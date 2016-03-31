@@ -1,0 +1,21 @@
+<h4>功能管理</h4>
+
+<table class="j_table">
+  <tr>
+    <th>名称</th><th>controller</th><th>action</th>
+  </tr>
+<% @permissions.each do |permission| %>
+  <tr>
+		<td>
+			<%= form_for [:admin, permission] do |f|%>
+				<%= f.text_field :name %>
+				<input type="submit" value="保存" />
+			<%end%>
+		</td>
+		<td><%= permission.depth == 0 ? permission.controller : '' %></td>
+		<td><%= permission.action %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to '刷新功能', refresh_admin_permissions_path, method: :post %>

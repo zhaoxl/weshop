@@ -1,0 +1,21 @@
+<h4>角色管理</h4>
+
+<table class="j_table">
+  <tr>
+    <th>名称</th><th>功能</th><th>操作</th>
+  </tr>
+<% @roles.each do |role| %>
+  <tr>
+		<td><%= role.name %></td>
+		<td>
+			<%role.permissions.each do |per|%>
+				<p><%= per.name%></p>
+			<%end%>
+		</td>
+		<td>
+			<%= link_to "编辑", edit_role_path(role)%>
+		</td>
+  </tr>
+<% end %>
+</table>
+
