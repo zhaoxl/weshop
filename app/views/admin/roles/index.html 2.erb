@@ -1,0 +1,44 @@
+<% @page_title = "角色管理" %>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box">
+      <div class="box-header">
+        <h3 class="box-title">角色列表</h3>
+        <div class="box-tools">
+          <div class="input-group">
+            <input type="text" name="table_search" class="form-control input-sm pull-right" style="width: 150px;" placeholder="查找">
+            <div class="input-group-btn">
+              <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <div class="box-body table-responsive no-padding">
+        <table class="table table-hover">
+          <tbody>
+            <tr>
+              <th>编号</th>
+              <th>名称</th>
+              <th>操作</th>
+            </tr>
+            <% @roles.each_with_index do | role, index | %>
+              <tr>
+                <td><%= index+1 %></td>
+                <td><%= role.name %></td>
+                <td>
+                  <% if role.name!=Role::ROLE_MANAGER %>
+                    <%= link_to "编辑", edit_member_role_path(role)%>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <%= link_to "分配权限", edit_permissions_member_role_path(role)%>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody></table>
+      </div>
+      <div class="box-footer">
+        <%= link_to '创建', new_member_role_path, class: 'btn btn-primary btn-sm margin' %>
+        </div> 
+      </div> 
+    </div>
+  </div>

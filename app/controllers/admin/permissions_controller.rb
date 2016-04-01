@@ -1,4 +1,6 @@
 class Admin::PermissionsController < Admin::BaseController
+  authorize_resource :class => false
+  
   def index
     @permissions = Permission.all
   end

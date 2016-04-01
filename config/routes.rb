@@ -64,7 +64,15 @@ Rails.application.routes.draw do
         post :refresh
       end
     end
-    resources :roles
+    resources :roles do
+      member do
+        get :update_permissions
+        post :update_permissions
+        get :edit_permissions
+        patch :update_permissions
+      end
+    end
+    resources :member_admins
   end
   
   root 'index#index'

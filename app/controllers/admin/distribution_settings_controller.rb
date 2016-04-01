@@ -1,4 +1,6 @@
 class Admin::DistributionSettingsController < Admin::BaseController
+  authorize_resource :class => false
+  
   def index
     @data = DistributionSetting.find_or_create_by({})
   end

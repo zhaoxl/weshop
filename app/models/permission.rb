@@ -21,7 +21,6 @@ class Permission < ActiveRecord::Base
   
   REJECT_ACTIONS = []
   
-  scope :enable,-> { where(disabled: false) }
   scope :get_names, -> { select(:name).group(:name).map(&:name) }
   
   def self.refresh

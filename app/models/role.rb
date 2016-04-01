@@ -1,7 +1,6 @@
 class Role < ActiveRecord::Base
 	include ::ConstantExtend
 	belongs_to  :admin
-	belongs_to :resource, :polymorphic => true
 	has_and_belongs_to_many :permissions, :join_table => :roles_permissions
   
   validates :name, length: { in: 2..8 }, uniqueness: {scope: [:resource_type, :resource_id, :name]}, presence: true

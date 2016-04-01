@@ -65,6 +65,9 @@ gem 'chunky_png'
 gem 'rmagick'
 #语法高亮
 gem 'coderay'
+#权限系统
+gem 'cancancan', '~> 1.10'
+gem "rolify"
 
 
 group :development do

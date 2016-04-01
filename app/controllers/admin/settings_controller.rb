@@ -1,4 +1,6 @@
 class Admin::SettingsController < Admin::BaseController
+  authorize_resource :class => false
+  
   def new_user_handsel_coupon
     @data = Setting.find_or_initialize_by(key: :new_user_handsel_coupon)
   end

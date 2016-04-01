@@ -1,4 +1,6 @@
 class Admin::ProductsController < Admin::BaseController
+  authorize_resource :class => false
+  
   before_filter :find_data, except: [:index, :new, :create]
     
   def index

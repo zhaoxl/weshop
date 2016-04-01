@@ -21,6 +21,9 @@ class Admin::BaseController < ActionController::Base
   def get_cookie_id
     return cookies.permanent[:cookie_id] ||= SecureRandom.uuid
   end
-  
+
+	def current_ability
+		@current_ability ||= Ability.new(current_admin)
+	end  
   
 end

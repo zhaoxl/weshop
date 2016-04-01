@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160331153121) do
+ActiveRecord::Schema.define(version: 20160401091401) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 20160331153121) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+
+  create_table "admins_roles", id: false, force: true do |t|
+    t.integer "admin_id"
+    t.integer "role_id"
+  end
+
+  add_index "admins_roles", ["admin_id", "role_id"], name: "index_admins_roles_on_admin_id_and_role_id", using: :btree
 
   create_table "agents", force: true do |t|
     t.string   "province_code"
@@ -213,12 +220,13 @@ ActiveRecord::Schema.define(version: 20160331153121) do
     t.string   "action"
     t.text     "description"
     t.integer  "parent_id"
-    t.integer  "lft",                        null: false
-    t.integer  "rgt",                        null: false
-    t.integer  "depth",          default: 0, null: false
-    t.integer  "children_count", default: 0, null: false
+    t.integer  "lft",                            null: false
+    t.integer  "rgt",                            null: false
+    t.integer  "depth",          default: 0,     null: false
+    t.integer  "children_count", default: 0,     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "hide",           default: false
   end
 
   create_table "product_categories", force: true do |t|
@@ -287,6 +295,8 @@ ActiveRecord::Schema.define(version: 20160331153121) do
     t.string "name"
     t.string "state"
   end
+
+  add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "roles_permissions", force: true do |t|
     t.integer "role_id"

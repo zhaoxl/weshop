@@ -1,4 +1,6 @@
 class Admin::ProductLogosController < Admin::BaseController
+  authorize_resource :class => false
+  
   before_action :find_product
   before_action :find_data, except: [:index, :new, :create]
   

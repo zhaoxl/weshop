@@ -1,25 +1,54 @@
-class Admin::RolesController < ShopBaseController
+class Admin::RolesController < Admin::BaseController
+  authorize_resource :class => false
+  
   def index
     @roles = Role.all
   end
   
+  def new
+    @role = Role.new
+  end
+  
+  def create
+    @role = Role.new(role_params)
+    if @role.save
+      redirect_to admin_roles_path, :notice => '操作成功!'
+    else
+      @instance = @role
+			render :new
+    end
+  end
+  
   def edit
     @role = Role.find(params[:id])
-    @role_permissions = @role.permissions.map(&:id)
   end
   
   def update
     @role = Role.find(params[:id])
-    @role.update_attribute(:name, params[:role][:name])
-
-    was_ids = @role.permissions.map(&:id)
-    per_ids = params[:per_ids].to_a.map(&:to_i)
-    @role.permissions.delete(Permission.where(id: was_ids-per_ids))
-    @role.permissions << Permission.where(id: per_ids-was_ids)
-    
-    flash[:notice] = "修改成功"
-    redirect_to :back
+		if @role.update_attributes(role_params)
+			redirect_to admin_roles_path, :notice => '操作成功!'
+		else
+			@instance = @role
+			render :edit
+		end
   end
   
+  def edit_permissions
+    @role = Role.find(params[:id])
+    @role_permissions = @role.permissions.map{|item| [item.parent_id, item.name]}
+  end
+  
+  def update_permissions
+    @role = Role.find(params[:id])
+    pers = params[:permissions].map{|item| item.split("_") }.map{|item| "(parent_id=#{item[0]} AND name='#{item[1]}')"}.join(" or ")
+    @role.permissions.delete_all
+    @role.permissions << Permission.where(pers)
+    redirect_to :back, notice: "操作成功"
+  end
+  
+  private
+  def role_params
+      params.require(:role).permit!
+  end
   
 end

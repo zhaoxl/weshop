@@ -5,11 +5,6 @@
 	<%Permission.where.not(controller: nil).roots.each do |con|%>
 		<div>
 			<h3><%= con.name %></h3>
-			<div class="actions">
-				<%con.children.each do |act|%>
-					<label><input type="checkbox" name="per_ids[]" value="<%= act.id%>" <%= @role_permissions.include?(act.id) ? 'checked' : '' %>/><%= act.name%></label>
-				<%end%>
-			</div>
 		</div>
 	<%end%>
 	<%= f.submit '保存'%>

@@ -1,4 +1,6 @@
 class Admin::DistributionsController < Admin::BaseController
+  authorize_resource :class => false
+  
   before_filter :find_data, except: [:index, :new, :create]
     
   def index
