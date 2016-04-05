@@ -64,7 +64,7 @@
               			<%= role.name %>
                   </td>
               		<td>
-										<%role.permissions.each do |per|%>
+										<%role.permissions.group(:name).each do |per|%>
 											<p><%= per.name%></p>
 										<%end%>
               		</td>

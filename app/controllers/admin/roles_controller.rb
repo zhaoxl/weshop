@@ -33,6 +33,12 @@ class Admin::RolesController < Admin::BaseController
 		end
   end
   
+  def destroy
+    @role = Role.find(params[:id])
+    @role.destroy!
+    redirect_to admin_roles_path, :notice => '操作成功!'
+  end
+  
   def edit_permissions
     @role = Role.find(params[:id])
     @role_permissions = @role.permissions.map{|item| [item.parent_id, item.name]}
