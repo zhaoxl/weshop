@@ -8,18 +8,20 @@ class Permission < ActiveRecord::Base
     'banners' => 'Banner', 
     'coupon_templates' => '代金卷模板', 
     'coupons' => '代金卷', 
-    'permissions' => '功能管理', 
-    'roles' => '角色', 
+    'distribution_settings' => '分销设置',
+    'distributions' => '分销',
     'orders' => '订单',
     'product_categories' => '商品分类',
     'products_logos' => '商品图标',
     'products' => '商品',
     'settings' => '设置',
     'users' => '用户',
-    'withdraws' => '提现'
+    'withdraws' => '提现',
+    'recharge_cards' => '充值卡',
+    'single_articles' => '单页文章'
   }
   
-  REJECT_ACTIONS = []
+  REJECT_ACTIONS = [:find_data, :post_params]
   
   scope :get_names, -> { select(:name).group(:name).map(&:name) }
   

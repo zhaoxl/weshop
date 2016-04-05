@@ -8,9 +8,15 @@ class Admin::BaseController < ActionController::Base
   
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  rescue_from CanCan::AccessDenied, :with => :access_denied_render
   
   #protected####################################################
   protected
+  
+  def access_denied_render
+    flash[:error] = "您没有操作权限"
+    redirect_to admin_index_index_path and return
+  end
 
   def configure_permitted_parameters
     # binding.pry
