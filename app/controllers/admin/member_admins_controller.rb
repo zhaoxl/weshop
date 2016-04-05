@@ -43,6 +43,12 @@ class Admin::MemberAdminsController < Admin::BaseController
     redirect_to admin_member_admins_path
   end
   
+  def destroy
+    @admin = Admin.find(params[:id])
+    @admin.destroy!
+    redirect_to :back, :notice => '操作成功!'
+  end
+  
   private
   def post_param
     params.require(:admin).permit!
