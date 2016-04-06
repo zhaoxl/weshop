@@ -6,7 +6,6 @@
 </style>
 <div class="row">
   <div class="col-md-12">
-
     <div class="nav-tabs-custom">
       <div class="tab-content">
         <div class="tab-pane active">
@@ -14,28 +13,28 @@
             <div class="form-group">
               <label for="exampleInputEmail1">Email</label>
               <%= f.text_field :email, class: 'form-control', disabled: true%>
-              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">姓名</label>
+              <%= f.text_field :name, class: 'form-control'%>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">密码<span style="color: green">(留空不修改)</span></label>
+              <%= text_field_tag :password, nil, class: 'form-control' %>
+            </div>
+            <% unless @admin.has_role? Role::ROLE_SYSTEM %>
               <div class="form-group">
-                <label for="exampleInputEmail1">姓名</label>
-                <%= f.text_field :name, class: 'form-control'%>
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1">密码<span style="color: green">(留空不修改)</span></label>
-                  <%= text_field_tag :password, nil, class: 'form-control' %>
-                  </div>
-                  <% unless @admin.has_role? Role::ROLE_SYSTEM %>
-                    <div class="form-group">
-                      <label for="col-md-2">角色</label><br>
-                      <% @roles.each do |role|%>
-                        <% next if role.name==Role::ROLE_SYSTEM %>
-                        <label class="role_name"><%= check_box_tag 'role_ids[]', role.id, @admin.roles.include?(role)%><%= role.name%></label>
-                      <%end%>
-                    </div>
-                  <% end %>
-                  <%= f.submit '保存' %>
-                <% end %>
-              </div> 
-            </div> 
-          </div> 
-        </div>
-      </div>
+                <label for="col-md-2">角色</label><br>
+                <% @roles.each do |role|%>
+                  <% next if role.name==Role::ROLE_SYSTEM %>
+                  <label class="role_name"><%= check_box_tag 'role_ids[]', role.id, @admin.roles.include?(role)%><%= role.name%></label>
+                <%end%>
+              </div>
+            <% end %>
+          	<%= f.submit '保存' %>
+          <% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

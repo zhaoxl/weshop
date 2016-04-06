@@ -1,12 +1,17 @@
 Rails.application.routes.draw do
   resource :wechat, only: [:show, :create]
   devise_for :users
-  devise_for :admins, :controllers => {sessions: "admin/admins/sessions"},path_names: {sign_out: 'logout'}, path: 'admin/admins'
+  devise_for :admins, :controllers => {sessions: "admin/admins/sessions", passwords: "admin/admins/passwords"},path_names: {sign_out: 'logout'}, path: 'admin/admins'
   
   namespace :admin do
     root 'index#index'
     
-    resources :index
+    resources :index do
+      collection do
+        get :pwd
+        post :pwd_save
+      end
+    end
     resources :product_categories do
       member do
         get :move_up

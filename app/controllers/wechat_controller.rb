@@ -1,5 +1,4 @@
-class WechatController < AppBaseController
-  before_action :current_user, only: [:pay]
+class WechatController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:pay_notify]
   
   layout false
