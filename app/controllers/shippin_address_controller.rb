@@ -1,4 +1,4 @@
-class ShippinAddressController < ApplicationController
+class ShippinAddressController < AppBaseController
   def index
     session[:goto] = params[:goto] if params[:goto].present?
     @addresses = current_user.shippin_address

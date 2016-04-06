@@ -1,4 +1,4 @@
-class ProductsController < ApplicationController
+class ProductsController < AppBaseController
   layout 'application_new'
   
   def show

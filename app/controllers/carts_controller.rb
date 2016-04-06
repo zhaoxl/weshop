@@ -1,4 +1,4 @@
-class CartsController < ApplicationController
+class CartsController < AppBaseController
   
   def add
     unless cart = Cart.where(user: current_user, product_id: params[:product_id]).first

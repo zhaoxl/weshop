@@ -1,4 +1,4 @@
-class Member::BaseController < ApplicationController
+class Member::BaseController < AppBaseController
   layout "member"
   
   

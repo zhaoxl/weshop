@@ -1,4 +1,2 @@
-class ApplicationController < AppBaseController
-  before_action :current_user
-  
+class ApplicationController < ActionController::Base
 end

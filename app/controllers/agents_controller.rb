@@ -1,4 +1,4 @@
-class AgentsController < ApplicationController
+class AgentsController < AppBaseController
   layout "agents"
   
   def index

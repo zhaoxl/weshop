@@ -1,4 +1,4 @@
-class IndexController < ApplicationController
+class IndexController < AppBaseController
   layout 'application_new'
   
   def index

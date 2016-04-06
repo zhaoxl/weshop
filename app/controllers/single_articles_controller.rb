@@ -1,4 +1,4 @@
-class SingleArticlesController < ApplicationController
+class SingleArticlesController < AppBaseController
   layout "application_new"
   
   def show

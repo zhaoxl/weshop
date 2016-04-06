@@ -1,4 +1,4 @@
-class OrdersController < ApplicationController
+class OrdersController < AppBaseController
   def new
     unless @shippin_address = current_user.shippin_address.where(id: session[:use_shippin_address_id]).first
       unless @shippin_address = current_user.shippin_address.where(default: true).first
