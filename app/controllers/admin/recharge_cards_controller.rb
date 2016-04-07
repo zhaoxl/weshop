@@ -13,7 +13,7 @@ class Admin::RechargeCardsController < Admin::BaseController
   
   def create
     1.upto(params[:total].to_i) do |index|
-      RechargeCard.create(price: params[:price].to_f, scode: "100#{rand(1000000000000000..9999999999999999)}")
+      RechargeCard.create(handsel: params[:handsel].to_f, price: params[:price].to_f, scode: "100#{rand(1000000000000000..9999999999999999)}")
     end
     
     flash[:success] = "添加成功#{params[:total]}条"
@@ -44,10 +44,7 @@ class Admin::RechargeCardsController < Admin::BaseController
   def find_data
     @data = RechargeCard.find(params[:id])
   end
-  
-  def post_params
-    params.require(:product).permit!
-  end
+
   
   
   

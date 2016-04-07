@@ -44,6 +44,9 @@ class User < ActiveRecord::Base
       if setting = Setting.where(key: :recharge_card_recharge_handsel).first
         handsel = (card.price * setting.value.to_f) / 100
       end
+      
+      #加上充值卡赠送的金额
+      handsel += card.handsel
     
       unless w = self.wallet
         w = self.build_wallet(balance: 0, score: 0)

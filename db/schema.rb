@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160401091401) do
+ActiveRecord::Schema.define(version: 20160407081746) do
 
   create_table "admins", force: true do |t|
     t.string   "name"
@@ -280,6 +280,7 @@ ActiveRecord::Schema.define(version: 20160401091401) do
     t.decimal  "price",            precision: 10, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "handsel",          precision: 10, scale: 2, default: 0.0
   end
 
   create_table "recharges", force: true do |t|
@@ -292,8 +293,10 @@ ActiveRecord::Schema.define(version: 20160401091401) do
   end
 
   create_table "roles", force: true do |t|
-    t.string "name"
-    t.string "state"
+    t.string  "name"
+    t.string  "state"
+    t.string  "resource_type"
+    t.integer "resource_id"
   end
 
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
