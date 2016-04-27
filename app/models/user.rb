@@ -52,6 +52,7 @@ class User < ActiveRecord::Base
         w = self.build_wallet(balance: 0, score: 0)
       end
       w.balance += card.price + handsel
+      w.handsel_amount += handsel
       w.save
     end
   end

@@ -42,7 +42,7 @@ class Member::DistributionsController < Member::BaseController
       end
       wallet.balance -= amount
       wallet.lock += amount
-      raise Wallet::InsufficientBalanceException if wallet.balance < 0
+      raise Wallet::InsufficientBalanceException if wallet.balance-wallet.handsel_amount < 0
       wallet.save
       
       Withdraw.create(user: current_user, amount: amount)
